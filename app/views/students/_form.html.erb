@@ -1,0 +1,74 @@
+<%= form_with(model: student, local: true) do |form| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :student_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data_nascimento %>
+    <%= form.date_select :data_nascimento, id: :student_data_nascimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rg_aluno %>
+    <%= form.text_field :rg_aluno, id: :student_rg_aluno %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf_aluno %>
+    <%= form.text_field :cpf_aluno, id: :student_cpf_aluno %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telefone %>
+    <%= form.text_field :telefone, id: :student_telefone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sexo %>
+    <%= form.text_field :sexo, id: :student_sexo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :responsavel_curador %>
+    <%= form.text_field :responsavel_curador, id: :student_responsavel_curador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :restricoes_alimentares %>
+    <%= form.text_field :restricoes_alimentares, id: :student_restricoes_alimentares %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rg_responsavel %>
+    <%= form.text_field :rg_responsavel, id: :student_rg_responsavel %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf_responsavel %>
+    <%= form.text_field :cpf_responsavel, id: :student_cpf_responsave %>
+  </div>
+  <br><h2>Medicamentos</h2><br>
+  <div id="medicines">
+      <%= form.fields_for :medicines do |medicines_fields| %>
+          <%= render partial: "medicine_fields", locals: { f: medicines_fields } %>
+      <% end %>
+      <%= link_to_add_association('[Adicionar Medicamento]', form, :medicines) %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

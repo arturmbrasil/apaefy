@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @student.nome %>
+</p>
+
+<p>
+  <strong>Data nascimento:</strong>
+  <%= l @student.data_nascimento %>
+</p>
+
+<p>
+  <strong>Rg aluno:</strong>
+  <%= @student.rg_aluno %>
+</p>
+
+<p>
+  <strong>Cpf aluno:</strong>
+  <%= @student.cpf_aluno %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @student.telefone %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @student.sexo %>
+</p>
+
+<p>
+  <strong>Responsavel curador:</strong>
+  <%= @student.responsavel_curador %>
+</p>
+
+<p>
+  <strong>Restricoes alimentares:</strong>
+  <%= @student.restricoes_alimentares %>
+</p>
+
+<p>
+  <strong>Rg responsavel:</strong>
+  <%= @student.rg_responsavel %>
+</p>
+
+<p>
+  <strong>Cpf responsavel:</strong>
+  <%= @student.cpf_responsavel %>
+</p>
+
+<table>
+  <tr>
+    <td colspan="3">
+      <h2>Medicamentos</h2>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Nome</strong>
+    </td>
+    <td>
+      <strong>Dosagem</strong>
+    </td>
+    <td>
+      <strong>Intervalor de Tempo</strong>
+    </td>
+  </tr>
+  <% @student.medicines.each do |med| %>
+    <tr>
+      <td>
+        med.nome
+      </td>
+      <td>
+        med.dosagem
+      </td>
+      <td>
+        med.intervalo_tempo
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Editar', edit_student_path(@student) %> |
+<%= link_to 'Voltar', students_path %>

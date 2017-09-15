@@ -10,11 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901111038) do
+ActiveRecord::Schema.define(version: 20170914232841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "action_plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "frequencia"
+    t.string "evolucao"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_action_plans_on_student_id"
+  end
+
+  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "data"
+    t.integer "horario"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_appointments_on_student_id"
+  end
+
+  create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "dosagem"
+    t.string "intervalo_tempo"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg_aluno"
+    t.string "cpf_aluno"
+    t.string "telefone"
+    t.string "sexo"
+    t.string "responsavel_curador"
+    t.string "restricoes_alimentares"
+    t.string "rg_responsavel"
+    t.string "cpf_responsavel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,4 +76,7 @@ ActiveRecord::Schema.define(version: 20170901111038) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "action_plans", "students"
+  add_foreign_key "appointments", "students"
+  add_foreign_key "medicines", "students"
 end
