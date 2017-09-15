@@ -1,0 +1,32 @@
+<%= form_with(model: action_plan, local: true) do |form| %>
+  <% if action_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(action_plan.errors.count, "error") %> prohibited this action_plan from being saved:</h2>
+
+      <ul>
+      <% action_plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :frequencia %>
+    <%= form.text_field :frequencia, id: :action_plan_frequencia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evolucao %>
+    <%= form.text_field :evolucao, id: :action_plan_evolucao %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Estudante" %>
+    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
