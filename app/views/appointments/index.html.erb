@@ -21,7 +21,7 @@
         <td><%= nome_aluno %></td>
         <td><%= link_to 'Detalhes', appointment %></td>
         <td><%= link_to 'Editar', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Excluir', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Excluir', appointment, method: :delete, data: { confirm: 'Deseja realmente excluir?' } %></td>
       </tr>
     <% end %>
   </tbody>
