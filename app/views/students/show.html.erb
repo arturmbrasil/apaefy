@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Detalhes do Aluno</h1>
+
 <p>
   <strong>Nome:</strong>
   <%= @student.nome %>
@@ -49,37 +51,23 @@
   <strong>Cpf responsavel:</strong>
   <%= @student.cpf_responsavel %>
 </p>
-
+<br>
+<h2>Medicamentos</h2>
 <table>
-  <tr>
-    <td colspan="3">
-      <h2>Medicamentos</h2>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Nome</strong>
-    </td>
-    <td>
-      <strong>Dosagem</strong>
-    </td>
-    <td>
-      <strong>Intervalor de Tempo</strong>
-    </td>
-  </tr>
-  <% @student.medicines.each do |med| %>
-    <tr>
-      <td>
-        med.nome
-      </td>
-      <td>
-        med.dosagem
-      </td>
-      <td>
-        med.intervalo_tempo
-      </td>
-    </tr>
-  <% end %>
+  <thead>
+    <th><strong>Nome</strong></th>
+    <th><strong>Dosagem</strong></th>
+    <th><strong>Intervalo de Tempo</strong></th>
+  </thead>
+  <tbody>
+    <% @student.medicines.each do |med| %>
+      <tr>
+        <td><%= med.nome %></td>
+        <td><%= med.dosagem %></td>
+        <td><%= med.intervalo_tempo %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <%= link_to 'Editar', edit_student_path(@student) %> |
