@@ -11,10 +11,6 @@
       <th>Cpf aluno</th>
       <th>Telefone</th>
       <th>Sexo</th>
-      <th>Responsavel curador</th>
-      <th>Restricoes alimentares</th>
-      <th>Rg responsavel</th>
-      <th>Cpf responsavel</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,10 +24,6 @@
         <td><%= student.cpf_aluno %></td>
         <td><%= student.telefone %></td>
         <td><%= student.sexo %></td>
-        <td><%= student.responsavel_curador %></td>
-        <td><%= student.restricoes_alimentares %></td>
-        <td><%= student.rg_responsavel %></td>
-        <td><%= student.cpf_responsavel %></td>
         <td><%= link_to 'Detalhes', student %></td>
         <td><%= link_to 'Editar', edit_student_path(student) %></td>
         <td><%= link_to 'Excluir', student, method: :delete, data: { confirm: 'Deseja realmente excluir?' } %></td>
