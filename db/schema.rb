@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914232841) do
+ActiveRecord::Schema.define(version: 20170921232806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20170914232841) do
     t.index ["student_id"], name: "index_appointments_on_student_id"
   end
 
+  create_table "food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "restriction"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_food_restrictions_on_student_id"
+  end
+
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "dosagem"
@@ -44,6 +52,26 @@ ActiveRecord::Schema.define(version: 20170914232841) do
     t.index ["student_id"], name: "index_medicines_on_student_id"
   end
 
+  create_table "responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "telefone"
+    t.string "rg"
+    t.string "cpf"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_responsibles_on_student_id"
+  end
+
+  create_table "special_needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "descricao"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_special_needs_on_student_id"
+  end
+
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.date "data_nascimento"
@@ -51,10 +79,7 @@ ActiveRecord::Schema.define(version: 20170914232841) do
     t.string "cpf_aluno"
     t.string "telefone"
     t.string "sexo"
-    t.string "responsavel_curador"
     t.string "restricoes_alimentares"
-    t.string "rg_responsavel"
-    t.string "cpf_responsavel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,5 +103,8 @@ ActiveRecord::Schema.define(version: 20170914232841) do
 
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
+  add_foreign_key "food_restrictions", "students"
   add_foreign_key "medicines", "students"
+  add_foreign_key "responsibles", "students"
+  add_foreign_key "special_needs", "students"
 end

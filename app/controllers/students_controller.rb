@@ -70,7 +70,9 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:nome, :data_nascimento, :rg_aluno, :cpf_aluno, :telefone, :sexo,
-        :responsavel_curador, :restricoes_alimentares, :rg_responsavel, :cpf_responsavel,
-        medicines_attributes: [:id, :nome, :dosagem, :intervalo_tempo, :_destroy])
+        medicines_attributes: [:id, :nome, :dosagem, :intervalo_tempo, :_destroy],
+        responsibles_attributes: [:id, :nome, :data_nascimento, :telefone, :rg, :cpf, :_destroy],
+        food_restrictions_attributes: [:id, :restriction, :_destroy],
+        special_needs_attributes: [:id, :descricao, :_destroy])
     end
 end

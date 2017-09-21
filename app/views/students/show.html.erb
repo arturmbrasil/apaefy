@@ -32,25 +32,49 @@
   <%= @student.sexo %>
 </p>
 
-<p>
-  <strong>Responsavel curador:</strong>
-  <%= @student.responsavel_curador %>
-</p>
+<br>
+<h2>Restrições Alimentares</h2>
+<table>
+  <% @student.food_restrictions.each do |food| %>
+    <tr>
+      <td><%= food.restriction %></td>
+    </tr>
+  <% end %>
+</table>
 
-<p>
-  <strong>Restricoes alimentares:</strong>
-  <%= @student.restricoes_alimentares %>
-</p>
+<br>
+<h2>Necessidades Especiais</h2>
+<table>
+  <% @student.special_needs.each do |need| %>
+    <tr>
+      <td><%= need.descricao %></td>
+    </tr>
+  <% end %>
+</table>
 
-<p>
-  <strong>Rg responsavel:</strong>
-  <%= @student.rg_responsavel %>
-</p>
 
-<p>
-  <strong>Cpf responsavel:</strong>
-  <%= @student.cpf_responsavel %>
-</p>
+<br>
+<h2>Responsáveis</h2>
+<table>
+  <thead>
+    <th>Nome</th>
+    <th>Data de nascimento</th>
+    <th>Telefone</th>
+    <th>RG</th>
+    <th>CPF</th>
+  </thead>
+  <tbody>
+    <% @student.responsibles.each do |resp| %>
+      <tr>
+        <td><%= resp.nome %></td>
+        <td><%= resp.data_nascimento %></td>
+        <td><%= resp.telefone %></td>
+        <td><%= resp.rg %></td>
+        <td><%= resp.cpf %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <br>
 <h2>Medicamentos</h2>
 <table>

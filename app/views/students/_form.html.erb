@@ -41,26 +41,38 @@
     <%= form.text_field :sexo, id: :student_sexo %>
   </div>
 
-  <div class="field">
-    <%= form.label :responsavel_curador %>
-    <%= form.text_field :responsavel_curador, id: :student_responsavel_curador %>
+  <br><h2>Necessidades Especiais</h2><br>
+  <div id="special_needs">
+    <%= form.fields_for :special_needs do |special_need_fields| %>
+    <%= render partial: "special_need_fields", locals: { f: special_need_fields } %>
+    <% end %>
+    <%= link_to_add_association('[Adicionar Necessidade]', form, :special_needs) %>
   </div>
 
-  <div class="field">
-    <%= form.label :restricoes_alimentares %>
-    <%= form.text_field :restricoes_alimentares, id: :student_restricoes_alimentares %>
+  <br><h2>Restrições Alimentares</h2><br>
+  <div id="food_restrictions">
+    <%= form.fields_for :food_restrictions do |food_restriction_fields| %>
+      <%= render partial: "food_restriction_fields", locals: { f: food_restriction_fields } %>
+    <% end %>
+    <%= link_to_add_association('[Adicionar Restrição]', form, :food_restrictions) %>
   </div>
 
-  <div class="field">
-    <%= form.label :rg_responsavel %>
-    <%= form.text_field :rg_responsavel, id: :student_rg_responsavel %>
+  <br><h2>Responsáveis</h2><br>
+  <div id="responsibles">
+    <%= form.fields_for :responsibles do |responsible_fields| %>
+      <%= render partial: "responsible_fields", locals: { f: responsible_fields } %>
+    <% end %>
+    <%= link_to_add_association('[Adicionar Responsável]', form, :responsibles) %>
   </div>
 
-  <div class="field">
-    <%= form.label :cpf_responsavel %>
-    <%= form.text_field :cpf_responsavel, id: :student_cpf_responsave %>
-  </div>
   <br><h2>Medicamentos</h2><br>
+  <table style="width:600px">
+    <thead>
+      <th style="text-align:left; width:29.8%">Nome</th>
+      <th style="text-align:left; width:29.2%">Dosagem</th>
+      <th style="text-align:left; width:41%">Intervalo de tempo</th>
+    </thead>
+  </table>
   <div id="medicines">
       <%= form.fields_for :medicines do |medicines_fields| %>
           <%= render partial: "medicine_fields", locals: { f: medicines_fields } %>
