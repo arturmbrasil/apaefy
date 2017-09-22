@@ -76,6 +76,6 @@ class ActionPlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def action_plan_params
-      params.require(:action_plan).permit(:frequencia, :evolucao, :student_id)
+      params.require(:action_plan).permit(:data, :evolucao, :student_id)
     end
 end

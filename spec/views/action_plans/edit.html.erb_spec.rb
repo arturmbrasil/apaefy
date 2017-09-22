@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "action_plans/edit", type: :view do
   before(:each) do
     @action_plan = assign(:action_plan, ActionPlan.create!(
-      :frequencia => "MyString",
+      :data => "MyString",
       :evolucao => "MyString",
       :student => nil
     ))
@@ -14,7 +14,7 @@ RSpec.describe "action_plans/edit", type: :view do
 
     assert_select "form[action=?][method=?]", action_plan_path(@action_plan), "post" do
 
-      assert_select "input[name=?]", "action_plan[frequencia]"
+      assert_select "input[name=?]", "action_plan[data]"
 
       assert_select "input[name=?]", "action_plan[evolucao]"
 

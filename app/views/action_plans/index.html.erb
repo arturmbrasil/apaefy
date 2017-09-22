@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Frequencia</th>
+      <th>data</th>
       <th>Evolucao</th>
       <th>Aluno</th>
       <th colspan="3"></th>
@@ -16,7 +16,7 @@
     <% @action_plans.each do |action_plan| %>
       <% estudante = action_plan.student.nome %>
       <tr>
-        <td><%= action_plan.frequencia %></td>
+        <td><%= l action_plan.data %></td>
         <td><%= action_plan.evolucao %></td>
         <td><%= estudante %></td>
         <td><%= link_to 'Detalhes', action_plan %></td>
