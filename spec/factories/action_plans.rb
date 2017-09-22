@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :action_plan do
-    frequencia "MyString"
+    data "MyString"
     evolucao "MyString"
     student nil
   end

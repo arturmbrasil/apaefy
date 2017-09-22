@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :frequencia %>
-    <%= form.text_field :frequencia, id: :action_plan_frequencia %>
+    <%= form.label "Aluno" %>
+    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.date_select :data, id: :action_plan_data %>
   </div>
 
   <div class="field">
     <%= form.label :evolucao %>
-    <%= form.text_field :evolucao, id: :action_plan_evolucao %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Aluno" %>
-    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome) %>
+    <%= form.text_area :evolucao, id: :action_plan_evolucao %>
   </div>
 
   <div class="actions">
