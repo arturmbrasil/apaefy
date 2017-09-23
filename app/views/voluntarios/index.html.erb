@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Voluntarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>Data de nascimento</th>
+      <th>RG</th>
+      <th>CPF</th>
+      <th>Telefone</th>
+      <th>Usuário</th>
+      <th>Senha</th>
+      <th>Sexo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @voluntarios.each do |voluntario| %>
+      <tr>
+        <td><%= voluntario.codigo %></td>
+        <td><%= voluntario.nome %></td>
+        <td><%= voluntario.data_nascimento %></td>
+        <td><%= voluntario.rg %></td>
+        <td><%= voluntario.cpf %></td>
+        <td><%= voluntario.telefone %></td>
+        <td><%= voluntario.usuario %></td>
+        <td><%= voluntario.senha %></td>
+        <td><%= voluntario.sexo %></td>
+        <td><%= link_to 'Show', voluntario %></td>
+        <td><%= link_to 'Edit', edit_voluntario_path(voluntario) %></td>
+        <td><%= link_to 'Destroy', voluntario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Voluntario', new_voluntario_path %>

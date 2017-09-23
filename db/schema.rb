@@ -10,11 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901111038) do
+ActiveRecord::Schema.define(version: 20170921225557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "sexo"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fornecedors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.string "telefone"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "funcionarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "usuario"
+    t.string "senha"
+    t.string "sexo"
+    t.date "data_admissao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "titulo"
+    t.string "descricao"
+    t.string "status"
+    t.string "metas"
+    t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +79,20 @@ ActiveRecord::Schema.define(version: 20170901111038) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "voluntarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "usuario"
+    t.string "senha"
+    t.string "sexo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
