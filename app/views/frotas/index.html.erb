@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Frotas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Veiculo</th>
+      <th>Placa</th>
+      <th>Renavam</th>
+      <th>Chassi</th>
+      <th>Rota</th>
+      <th>Motorista</th>
+      <th>Roteirista</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @frotas.each do |frota| %>
+      <tr>
+        <td><%= frota.nome %></td>
+        <td><%= frota.veiculo %></td>
+        <td><%= frota.placa %></td>
+        <td><%= frota.renavam %></td>
+        <td><%= frota.chassi %></td>
+        <td><%= frota.rota %></td>
+        <td><%= frota.motorista %></td>
+        <td><%= frota.roteirista %></td>
+        <td><%= link_to 'Detalhes', frota %></td>
+        <td><%= link_to 'Editar', edit_frota_path(frota) %></td>
+        <td><%= link_to 'Excluir', frota, method: :delete, data: { confirm: 'Deseja realmente excluir' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Frota', new_frota_path %>
