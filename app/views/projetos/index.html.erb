@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Codigo</th>
-      <th>Titulo</th>
-      <th>Descricao</th>
+      <th>Código</th>
+      <th>Título</th>
+      <th>Descrição</th>
       <th>Status</th>
       <th>Metas</th>
       <th>Valor</th>
@@ -24,9 +24,9 @@
         <td><%= projeto.status %></td>
         <td><%= projeto.metas %></td>
         <td><%= projeto.valor %></td>
-        <td><%= link_to 'Show', projeto %></td>
-        <td><%= link_to 'Edit', edit_projeto_path(projeto) %></td>
-        <td><%= link_to 'Destroy', projeto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Exibir', projeto %></td>
+        <td><%= link_to 'Editar', edit_projeto_path(projeto) %></td>
+        <td><%= link_to 'Excluir', projeto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Projeto', new_projeto_path %>
+<%= link_to 'Novo Projeto', new_projeto_path %>

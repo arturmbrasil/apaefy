@@ -11,52 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :codigo %>
+  <!--<div class="field">
+    <%= form.label "Código" %>
     <%= form.number_field :codigo, id: :colaborador_codigo %>
-  </div>
+  </div> -->
 
   <div class="field">
-    <%= form.label :nome %>
+    <%= form.label "Nome" %>
     <%= form.text_field :nome, id: :colaborador_nome %>
   </div>
 
   <div class="field">
-    <%= form.label :data_nascimento %>
+    <%= form.label "Data de nascimento" %>
     <%= form.date_select :data_nascimento, id: :colaborador_data_nascimento %>
   </div>
 
   <div class="field">
-    <%= form.label :rg %>
+    <%= form.label "RG" %>
     <%= form.text_field :rg, id: :colaborador_rg %>
   </div>
 
   <div class="field">
-    <%= form.label :cpf %>
+    <%= form.label "CPF" %>
     <%= form.text_field :cpf, id: :colaborador_cpf %>
   </div>
 
   <div class="field">
-    <%= form.label :telefone %>
+    <%= form.label "Telefone" %>
     <%= form.text_field :telefone, id: :colaborador_telefone %>
   </div>
 
   <div class="field">
-    <%= form.label :sexo %>
+    <%= form.label "Sexo" %>
     <%= form.text_field :sexo, id: :colaborador_sexo %>
   </div>
 
   <div class="field">
-    <%= form.label :cnpj %>
+    <%= form.label "CNPJ" %>
     <%= form.text_field :cnpj, id: :colaborador_cnpj %>
   </div>
 
   <div class="field">
-    <%= form.label :inscricao_estadual %>
+    <%= form.label "Inscrição estadual" %>
     <%= form.text_field :inscricao_estadual, id: :colaborador_inscricao_estadual %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Cadastar Colaborador" %>
   </div>
 <% end %>

@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :codigo %>
+  <!-- <div class="field">
+    <%= form.label "Código" %>
     <%= form.number_field :codigo, id: :fornecedor_codigo %>
-  </div>
+  </div> -->
 
   <div class="field">
-    <%= form.label :nome %>
+    <%= form.label "Nome" %>
     <%= form.text_field :nome, id: :fornecedor_nome %>
   </div>
 
   <div class="field">
-    <%= form.label :telefone %>
+    <%= form.label "Telefone" %>
     <%= form.text_field :telefone, id: :fornecedor_telefone %>
   </div>
 
   <div class="field">
-    <%= form.label :cnpj %>
+    <%= form.label "CNPJ" %>
     <%= form.text_field :cnpj, id: :fornecedor_cnpj %>
   </div>
 
   <div class="field">
-    <%= form.label :inscricao_estadual %>
+    <%= form.label "Inscrição estadual" %>
     <%= form.text_field :inscricao_estadual, id: :fornecedor_inscricao_estadual %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Cadastrar Fornecedor" %>
   </div>
 <% end %>

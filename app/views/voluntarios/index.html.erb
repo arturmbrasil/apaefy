@@ -30,9 +30,9 @@
         <td><%= voluntario.usuario %></td>
         <td><%= voluntario.senha %></td>
         <td><%= voluntario.sexo %></td>
-        <td><%= link_to 'Show', voluntario %></td>
-        <td><%= link_to 'Edit', edit_voluntario_path(voluntario) %></td>
-        <td><%= link_to 'Destroy', voluntario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Exibir', voluntario %></td>
+        <td><%= link_to 'Editar', edit_voluntario_path(voluntario) %></td>
+        <td><%= link_to 'Excluir', voluntario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Voluntario', new_voluntario_path %>
+<%= link_to 'Novo Voluntário', new_voluntario_path %>

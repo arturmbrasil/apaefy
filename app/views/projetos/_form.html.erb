@@ -11,37 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :codigo %>
+  <!--<div class="field">
+    <%= form.label "Código" %>
     <%= form.number_field :codigo, id: :projeto_codigo %>
-  </div>
+  </div>-->
 
   <div class="field">
-    <%= form.label :titulo %>
+    <%= form.label "Título" %>
     <%= form.text_field :titulo, id: :projeto_titulo %>
   </div>
 
   <div class="field">
-    <%= form.label :descricao %>
+    <%= form.label "Descrição" %>
     <%= form.text_field :descricao, id: :projeto_descricao %>
   </div>
 
   <div class="field">
-    <%= form.label :status %>
+    <%= form.label "Status" %>
     <%= form.text_field :status, id: :projeto_status %>
   </div>
 
   <div class="field">
-    <%= form.label :metas %>
+    <%= form.label "Metas" %>
     <%= form.text_field :metas, id: :projeto_metas %>
   </div>
 
   <div class="field">
-    <%= form.label :valor %>
+    <%= form.label "Valor" %>
     <%= form.text_field :valor, id: :projeto_valor %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Criar Projeto" %>
   </div>
 <% end %>
