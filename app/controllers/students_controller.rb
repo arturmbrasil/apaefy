@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_options_for_select, only:  [:new, :edit, :update, :create]
 
   # GET /students
   # GET /students.json
@@ -10,6 +11,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @prescriptions = @student.prescriptions.includes(:medicine)
   end
 
   # GET /students/new
@@ -28,7 +30,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.html { redirect_to @student, notice: t('CriacaoAluno') }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        format.html { redirect_to @student, notice: t('AlteracaoAluno') }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit }
@@ -56,12 +58,17 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.html { redirect_to students_url, notice: t('ExclusaoAluno') }
       format.json { head :no_content }
     end
   end
 
+
   private
+    def set_options_for_select
+      @medicine_options_for_select = Medicine.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
@@ -70,7 +77,7 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:nome, :data_nascimento, :rg_aluno, :cpf_aluno, :telefone, :sexo,
-        medicines_attributes: [:id, :nome, :dosagem, :intervalo_tempo, :_destroy],
+        prescriptions_attributes: [:id, :medicine_id, :dosagem, :intervalo_tempo, :_destroy],
         responsibles_attributes: [:id, :nome, :data_nascimento, :telefone, :rg, :cpf, :_destroy],
         food_restrictions_attributes: [:id, :restriction, :_destroy],
         special_needs_attributes: [:id, :descricao, :_destroy])

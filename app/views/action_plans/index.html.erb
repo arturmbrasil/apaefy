@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>data</th>
+      <th>Data</th>
       <th>Evolucao</th>
       <th>Aluno</th>
       <th colspan="3"></th>
@@ -19,9 +19,9 @@
         <td><%= l action_plan.data %></td>
         <td><%= action_plan.evolucao %></td>
         <td><%= estudante %></td>
-        <td><%= link_to 'Detalhes', action_plan %></td>
-        <td><%= link_to 'Editar', edit_action_plan_path(action_plan) %></td>
-        <td><%= link_to 'Excluir', action_plan, method: :delete, data: { confirm: 'Deseja relamente excluir?' } %></td>
+        <td><%= link_to t('Show'), action_plan %></td>
+        <td><%= link_to t('Edit'), edit_action_plan_path(action_plan) %></td>
+        <td><%= link_to t('Destroy'), action_plan, method: :delete, data: { confirm: 'Deseja relamente excluir?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'Novo plano de ação', new_action_plan_path %>
+<%= link_to t('New Action Plan'), new_action_plan_path %>

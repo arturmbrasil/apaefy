@@ -1,15 +1,4 @@
 <%= form_with(model: student, local: true) do |form| %>
-  <% if student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
-
-      <ul>
-      <% student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :nome %>
@@ -18,7 +7,7 @@
 
   <div class="field">
     <%= form.label :data_nascimento %>
-    <%= form.date_select :data_nascimento, id: :student_data_nascimento %>
+    <%= form.date_field :data_nascimento, id: :student_data_nascimento %>
   </div>
 
   <div class="field">
@@ -38,7 +27,7 @@
 
   <div class="field">
     <%= form.label :sexo %>
-    <%= form.text_field :sexo, id: :student_sexo %>
+    <%= form.select :sexo, options_for_select(["Masculino", "Feminino"]), {prompt: "Selecione o sexo"} %>
   </div>
 
   <br><h2>Necessidades Especiais</h2><br>
@@ -68,18 +57,33 @@
   <br><h2>Medicamentos</h2><br>
   <table style="width:600px">
     <thead>
-      <th style="text-align:left; width:29.8%">Nome</th>
+      <th style="text-align:left; width:29.8%">Medicamento</th>
       <th style="text-align:left; width:29.2%">Dosagem</th>
       <th style="text-align:left; width:41%">Intervalo de tempo</th>
     </thead>
   </table>
   <div id="medicines">
-      <%= form.fields_for :medicines do |medicines_fields| %>
-          <%= render partial: "medicine_fields", locals: { f: medicines_fields } %>
+      <%= form.fields_for :prescriptions do |prescriptions_fields| %>
+          <%= render partial: "prescription_fields", locals: { f: prescriptions_fields } %>
       <% end %>
-      <%= link_to_add_association('[Adicionar Medicamento]', form, :medicines) %>
+      <%= link_to_add_association('[Adicionar Medicamento]', form, :prescriptions) %>
   </div>
   <br>
+
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "erros") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br>
+
   <div class="actions">
     <%= form.submit %>
   </div>

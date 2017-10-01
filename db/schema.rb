@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921232806) do
+ActiveRecord::Schema.define(version: 20170927203335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,8 @@ ActiveRecord::Schema.define(version: 20170921232806) do
 
   create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "data"
-    t.integer "horario"
+    t.time "horario"
+    t.string "descricao"
     t.uuid "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,12 +45,19 @@ ActiveRecord::Schema.define(version: 20170921232806) do
 
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
-    t.string "dosagem"
-    t.string "intervalo_tempo"
-    t.uuid "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "prescriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.uuid "medicine_id"
+    t.string "dosagem"
+    t.string "intervalo_tempo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["medicine_id"], name: "index_prescriptions_on_medicine_id"
+    t.index ["student_id"], name: "index_prescriptions_on_student_id"
   end
 
   create_table "responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -104,7 +112,8 @@ ActiveRecord::Schema.define(version: 20170921232806) do
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
   add_foreign_key "food_restrictions", "students"
-  add_foreign_key "medicines", "students"
+  add_foreign_key "prescriptions", "medicines"
+  add_foreign_key "prescriptions", "students"
   add_foreign_key "responsibles", "students"
   add_foreign_key "special_needs", "students"
 end

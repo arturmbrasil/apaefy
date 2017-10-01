@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @medicine.nome %>
+</p>
+
+<%= link_to t('Edit'), edit_medicine_path(@medicine) %> |
+<%= link_to t('Back'), medicines_path %>

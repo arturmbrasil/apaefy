@@ -1,6 +1,6 @@
-<h1>Editar plano de ação</h1>
+<h1><%= t('Editing Action Plan') %></h1>
 
 <%= render 'form', action_plan: @action_plan %>
 
-<%= link_to 'Detalhes', @action_plan %> |
-<%= link_to 'Voltar', action_plans_path %>
+<%= link_to t('Show'), @action_plan %> |
+<%= link_to t('Back'), action_plans_path %>

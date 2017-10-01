@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "appointments/new", type: :view do
   before(:each) do
     assign(:appointment, Appointment.new(
-      :horario => 1,
+      :descricao => "MyString",
       :student => nil
     ))
   end
@@ -13,7 +13,7 @@ RSpec.describe "appointments/new", type: :view do
 
     assert_select "form[action=?][method=?]", appointments_path, "post" do
 
-      assert_select "input[name=?]", "appointment[horario]"
+      assert_select "input[name=?]", "appointment[descricao]"
 
       assert_select "input[name=?]", "appointment[student_id]"
     end

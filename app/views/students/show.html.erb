@@ -67,7 +67,7 @@
     <% @student.responsibles.each do |resp| %>
       <tr>
         <td><%= resp.nome %></td>
-        <td><%= resp.data_nascimento %></td>
+        <td><%= l resp.data_nascimento %></td>
         <td><%= resp.telefone %></td>
         <td><%= resp.rg %></td>
         <td><%= resp.cpf %></td>
@@ -84,15 +84,15 @@
     <th><strong>Intervalo de Tempo</strong></th>
   </thead>
   <tbody>
-    <% @student.medicines.each do |med| %>
+    <% @prescriptions.each do |presc| %>
       <tr>
-        <td><%= med.nome %></td>
-        <td><%= med.dosagem %></td>
-        <td><%= med.intervalo_tempo %></td>
+        <td><%= presc.medicine.nome %></td>
+        <td><%= presc.dosagem %></td>
+        <td><%= presc.intervalo_tempo %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Editar', edit_student_path(@student) %> |
-<%= link_to 'Voltar', students_path %>
+<%= link_to t('Edit'), edit_student_path(@student) %> |
+<%= link_to t('Back'), students_path %>

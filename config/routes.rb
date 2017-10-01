@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :action_plans
-  resources :medicines
+  resources :medicines do
+    get :autocomplete_medicine_nome, on: :collection
+  end
+  resources :action_plans do
+    get :autocomplete_student_nome, on: :collection
+  end
   resources :students
   resources :appointments
   devise_for :users

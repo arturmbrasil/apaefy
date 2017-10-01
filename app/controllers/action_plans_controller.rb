@@ -1,5 +1,7 @@
 class ActionPlansController < ApplicationController
   before_action :set_action_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_options_for_select, only: [:new, :edit, :update, :create]
+  autocomplete :student, :nome
 
   # GET /action_plans
   # GET /action_plans.json
@@ -15,12 +17,10 @@ class ActionPlansController < ApplicationController
   # GET /action_plans/new
   def new
     @action_plan = ActionPlan.new
-    options_for_select
   end
 
   # GET /action_plans/1/edit
   def edit
-    options_for_select
   end
 
   # POST /action_plans
@@ -65,7 +65,7 @@ class ActionPlansController < ApplicationController
 
   private
 
-    def options_for_select
+    def set_options_for_select
       @student_options_for_select = Student.all
     end
 

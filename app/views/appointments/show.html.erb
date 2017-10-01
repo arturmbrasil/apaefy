@@ -2,7 +2,7 @@
 
 <p>
   <strong>Data:</strong>
-  <%= l @appointment.data %>
+  <%= @appointment.data %>
 </p>
 
 <p>
@@ -11,9 +11,14 @@
 </p>
 
 <p>
+  <strong>Descricao:</strong>
+  <%= @appointment.descricao %>
+</p>
+
+<p>
   <strong>Aluno:</strong>
   <%= @appointment.student.nome %>
 </p>
 
-<%= link_to 'Editar', edit_appointment_path(@appointment) %> |
-<%= link_to 'Voltar', appointments_path %>
+<%= link_to t('Edit'), edit_appointment_path(@appointment) %> |
+<%= link_to t('Back'), appointments_path %>

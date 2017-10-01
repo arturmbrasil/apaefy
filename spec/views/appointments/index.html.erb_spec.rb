@@ -4,11 +4,11 @@ RSpec.describe "appointments/index", type: :view do
   before(:each) do
     assign(:appointments, [
       Appointment.create!(
-        :horario => 2,
+        :descricao => "Descricao",
         :student => nil
       ),
       Appointment.create!(
-        :horario => 2,
+        :descricao => "Descricao",
         :student => nil
       )
     ])
@@ -16,7 +16,7 @@ RSpec.describe "appointments/index", type: :view do
 
   it "renders a list of appointments" do
     render
-    assert_select "tr>td", :text => 2.to_s, :count => 2
+    assert_select "tr>td", :text => "Descricao".to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
   end
 end

@@ -12,6 +12,28 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery-ui
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+
+function loadAutocomplete() {
+  $jsAutocomplete = $('.js-autocomplete');
+  $('form').find("input[data-autocomplete]").each(function() {
+    var url;
+    console.log(this);
+    url = $(this).data('autocomplete');
+    return $(this).autocomplete({
+      minLength: 3,
+      source: url,
+      select: function( event, ui ) {
+        $jsAutocomplete.val(ui.item.id);
+      }
+    });
+  });
+}
+
+$(document).on('turbolinks:load', function() {
+  loadAutocomplete();
+  $('form').on('cocoon:after-insert', loadAutocomplete);
+});

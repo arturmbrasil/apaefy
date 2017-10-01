@@ -34,6 +34,9 @@ gem "rails-i18n"
 gem "coffee-rails"
 gem "jquery-rails"
 gem "turbolinks"
+gem 'autocomplete_rails'
+gem 'jquery-ui-rails'
+
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

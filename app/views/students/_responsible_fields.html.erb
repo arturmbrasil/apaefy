@@ -1,10 +1,10 @@
 <div class="nested-fields">
    <div class="field">
          <%= f.text_field :nome %>
-         <%= f.date_select :data_nascimento %>
+         <%= f.date_field :data_nascimento %>
          <%= f.text_field :telefone %>
          <%= f.text_field :rg %>
          <%= f.text_field :cpf %>
-         <%= link_to_remove_association("Remover", f) %>
+         <%= link_to_remove_association(t('Remove'), f) %>
    </div>
 </div>

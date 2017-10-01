@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_options_for_select, only:  [:new, :edit, :update, :create]
 
   # GET /appointments
   # GET /appointments.json
@@ -15,12 +16,10 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
-    options_for_select
   end
 
   # GET /appointments/1/edit
   def edit
-    options_for_select
   end
 
   # POST /appointments
@@ -65,7 +64,7 @@ class AppointmentsController < ApplicationController
 
   private
 
-    def options_for_select
+    def set_options_for_select
       @student_options_for_select = Student.all
     end
 
@@ -76,6 +75,6 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:data, :horario, :student_id)
+      params.require(:appointment).permit(:data, :horario, :descricao, :student_id)
     end
 end
