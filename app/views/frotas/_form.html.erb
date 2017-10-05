@@ -1,7 +1,7 @@
 <%= form_with(model: frota, local: true) do |form| %>
   <% if frota.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(frota.errors.count, "error") %> prohibited this frota from being saved:</h2>
+      <h2><%= pluralize(frota.errors.count, "erro(s)") %> impediram essa Frota de ser salva:</h2>
 
       <ul>
       <% frota.errors.full_messages.each do |message| %>
