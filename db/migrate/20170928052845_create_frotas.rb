@@ -4,7 +4,7 @@ class CreateFrotas < ActiveRecord::Migration[5.1]
       t.string :nome
       t.string :veiculo
       t.string :placa
-      t.string :renavam
+      t.integer :renavam
       t.string :chassi
       t.string :rota
       t.string :motorista

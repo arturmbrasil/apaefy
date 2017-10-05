@@ -18,7 +18,4 @@ class Frota < ApplicationRecord
  	#Não pode repetir um nome que já esta no banco
  	validates_uniqueness_of :nome
 
- 	#Deve ser numérico
- 	validates_numericality_of :renavam
-
 end

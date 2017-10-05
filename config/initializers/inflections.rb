@@ -17,6 +17,8 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
 #Pluralização correta no scaffold
+  inflect.irregular "frota", "frotas"
   inflect.irregular "rota", "rotas"
+  inflect.irregular "abastecimento", "abastecimentos"
 
 end
