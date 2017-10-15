@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :conta_a_pagars
   resources :conta_a_recebers
   resources :doacaos
   resources :parceiros
