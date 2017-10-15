@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Parceiros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Telefome</th>
+      <th>Cnpj</th>
+      <th>Inscricao estatual</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parceiros.each do |parceiro| %>
+      <tr>
+        <td><%= parceiro.nome %></td>
+        <td><%= parceiro.telefome %></td>
+        <td><%= parceiro.cnpj %></td>
+        <td><%= parceiro.inscricao_estatual %></td>
+        <td><%= link_to 'Show', parceiro %></td>
+        <td><%= link_to 'Edit', edit_parceiro_path(parceiro) %></td>
+        <td><%= link_to 'Destroy', parceiro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parceiro', new_parceiro_path %>

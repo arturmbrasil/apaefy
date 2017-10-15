@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921232806) do
+ActiveRecord::Schema.define(version: 20171015132602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20170921232806) do
     t.index ["student_id"], name: "index_appointments_on_student_id"
   end
 
+  create_table "doacaos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "valor"
+    t.string "forma_pagamento"
+    t.uuid "parceiro_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parceiro_id"], name: "index_doacaos_on_parceiro_id"
+  end
+
   create_table "food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "restriction"
     t.uuid "student_id"
@@ -50,6 +59,15 @@ ActiveRecord::Schema.define(version: 20170921232806) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "parceiros", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "telefome"
+    t.string "cnpj"
+    t.string "inscricao_estatual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -103,6 +121,7 @@ ActiveRecord::Schema.define(version: 20170921232806) do
 
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
+  add_foreign_key "doacaos", "parceiros"
   add_foreign_key "food_restrictions", "students"
   add_foreign_key "medicines", "students"
   add_foreign_key "responsibles", "students"

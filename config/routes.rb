@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :doacaos
+  resources :parceiros
   resources :action_plans
   resources :medicines
   resources :students

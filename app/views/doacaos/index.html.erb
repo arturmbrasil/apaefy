@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Doacaos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Forma pagamento</th>
+      <th>Parceiro</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doacaos.each do |doacao| %>
+      <tr>
+        <td><%= doacao.valor %></td>
+        <td><%= doacao.forma_pagamento %></td>
+        <td><%= doacao.parceiro %></td>
+        <td><%= link_to 'Show', doacao %></td>
+        <td><%= link_to 'Edit', edit_doacao_path(doacao) %></td>
+        <td><%= link_to 'Destroy', doacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Doacao', new_doacao_path %>

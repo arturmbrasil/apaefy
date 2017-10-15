@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @doacao.valor %>
+</p>
+
+<p>
+  <strong>Forma pagamento:</strong>
+  <%= @doacao.forma_pagamento %>
+</p>
+
+<p>
+  <strong>Parceiro:</strong>
+  <%= @doacao.parceiro %>
+</p>
+
+<%= link_to 'Edit', edit_doacao_path(@doacao) %> |
+<%= link_to 'Back', doacaos_path %>
