@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015132602) do
+ActiveRecord::Schema.define(version: 20171015134843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20171015132602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_appointments_on_student_id"
+  end
+
+  create_table "conta_a_recebers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "data"
+    t.string "nome"
+    t.float "valor"
+    t.uuid "doacao_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doacao_id"], name: "index_conta_a_recebers_on_doacao_id"
   end
 
   create_table "doacaos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(version: 20171015132602) do
 
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
+  add_foreign_key "conta_a_recebers", "doacaos"
   add_foreign_key "doacaos", "parceiros"
   add_foreign_key "food_restrictions", "students"
   add_foreign_key "medicines", "students"

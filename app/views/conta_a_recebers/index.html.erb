@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Conta A Recebers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Nome</th>
+      <th>Valor</th>
+      <th>Doacao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conta_a_recebers.each do |conta_a_receber| %>
+      <tr>
+        <td><%= conta_a_receber.data %></td>
+        <td><%= conta_a_receber.nome %></td>
+        <td><%= conta_a_receber.valor %></td>
+        <td><%= conta_a_receber.doacao %></td>
+        <td><%= link_to 'Show', conta_a_receber %></td>
+        <td><%= link_to 'Edit', edit_conta_a_receber_path(conta_a_receber) %></td>
+        <td><%= link_to 'Destroy', conta_a_receber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Conta A Receber', new_conta_a_receber_path %>
