@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921232806) do
+ActiveRecord::Schema.define(version: 20170928052845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 20170921232806) do
     t.index ["student_id"], name: "index_food_restrictions_on_student_id"
   end
 
+  create_table "frotas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "veiculo"
+    t.string "placa"
+    t.string "renavam"
+    t.string "chassi"
+    t.string "rota"
+    t.string "motorista"
+    t.string "roteirista"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "dosagem"
@@ -50,6 +63,30 @@ ActiveRecord::Schema.define(version: 20170921232806) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "motorista", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "sexo"
+    t.date "data_admissao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "motoristas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "sexo"
+    t.date "data_admissao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

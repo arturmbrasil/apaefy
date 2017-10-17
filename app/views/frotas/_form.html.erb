@@ -1,0 +1,57 @@
+<%= form_with(model: frota, local: true) do |form| %>
+  <% if frota.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(frota.errors.count, "erro(s)") %> impediram essa Frota de ser salva:</h2>
+
+      <ul>
+      <% frota.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :frota_nome, placeholder: "Digite o nome da Frota", :maxlength=>"80", :size=>"50" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :veiculo %>
+    <%= form.text_field :veiculo, id: :frota_veiculo, placeholder: "Registro do Veículo", :maxlength=>"80", :size=>"25" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :placa %>
+    <%= form.text_field :placa, id: :frota_placa, placeholder: "Placa do Veículo", :maxlength=>"7", :size=>"15"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :renavam %>
+    <%= form.number_field :renavam, id: :frota_renavam, placeholder: "Digite o Renavam", :maxlength=>"11", :size=>"15" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chassi %>
+    <%= form.text_field :chassi, id: :frota_chassi, placeholder: "Digite o chassi do Veículo", :maxlength=>"17", :size=>"30" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rota %>
+    <%= form.text_area :rota, id: :frota_rota, placeholder: "Descrição da Rota", :maxlength=>"200", :size=>"30" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motorista %>
+    <%= form.text_field :motorista, id: :frota_motorista, placeholder: "Nome do Motorista", :maxlength=>"80", :size=>"30" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :roteirista %>
+    <%= form.text_field :roteirista, id: :frota_roteirista, placeholder: "Nome do Roteirista", :maxlength=>"80", :size=>"30" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

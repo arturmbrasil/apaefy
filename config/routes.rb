@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :frotas
   resources :action_plans
   resources :medicines
   resources :students
