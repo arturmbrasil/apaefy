@@ -17,10 +17,10 @@
       <tr>
         <td><%= doacao.valor %></td>
         <td><%= doacao.forma_pagamento %></td>
-        <td><%= doacao.parceiro %></td>
-        <td><%= link_to 'Show', doacao %></td>
-        <td><%= link_to 'Edit', edit_doacao_path(doacao) %></td>
-        <td><%= link_to 'Destroy', doacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= doacao.parceiro.nome %></td>
+        <td><%= link_to 'Mostrar', doacao %></td>
+        <td><%= link_to 'Editar', edit_doacao_path(doacao) %></td>
+        <td><%= link_to 'Remover', doacao, method: :delete, data: { confirm: 'Deseja remover o registro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Doacao', new_doacao_path %>
+<%= link_to 'Nova Doacao', new_doacao_path %>

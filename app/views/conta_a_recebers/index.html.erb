@@ -20,9 +20,9 @@
         <td><%= conta_a_receber.nome %></td>
         <td><%= conta_a_receber.valor %></td>
         <td><%= conta_a_receber.doacao %></td>
-        <td><%= link_to 'Show', conta_a_receber %></td>
-        <td><%= link_to 'Edit', edit_conta_a_receber_path(conta_a_receber) %></td>
-        <td><%= link_to 'Destroy', conta_a_receber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', conta_a_receber %></td>
+        <td><%= link_to 'Editar', edit_conta_a_receber_path(conta_a_receber) %></td>
+        <td><%= link_to 'Remover', conta_a_receber, method: :delete, data: { confirm: 'Deseja remover?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Conta A Receber', new_conta_a_receber_path %>
+<%= link_to 'Nova Conta A Receber', new_conta_a_receber_path %>

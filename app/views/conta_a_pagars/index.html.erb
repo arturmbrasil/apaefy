@@ -20,9 +20,9 @@
         <td><%= conta_a_pagar.nome %></td>
         <td><%= conta_a_pagar.nr_nota %></td>
         <td><%= conta_a_pagar.valor %></td>
-        <td><%= link_to 'Show', conta_a_pagar %></td>
-        <td><%= link_to 'Edit', edit_conta_a_pagar_path(conta_a_pagar) %></td>
-        <td><%= link_to 'Destroy', conta_a_pagar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', conta_a_pagar %></td>
+        <td><%= link_to 'Editar', edit_conta_a_pagar_path(conta_a_pagar) %></td>
+        <td><%= link_to 'Remover', conta_a_pagar, method: :delete, data: { confirm: 'Deseja remover?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Conta A Pagar', new_conta_a_pagar_path %>
+<%= link_to 'Nova Conta A Pagar', new_conta_a_pagar_path %>

@@ -20,9 +20,9 @@
         <td><%= parceiro.telefome %></td>
         <td><%= parceiro.cnpj %></td>
         <td><%= parceiro.inscricao_estatual %></td>
-        <td><%= link_to 'Show', parceiro %></td>
-        <td><%= link_to 'Edit', edit_parceiro_path(parceiro) %></td>
-        <td><%= link_to 'Destroy', parceiro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', parceiro %></td>
+        <td><%= link_to 'Editar', edit_parceiro_path(parceiro) %></td>
+        <td><%= link_to 'Remover', parceiro, method: :delete, data: { confirm: 'Deseja remover o registro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Parceiro', new_parceiro_path %>
+<%= link_to 'Novo Parceiro', new_parceiro_path %>

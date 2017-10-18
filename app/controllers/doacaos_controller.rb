@@ -15,10 +15,12 @@ class DoacaosController < ApplicationController
   # GET /doacaos/new
   def new
     @doacao = Doacao.new
+    selecionaParceiros
   end
 
   # GET /doacaos/1/edit
   def edit
+    selecionaParceiros
   end
 
   # POST /doacaos
@@ -70,5 +72,9 @@ class DoacaosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def doacao_params
       params.require(:doacao).permit(:valor, :forma_pagamento, :parceiro_id)
+    end
+
+    def selecionaParceiros
+      @parceiro_select = Parceiro.all
     end
 end
