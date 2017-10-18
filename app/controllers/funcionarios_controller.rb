@@ -4,7 +4,7 @@ class FuncionariosController < ApplicationController
   # GET /funcionarios
   # GET /funcionarios.json
   def index
-    @funcionarios = Funcionario.all
+      @funcionarios = Funcionario.where("nome like ?", "%#{params[:search]}%")
   end
 
   # GET /funcionarios/1
@@ -15,10 +15,12 @@ class FuncionariosController < ApplicationController
   # GET /funcionarios/new
   def new
     @funcionario = Funcionario.new
+    @funcionarios = Funcionario.all
   end
 
   # GET /funcionarios/1/edit
   def edit
+    @funcionarios = Funcionario.all
   end
 
   # POST /funcionarios
@@ -61,6 +63,14 @@ class FuncionariosController < ApplicationController
     end
   end
 
+  def search(param)
+    if param
+      @funcionarios = Funcionario.where("nome like ? or codigo = ? ", "%#{param}%", param);
+    else
+      @funcionarios = Funcionario.all;
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_funcionario
@@ -69,6 +79,6 @@ class FuncionariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def funcionario_params
-      params.require(:funcionario).permit(:codigo, :nome, :data_nascimento, :rg, :usuario, :senha, :sexo, :data_admissao)
+      params.require(:funcionario).permit(:codigo, :nome, :data_nascimento, :rg, :usuario, :senha, :sexo, :data_admissao, :ctps, :cnh, :cns, :status)
     end
 end

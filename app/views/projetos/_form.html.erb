@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label "Descrição" %>
-    <%= form.text_field :descricao, id: :projeto_descricao %>
+    <%= form.text_area :descricao, id: :projeto_descricao, cols: 60, rows: 10 %>
   </div>
 
   <div class="field">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="field">
-    <%= form.label "Valor" %>
+    <%= form.label "Orçamento" %>
     <%= form.text_field :valor, id: :projeto_valor %>
   </div>
 

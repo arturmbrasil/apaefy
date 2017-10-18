@@ -45,10 +45,15 @@ ActiveRecord::Schema.define(version: 20170921225557) do
     t.string "nome"
     t.date "data_nascimento"
     t.string "rg"
+    t.string "cpf"
     t.string "usuario"
     t.string "senha"
     t.string "sexo"
     t.date "data_admissao"
+    t.string "ctps"
+    t.integer "cnh"
+    t.string "cns"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

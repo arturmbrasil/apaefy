@@ -32,6 +32,11 @@
   </div>
 
   <div class="field">
+    <%= form.label "CTPS" %>
+    <%= form.text_field :ctps, id: :funcionario_ctps %>
+  </div>
+
+  <div class="field">
     <%= form.label "Usuário" %>
     <%= form.text_field :usuario, id: :funcionario_usuario %>
   </div>
@@ -43,15 +48,32 @@
 
   <div class="field">
     <%= form.label "Sexo" %>
-    <%= form.select (:sexo, [['Masculino','M'], ['Feminino','F']]) %>
+    <%= select :funcionario, :sexo, [["Masculino","M"], ["Feminino","F"]] %>
   </div>
 
   <div class="field">
-    <%= form.label "Data Admissão" %>
+    <%= form.label "Data de Admissão" %>
     <%= form.date_select :data_admissao, id: :funcionario_data_admissao %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CNS" %>
+    <%= form.text_field :cns, id: :funcionario_cns %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CNH" %>
+    <%= form.text_field :cnh, id: :funcionario_cnh %>
+  </div>
+
+  <div class="field">
+    <%= check_box :funcionario, :status, {} , "S", "N"%>
+    <span><%= label_tag "Ativo" %></span>
   </div>
 
   <div class="actions">
     <%= form.submit "Cadastrar Funcionário" %>
   </div>
+
+  <!--<%= form_tag "#", method: :get%>-->
 <% end %>

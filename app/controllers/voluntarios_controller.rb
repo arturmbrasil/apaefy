@@ -4,7 +4,7 @@ class VoluntariosController < ApplicationController
   # GET /voluntarios
   # GET /voluntarios.json
   def index
-    @voluntarios = Voluntario.all
+    @voluntarios = Voluntario.where("nome like ?", "%#{params[:search]}%")
   end
 
   # GET /voluntarios/1

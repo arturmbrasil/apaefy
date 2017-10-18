@@ -4,7 +4,7 @@ class ColaboradorsController < ApplicationController
   # GET /colaboradors
   # GET /colaboradors.json
   def index
-    @colaboradors = Colaborador.all
+    @colaboradors = Colaborador.where("nome like ?", "%#{params[:search]}%")
   end
 
   # GET /colaboradors/1

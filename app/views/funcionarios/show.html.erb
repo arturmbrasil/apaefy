@@ -1,33 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Codigo:</strong>
-  <%= @funcionario.codigo %>
-</p>
-
-<p>
   <strong>Nome:</strong>
   <%= @funcionario.nome %>
 </p>
 
 <p>
-  <strong>Data nascimento:</strong>
+  <strong>Data de Nascimento:</strong>
   <%= @funcionario.data_nascimento %>
 </p>
 
 <p>
-  <strong>Rg:</strong>
+  <strong>RG:</strong>
   <%= @funcionario.rg %>
-</p>
-
-<p>
-  <strong>Usuario:</strong>
-  <%= @funcionario.usuario %>
-</p>
-
-<p>
-  <strong>Senha:</strong>
-  <%= @funcionario.senha %>
 </p>
 
 <p>
@@ -36,9 +21,24 @@
 </p>
 
 <p>
-  <strong>Data admissao:</strong>
+  <strong>Data de admissão:</strong>
   <%= @funcionario.data_admissao %>
 </p>
 
-<%= link_to 'Edit', edit_funcionario_path(@funcionario) %> |
-<%= link_to 'Back', funcionarios_path %>
+<p>
+  <strong>CTPS:</strong>
+  <%= @funcionario.ctps %>
+</p>
+
+<p>
+  <strong>CNS:</strong>
+  <%= @funcionario.cns %>
+</p>
+
+<p>
+  <strong>CNH:</strong>
+  <%= @funcionario.cnh %>
+</p>
+
+<%= link_to 'Editar', edit_funcionario_path(@funcionario) %> |
+<%= link_to 'Voltar', funcionarios_path %>

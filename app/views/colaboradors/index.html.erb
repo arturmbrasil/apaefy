@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Colaboradors</h1>
+<h1>Colaboradores</h1>
+
+<%= form_tag colaboradors_path, :method => 'get' do%>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Buscar"%>
+<%end%>
 
 <table>
   <thead>

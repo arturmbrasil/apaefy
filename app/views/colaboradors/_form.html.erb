@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= form.label "Sexo" %>
-    <%= form.text_field :sexo, id: :colaborador_sexo %>
+    <%= select :colaborador, :sexo, [["Masculino","M"], ["Feminino","F"]] %>
   </div>
 
   <div class="field">
