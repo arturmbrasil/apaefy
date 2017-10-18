@@ -27,6 +27,7 @@ gem "jbuilder", "~> 2.5"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'wdm', '>= 0.1.0'
 
 gem "cocoon"
 gem "devise"

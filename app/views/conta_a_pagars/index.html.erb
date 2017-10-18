@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Conta A Pagars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dt vencimento</th>
+      <th>Nome</th>
+      <th>Nr nota</th>
+      <th>Valor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conta_a_pagars.each do |conta_a_pagar| %>
+      <tr>
+        <td><%= conta_a_pagar.dt_vencimento %></td>
+        <td><%= conta_a_pagar.nome %></td>
+        <td><%= conta_a_pagar.nr_nota %></td>
+        <td><%= conta_a_pagar.valor %></td>
+        <td><%= link_to 'Mostrar', conta_a_pagar %></td>
+        <td><%= link_to 'Editar', edit_conta_a_pagar_path(conta_a_pagar) %></td>
+        <td><%= link_to 'Remover', conta_a_pagar, method: :delete, data: { confirm: 'Deseja remover?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Conta A Pagar', new_conta_a_pagar_path %>

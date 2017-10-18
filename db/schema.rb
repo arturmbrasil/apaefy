@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928052845) do
+ActiveRecord::Schema.define(version: 20171015140457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,34 @@ ActiveRecord::Schema.define(version: 20170928052845) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_appointments_on_student_id"
+  end
+
+  create_table "conta_a_pagars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "dt_vencimento"
+    t.string "nome"
+    t.integer "nr_nota"
+    t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conta_a_recebers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "data"
+    t.string "nome"
+    t.float "valor"
+    t.uuid "doacao_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doacao_id"], name: "index_conta_a_recebers_on_doacao_id"
+  end
+
+  create_table "doacaos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "valor"
+    t.string "forma_pagamento"
+    t.uuid "parceiro_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parceiro_id"], name: "index_doacaos_on_parceiro_id"
   end
 
   create_table "food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -63,6 +91,15 @@ ActiveRecord::Schema.define(version: 20170928052845) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "parceiros", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "telefome"
+    t.string "cnpj"
+    t.string "inscricao_estatual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "motorista", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -140,6 +177,8 @@ ActiveRecord::Schema.define(version: 20170928052845) do
 
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
+  add_foreign_key "conta_a_recebers", "doacaos"
+  add_foreign_key "doacaos", "parceiros"
   add_foreign_key "food_restrictions", "students"
   add_foreign_key "medicines", "students"
   add_foreign_key "responsibles", "students"

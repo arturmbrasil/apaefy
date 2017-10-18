@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :frotas
+  resources :conta_a_pagars
+  resources :conta_a_recebers
+  resources :doacaos
+  resources :parceiros
   resources :action_plans
   resources :medicines
   resources :students
