@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Combustivel:</strong>
+  <%= @abastecimento.combustivel %>
+</p>
+
+<p>
+  <strong>Frota:</strong>
+  <%= @abastecimento.frota.nome %>
+</p>
+
+<p>
+  <strong>Litros:</strong>
+  <%= @abastecimento.litros %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @abastecimento.valor %>
+</p>
+
+<p>
+  <strong>Data abastecimento:</strong>
+  <%= @abastecimento.data_abastecimento %>
+</p>
+
+<%= link_to 'Editar', edit_abastecimento_path(@abastecimento) %> |
+<%= link_to 'Voltar', abastecimentos_path %>

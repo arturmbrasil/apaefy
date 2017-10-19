@@ -1,0 +1,42 @@
+<%= form_with(model: abastecimento, local: true) do |form| %>
+  <% if abastecimento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(abastecimento.errors.count, "error") %> impediram esse Abastecimento de ser salvo:</h2>
+
+      <ul>
+      <% abastecimento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Combustível" %>
+    <%= form.select :combustivel, [['Gasolina'] , ['Diesel'] , ['Etanol'], ['Gás Natural (GNV)']], prompt: "Selecione um Combustível" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Nome da Frota" %>
+    <%= form.collection_select(:frota_id, @frota_options_for_select, :id, :nome, prompt: "Selecione uma Frota") %>
+  </div>
+
+  <div class="field">
+    <%= form.label :litros %>
+    <%= form.number_field :litros, id: :abastecimento_litros, step: :any, placeholder: "Quantidade em Litros" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.number_field :valor, id: :abastecimento_valor, step: :any, placeholder: "R$ 0" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Data do Abastecimento" %>
+    <%= form.date_select :data_abastecimento, id: :abastecimento_data_abastecimento %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
