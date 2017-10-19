@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :abastecimentos
   resources :payments
   resources :products
   resources :frotas

@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019022134) do
+ActiveRecord::Schema.define(version: 20171019040408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "abastecimentos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "combustivel"
+    t.uuid "frota_id"
+    t.float "litros"
+    t.float "valor"
+    t.date "data_abastecimento"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["frota_id"], name: "index_abastecimentos_on_frota_id"
+  end
 
   create_table "action_plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "data"
@@ -74,7 +85,7 @@ ActiveRecord::Schema.define(version: 20171019022134) do
     t.string "nome"
     t.string "veiculo"
     t.string "placa"
-    t.integer "renavam"
+    t.bigint "renavam"
     t.string "chassi"
     t.string "rota"
     t.string "motorista"
@@ -166,6 +177,7 @@ ActiveRecord::Schema.define(version: 20171019022134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "abastecimentos", "frotas"
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
   add_foreign_key "conta_a_recebers", "doacaos"
