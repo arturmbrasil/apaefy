@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :payments
+  resources :products
   resources :frotas
   resources :conta_a_pagars
   resources :conta_a_recebers
