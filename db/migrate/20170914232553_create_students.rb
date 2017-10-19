@@ -7,7 +7,7 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.string :cpf_aluno
       t.string :telefone
       t.string :sexo
-      t.string :restricoes_alimentares
+
 
       t.timestamps
     end

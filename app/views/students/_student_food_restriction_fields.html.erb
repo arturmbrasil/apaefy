@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.hidden_field :food_restriction_id, class: 'js-autocomplete' %>
+    <%= text_field_tag  :search, params[:search], data: { autocomplete: autocomplete_food_restriction_restricao_food_restrictions_path } %>
+    <%= link_to_remove_association(t('Remove'), f) %>
+  </div>
+</div>

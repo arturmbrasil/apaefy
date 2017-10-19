@@ -40,10 +40,10 @@
 
   <br><h2>Restrições Alimentares</h2><br>
   <div id="food_restrictions">
-    <%= form.fields_for :food_restrictions do |food_restriction_fields| %>
-      <%= render partial: "food_restriction_fields", locals: { f: food_restriction_fields } %>
+    <%= form.fields_for :student_food_restrictions do |food_restriction_fields| %>
+      <%= render partial: "student_food_restriction_fields", locals: { f: food_restriction_fields } %>
     <% end %>
-    <%= link_to_add_association('[Adicionar Restrição]', form, :food_restrictions) %>
+    <%= link_to_add_association('[Adicionar Restrição]', form, :student_food_restrictions) %>
   </div>
 
   <br><h2>Responsáveis</h2><br>

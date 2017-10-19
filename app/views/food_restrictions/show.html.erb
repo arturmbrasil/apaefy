@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Restricao:</strong>
+  <%= @food_restriction.restricao %>
+</p>
+
+<%= link_to t('Edit'), edit_food_restriction_path(@food_restriction) %> |
+<%= link_to t('Back'), food_restrictions_path %>

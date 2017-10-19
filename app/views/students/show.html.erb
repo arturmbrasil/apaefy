@@ -35,9 +35,9 @@
 <br>
 <h2>Restrições Alimentares</h2>
 <table>
-  <% @student.food_restrictions.each do |food| %>
+  <% @student.student_food_restrictions.each do |food| %>
     <tr>
-      <td><%= food.restriction %></td>
+      <td><%= food.food_restriction.restricao %></td>
     </tr>
   <% end %>
 </table>

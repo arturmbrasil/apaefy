@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927203335) do
+ActiveRecord::Schema.define(version: 20171005231223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,9 @@ ActiveRecord::Schema.define(version: 20170927203335) do
   end
 
   create_table "food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "restriction"
-    t.uuid "student_id"
+    t.string "restricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_food_restrictions_on_student_id"
   end
 
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -80,6 +78,15 @@ ActiveRecord::Schema.define(version: 20170927203335) do
     t.index ["student_id"], name: "index_special_needs_on_student_id"
   end
 
+  create_table "student_food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.uuid "food_restriction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_restriction_id"], name: "index_student_food_restrictions_on_food_restriction_id"
+    t.index ["student_id"], name: "index_student_food_restrictions_on_student_id"
+  end
+
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.date "data_nascimento"
@@ -87,7 +94,6 @@ ActiveRecord::Schema.define(version: 20170927203335) do
     t.string "cpf_aluno"
     t.string "telefone"
     t.string "sexo"
-    t.string "restricoes_alimentares"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -111,9 +117,10 @@ ActiveRecord::Schema.define(version: 20170927203335) do
 
   add_foreign_key "action_plans", "students"
   add_foreign_key "appointments", "students"
-  add_foreign_key "food_restrictions", "students"
   add_foreign_key "prescriptions", "medicines"
   add_foreign_key "prescriptions", "students"
   add_foreign_key "responsibles", "students"
   add_foreign_key "special_needs", "students"
+  add_foreign_key "student_food_restrictions", "food_restrictions"
+  add_foreign_key "student_food_restrictions", "students"
 end

@@ -1,5 +1,7 @@
 class FoodRestriction < ApplicationRecord
-  belongs_to :student
+  has_many :student_food_restrictions, inverse_of: :food_restriction, dependent: :destroy
 
-  validates :restriction, presence: true
+  accepts_nested_attributes_for :student_food_restrictions, reject_if: :all_blank, allow_destroy: true
+
+  validates :restricao, presence: true
 end

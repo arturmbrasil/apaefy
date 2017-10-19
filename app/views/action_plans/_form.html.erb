@@ -14,7 +14,7 @@
   <div class="field">
     <%= form.label "Aluno" %>
     <%= form.hidden_field :student_id, class: 'js-autocomplete' %>
-    <%= text_field_tag :search, params[:search], value: @action_plan.student.try(:nome), data: { autocomplete: autocomplete_student_nome_action_plans_path } %>
+    <%= text_field_tag :search, params[:search], value: @action_plan.student.try(:nome), data: { autocomplete: autocomplete_student_nome_students_path } %>
   </div>
 
   <div class="field">

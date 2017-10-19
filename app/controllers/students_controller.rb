@@ -79,7 +79,7 @@ class StudentsController < ApplicationController
       params.require(:student).permit(:nome, :data_nascimento, :rg_aluno, :cpf_aluno, :telefone, :sexo,
         prescriptions_attributes: [:id, :medicine_id, :dosagem, :intervalo_tempo, :_destroy],
         responsibles_attributes: [:id, :nome, :data_nascimento, :telefone, :rg, :cpf, :_destroy],
-        food_restrictions_attributes: [:id, :restriction, :_destroy],
+        student_food_restrictions_attributes: [:id, :food_restriction_id, :_destroy],
         special_needs_attributes: [:id, :descricao, :_destroy])
     end
 end
