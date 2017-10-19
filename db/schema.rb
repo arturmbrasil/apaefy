@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015140457) do
+ActiveRecord::Schema.define(version: 20171019022134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20171015140457) do
     t.string "nome"
     t.string "veiculo"
     t.string "placa"
-    t.string "renavam"
+    t.integer "renavam"
     t.string "chassi"
     t.string "rota"
     t.string "motorista"
@@ -102,26 +102,17 @@ ActiveRecord::Schema.define(version: 20171015140457) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "motorista", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "telefone"
-    t.string "sexo"
-    t.date "data_admissao"
+  create_table "payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "payment_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "motoristas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "telefone"
-    t.string "sexo"
-    t.date "data_admissao"
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.text "description"
+    t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
