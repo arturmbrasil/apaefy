@@ -14,3 +14,11 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+#Pluralização correta no scaffold
+  inflect.irregular "frota", "frotas"
+  inflect.irregular "rota", "rotas"
+  inflect.irregular "abastecimento", "abastecimentos"
+
+end

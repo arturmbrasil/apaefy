@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Aluno:</strong>
+  <%= @action_plan.student.nome %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= l @action_plan.data %>
+</p>
+
+<p>
+  <strong>Evolucao:</strong>
+  <%= @action_plan.evolucao %>
+</p>
+
+<%= link_to 'Editar', edit_action_plan_path(@action_plan) %> |
+<%= link_to 'Voltar', action_plans_path %>

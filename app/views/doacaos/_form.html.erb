@@ -1,0 +1,32 @@
+<%= form_with(model: doacao, local: true) do |form| %>
+  <% if doacao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(doacao.errors.count, "error") %> prohibited this doacao from being saved:</h2>
+
+      <ul>
+      <% doacao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :doacao_valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :forma_pagamento %>
+    <%= form.text_field :forma_pagamento, id: :doacao_forma_pagamento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parceiro_id %>
+    <%= collection_select(:doacao, :parceiro_id, @parceiro_select, :id, :nome) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

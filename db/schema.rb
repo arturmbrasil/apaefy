@@ -10,11 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929001254) do
+ActiveRecord::Schema.define(version: 20171019040408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "abastecimentos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "combustivel"
+    t.uuid "frota_id"
+    t.float "litros"
+    t.float "valor"
+    t.date "data_abastecimento"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["frota_id"], name: "index_abastecimentos_on_frota_id"
+  end
+
+  create_table "action_plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "data"
+    t.string "evolucao"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_action_plans_on_student_id"
+  end
 
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "logradouro"
@@ -27,9 +47,133 @@ ActiveRecord::Schema.define(version: 20170929001254) do
     t.index ["city_id"], name: "index_addresses_on_city_id"
   end
 
+  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "data"
+    t.integer "horario"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_appointments_on_student_id"
+  end
+
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "uf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conta_a_pagars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "dt_vencimento"
+    t.string "nome"
+    t.integer "nr_nota"
+    t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conta_a_recebers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "data"
+    t.string "nome"
+    t.float "valor"
+    t.uuid "doacao_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doacao_id"], name: "index_conta_a_recebers_on_doacao_id"
+  end
+
+  create_table "doacaos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "valor"
+    t.string "forma_pagamento"
+    t.uuid "parceiro_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parceiro_id"], name: "index_doacaos_on_parceiro_id"
+  end
+
+  create_table "food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "restriction"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_food_restrictions_on_student_id"
+  end
+
+  create_table "frotas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "veiculo"
+    t.string "placa"
+    t.bigint "renavam"
+    t.string "chassi"
+    t.string "rota"
+    t.string "motorista"
+    t.string "roteirista"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "dosagem"
+    t.string "intervalo_tempo"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "parceiros", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "telefome"
+    t.string "cnpj"
+    t.string "inscricao_estatual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "payment_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.text "description"
+    t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "telefone"
+    t.string "rg"
+    t.string "cpf"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_responsibles_on_student_id"
+  end
+
+  create_table "special_needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "descricao"
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_special_needs_on_student_id"
+  end
+
+  create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg_aluno"
+    t.string "cpf_aluno"
+    t.string "telefone"
+    t.string "sexo"
+    t.string "restricoes_alimentares"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,5 +195,14 @@ ActiveRecord::Schema.define(version: 20170929001254) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "abastecimentos", "frotas"
+  add_foreign_key "action_plans", "students"
   add_foreign_key "addresses", "cities"
+  add_foreign_key "appointments", "students"
+  add_foreign_key "conta_a_recebers", "doacaos"
+  add_foreign_key "doacaos", "parceiros"
+  add_foreign_key "food_restrictions", "students"
+  add_foreign_key "medicines", "students"
+  add_foreign_key "responsibles", "students"
+  add_foreign_key "special_needs", "students"
 end

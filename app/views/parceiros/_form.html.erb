@@ -1,0 +1,37 @@
+<%= form_with(model: parceiro, local: true) do |form| %>
+  <% if parceiro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(parceiro.errors.count, "error") %> prohibited this parceiro from being saved:</h2>
+
+      <ul>
+      <% parceiro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :parceiro_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telefome %>
+    <%= form.text_field :telefome, id: :parceiro_telefome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cnpj %>
+    <%= form.text_field :cnpj, id: :parceiro_cnpj %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inscricao_estatual %>
+    <%= form.text_field :inscricao_estatual, id: :parceiro_inscricao_estatual %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

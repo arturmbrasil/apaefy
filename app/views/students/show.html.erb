@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Detalhes do Aluno</h1>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @student.nome %>
+</p>
+
+<p>
+  <strong>Data nascimento:</strong>
+  <%= l @student.data_nascimento %>
+</p>
+
+<p>
+  <strong>Rg aluno:</strong>
+  <%= @student.rg_aluno %>
+</p>
+
+<p>
+  <strong>Cpf aluno:</strong>
+  <%= @student.cpf_aluno %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @student.telefone %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @student.sexo %>
+</p>
+
+<br>
+<h2>Restrições Alimentares</h2>
+<table>
+  <% @student.food_restrictions.each do |food| %>
+    <tr>
+      <td><%= food.restriction %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<h2>Necessidades Especiais</h2>
+<table>
+  <% @student.special_needs.each do |need| %>
+    <tr>
+      <td><%= need.descricao %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<br>
+<h2>Responsáveis</h2>
+<table>
+  <thead>
+    <th>Nome</th>
+    <th>Data de nascimento</th>
+    <th>Telefone</th>
+    <th>RG</th>
+    <th>CPF</th>
+  </thead>
+  <tbody>
+    <% @student.responsibles.each do |resp| %>
+      <tr>
+        <td><%= resp.nome %></td>
+        <td><%= resp.data_nascimento %></td>
+        <td><%= resp.telefone %></td>
+        <td><%= resp.rg %></td>
+        <td><%= resp.cpf %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<h2>Medicamentos</h2>
+<table>
+  <thead>
+    <th><strong>Nome</strong></th>
+    <th><strong>Dosagem</strong></th>
+    <th><strong>Intervalo de Tempo</strong></th>
+  </thead>
+  <tbody>
+    <% @student.medicines.each do |med| %>
+      <tr>
+        <td><%= med.nome %></td>
+        <td><%= med.dosagem %></td>
+        <td><%= med.intervalo_tempo %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Editar', edit_student_path(@student) %> |
+<%= link_to 'Voltar', students_path %>

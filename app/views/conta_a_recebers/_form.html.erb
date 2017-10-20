@@ -1,0 +1,37 @@
+<%= form_with(model: conta_a_receber, local: true) do |form| %>
+  <% if conta_a_receber.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(conta_a_receber.errors.count, "error") %> prohibited this conta_a_receber from being saved:</h2>
+
+      <ul>
+      <% conta_a_receber.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.date_select :data, id: :conta_a_receber_data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :conta_a_receber_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :conta_a_receber_valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doacao_id %>
+    <%= form.text_field :doacao_id, id: :conta_a_receber_doacao_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

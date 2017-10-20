@@ -1,0 +1,2 @@
+class ContaAPagar < ApplicationRecord
+end

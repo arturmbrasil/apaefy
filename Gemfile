@@ -27,14 +27,21 @@ gem "jbuilder", "~> 2.5"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'wdm', '>= 0.1.0', platforms: %i[mingw mswin x64_mingw]
 
+gem "cocoon"
 gem "devise"
+gem "rails-i18n"
+gem "coffee-rails"
+gem "jquery-rails"
+gem "turbolinks"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.6"
   gem "rubocop", require: false
+  gem "pry-rails"
 end
 
 group :development do

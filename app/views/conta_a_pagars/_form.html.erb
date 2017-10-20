@@ -1,0 +1,37 @@
+<%= form_with(model: conta_a_pagar, local: true) do |form| %>
+  <% if conta_a_pagar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(conta_a_pagar.errors.count, "error") %> prohibited this conta_a_pagar from being saved:</h2>
+
+      <ul>
+      <% conta_a_pagar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :dt_vencimento %>
+    <%= form.date_select :dt_vencimento, id: :conta_a_pagar_dt_vencimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :conta_a_pagar_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nr_nota %>
+    <%= form.number_field :nr_nota, id: :conta_a_pagar_nr_nota %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :conta_a_pagar_valor %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
