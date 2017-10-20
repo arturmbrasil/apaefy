@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :addresses
+  resources :cities
   resources :abastecimentos
   resources :payments
   resources :products
