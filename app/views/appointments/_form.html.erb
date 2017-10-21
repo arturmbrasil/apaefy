@@ -1,7 +1,7 @@
 <%= form_with(model: appointment, local: true) do |form| %>
   <% if appointment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+      <h2>Erro: </h2>
 
       <ul>
       <% appointment.errors.full_messages.each do |message| %>
@@ -13,17 +13,22 @@
 
   <div class="field">
     <%= form.label :data %>
-    <%= form.date_select :data, id: :appointment_data %>
+    <%= form.date_field :data, id: :appointment_data %>
   </div>
 
   <div class="field">
     <%= form.label :horario %>
-    <%= form.number_field :horario, id: :appointment_horario %>
+    <%= form.time_field :horario, id: :appointment_horario %>
   </div>
 
   <div class="field">
     <%= form.label "Aluno" %>
-    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome) %>
+    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome, { include_blank: 'Selecione o aluno' }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao, id: :appointment_descricao, placeholder: "Descrição do agendamento" %>
   </div>
 
   <div class="actions">

@@ -13,16 +13,16 @@
 
   <div class="field">
     <%= form.label "Aluno" %>
-    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome) %>
+    <%= form.collection_select(:student_id, @student_options_for_select, :id, :nome, { include_blank: 'Selecione o aluno' }) %>
   </div>
 
   <div class="field">
     <%= form.label :data %>
-    <%= form.date_select :data, id: :action_plan_data %>
+    <%= form.date_field :data, id: :action_plan_data %>
   </div>
 
   <div class="field">
-    <%= form.label :evolucao %>
+    <%= form.label "Evolução" %>
     <%= form.text_area :evolucao, id: :action_plan_evolucao %>
   </div>
 
