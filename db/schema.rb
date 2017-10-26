@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.index ["student_id"], name: "index_action_plans_on_student_id"
   end
 
+  create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "logradouro"
+    t.integer "numero"
+    t.string "cep"
+    t.string "bairro"
+    t.uuid "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_addresses_on_city_id"
+  end
+
   create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "data"
     t.time "horario"
@@ -44,6 +55,13 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_appointments_on_student_id"
+  end
+
+  create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "uf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "conta_a_pagars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -180,6 +198,7 @@ ActiveRecord::Schema.define(version: 20171019223713) do
 
   add_foreign_key "abastecimentos", "frotas"
   add_foreign_key "action_plans", "students"
+  add_foreign_key "addresses", "cities"
   add_foreign_key "appointments", "students"
   add_foreign_key "conta_a_recebers", "doacaos"
   add_foreign_key "doacaos", "parceiros"

@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Frotas</h1>
-
+<%= form_tag frotas_path, :method => 'get' do%>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Buscar"%>
+<%end%>
 <table>
   <thead>
     <tr>
