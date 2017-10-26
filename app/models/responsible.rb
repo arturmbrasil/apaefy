@@ -1,9 +1,9 @@
 class Responsible < ApplicationRecord
   belongs_to :student
 
-  validates_presence_of :nome
-  validates_presence_of :data_nascimento
-  validates_length_of :telefone, is: 10
-  validates_length_of :rg, is: 7
-  validates_length_of :cpf, is: 11
+  validates :nome, presence: true
+  validates :data_nascimento, presence: true
+  validates :telefone, length: { is: 10 }, allow_blank: true
+  validates :rg, length: { is: 7 }, allow_blank: true
+  validates :cpf, length: { is: 11 }, presence: true
 end
