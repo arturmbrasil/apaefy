@@ -5,7 +5,8 @@ class AbastecimentosController < ApplicationController
   # GET /abastecimentos.json
   def index
     @abastecimentos = Abastecimento.includes(:frota)
-    @abastecimentos = Abastecimento.all
+    # @abastecimentos = Abastecimento.all
+    @abastecimentos = Abastecimento.where("upper(combustivel) like upper(?)", "%#{params[:search]}%")
   end
 
   # GET /abastecimentos/1
@@ -65,11 +66,18 @@ class AbastecimentosController < ApplicationController
     end
   end
 
+ def search(param)
+    if param
+      @abastecimentos = Abastecimento.where("upper(combustivel) like upper(?) or codigo = ? ", "%#{param}%", param);
+    else
+      @abastecimentos = Abastecimento.all;
+    end
+  end
+  
   private
 
     def options_for_select
       @abastecimentos = Abastecimento.includes(:frota)
-
       @frota_options_for_select = Frota.all
     end
 
