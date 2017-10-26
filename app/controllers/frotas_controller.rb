@@ -5,6 +5,8 @@ class FrotasController < ApplicationController
   # GET /frotas.json
   def index
     @frotas = Frota.all
+    @frotas = Frota.where("upper(nome) like upper(?) or upper(veiculo) like upper(?) or upper(placa) like upper(?) or renavam::varchar like ? or upper(chassi) like upper(?) or upper(rota) like upper(?) or upper(motorista) like upper(?) or upper(roteirista) like upper(?)", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+
   end
 
   # GET /frotas/1
@@ -58,6 +60,14 @@ class FrotasController < ApplicationController
     respond_to do |format|
       format.html { redirect_to frotas_url, notice: 'Frota foi excluída com sucesso.' }
       format.json { head :no_content }
+    end
+  end
+
+ def search(param)
+    if param
+      @frotas = Frota.where("upper(nome) like upper(?) or upper(veiculo) like upper(?) or upper(placa) like upper(?) or renavam::varchar like ? or upper(chassi) like upper(?) or upper(rota) like upper(?) or upper(motorista) like upper(?) or upper(roteirista) like upper(?) or codigo = ? ", "%#{param}%", param);
+    else
+      @frotas = Frota.all;
     end
   end
 
