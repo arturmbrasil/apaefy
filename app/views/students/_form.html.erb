@@ -1,7 +1,7 @@
 <%= form_with(model: student, local: true) do |form| %>
   <% if student.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+      <h2>Erro: </h2>
 
       <ul>
       <% student.errors.full_messages.each do |message| %>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :nome %>
-    <%= form.text_field :nome, id: :student_nome %>
+    <%= form.text_field :nome, id: :student_nome, placeholder: "Digite o nome" %>
   </div>
 
   <div class="field">
@@ -23,22 +23,22 @@
 
   <div class="field">
     <%= form.label :rg_aluno %>
-    <%= form.text_field :rg_aluno, id: :student_rg_aluno %>
+    <%= form.text_field :rg_aluno, id: :student_rg_aluno, placeholder: "Digite o RG" %>
   </div>
 
   <div class="field">
     <%= form.label :cpf_aluno %>
-    <%= form.text_field :cpf_aluno, id: :student_cpf_aluno %>
+    <%= form.text_field :cpf_aluno, id: :student_cpf_aluno, placeholder: "Digite o CPF" %>
   </div>
 
   <div class="field">
     <%= form.label :telefone %>
-    <%= form.text_field :telefone, id: :student_telefone %>
+    <%= form.text_field :telefone, id: :student_telefone, placeholder: "Digite o telefone" %>
   </div>
 
   <div class="field">
     <%= form.label :sexo %>
-    <%= form.text_field :sexo, id: :student_sexo %>
+     <%= form.select :sexo, options_for_select(["Masculino", "Feminino"]), {prompt: "Selecione o sexo"} %>
   </div>
 
   <br><h2>Necessidades Especiais</h2><br>

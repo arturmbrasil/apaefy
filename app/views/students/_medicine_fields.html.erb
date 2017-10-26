@@ -1,8 +1,8 @@
 <div class="nested-fields">
    <div class="field">
-         <%= f.text_field :nome %>
-         <%= f.text_field :dosagem %>
-         <%= f.text_field :intervalo_tempo %>
+         <%= f.text_field :nome, placeholder: "Nome do medicamento" %>
+         <%= f.text_field :dosagem, placeholder: "Digite a dosagem" %>
+         <%= f.text_field :intervalo_tempo, placeholder: "Digite o intervalor de tempo" %>
          <%= link_to_remove_association("Remover", f) %>
    </div>
 </div>
