@@ -1,7 +1,7 @@
 class Appointment < ApplicationRecord
   belongs_to :student
 
-  validates_presence_of :data
-  validates_presence_of :horario
-  validates_presence_of :descricao
+  validates :data, presence: true
+  validates :horario, presence: true
+  validates :descricao, presence: true
 end

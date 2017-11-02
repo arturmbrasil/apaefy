@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :data_nascimento %>
-    <%= form.date_select :data_nascimento, id: :student_data_nascimento %>
+    <%= form.date_field :data_nascimento, id: :student_data_nascimento %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :sexo %>
-     <%= form.select :sexo, options_for_select(["Masculino", "Feminino"]), {prompt: "Selecione o sexo"} %>
+    <%= form.select :sexo, options_for_select(["Masculino", "Feminino"]), {prompt: "Selecione o sexo"} %>
   </div>
 
   <br><h2>Necessidades Especiais</h2><br>
@@ -79,6 +79,37 @@
       <% end %>
       <%= link_to_add_association('[Adicionar Medicamento]', form, :medicines) %>
   </div>
+  <br>
+  <h2>Enedreço</h2>
+  <%= form.fields_for :address do |address_fields| %>
+    <div class="field">
+      <%= address_fields.label :logradouro %>
+      <%= address_fields.text_field :logradouro %><br>
+    </div>
+    <div class="field">
+      <%= address_fields.label :numero %>
+      <%= address_fields.number_field :numero %><br>
+    </div>
+    <div class="field">
+      <%= address_fields.label :cep %>
+      <%= address_fields.text_field :cep %><br>
+    </div>
+    <div class="field">
+      <%= address_fields.label :bairro %>
+      <%= address_fields.text_field :bairro %><br>
+    </div>
+    <div class="field">
+      <%= address_fields.label "Cidade" %>
+      <%= address_fields.collection_select(:city_id, @cities_options_for_select, :id, :nome, { include_blank: 'Selecione a cidade' }) %>
+    </div>
+  <% end %>
+  <br>
+
+  <div class="field">
+    <%= form.label "Frota" %>
+    <%= form.collection_select(:frota_id, @frota_options_for_select, :id, :nome, { include_blank: 'Selecione a frota' }) %>
+  </div>
+
   <br>
   <div class="actions">
     <%= form.submit %>

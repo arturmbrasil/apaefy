@@ -7,7 +7,7 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.string :cpf_aluno
       t.string :telefone
       t.string :sexo
-      t.string :restricoes_alimentares
+      t.references :frota, type: :uuid, foreign_key: true, index: true
 
       t.timestamps
     end

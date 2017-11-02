@@ -1,10 +1,10 @@
 class Abastecimento < ApplicationRecord
 
 	#Campos obrigatórios
-	validates_presence_of :combustivel
-	validates_presence_of :litros
-	validates_presence_of :valor
-	validates_presence_of :data_abastecimento
+	validates :combustivel, presence: true
+	validates :litros, presence: true
+	validates :valor, presence: true
+	validates :data_abastecimento, presence: true
 
-  	belongs_to :frota
+  belongs_to :frota
 end
