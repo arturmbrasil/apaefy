@@ -6,6 +6,7 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.string :cep
       t.string :bairro
       t.references :city, type: :uuid, foreign_key: true
+      t.references :student, type: :uuid, index: true, foreign_key: true
 
       t.timestamps
     end

@@ -93,6 +93,50 @@
     <% end %>
   </tbody>
 </table>
+<h2>Endereço</h2>
+<table>
+  <thead>
+    <th>Logradouro</th>
+    <th>Numero</th>
+    <th>CEP</th>
+    <th>Bairro</th>
+    <th>Cidade</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @student.address.logradouro %></td>
+      <td><%= @student.address.numero %></td>
+      <td><%= @student.address.cep %></td>
+      <td><%= @student.address.bairro %></td>
+      <td><%= @student.address.city.nome %></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Frota</h2>
+<table>
+  <thead>
+    <th>Nome</th>
+    <th>Veículo</th>
+    <th>Placa</th>
+    <th>Renavam</th>
+    <th>Chassi</th>
+    <th>Rota</th>
+    <th>Motorista</th>
+    <th>Roteirista</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @student.frota.nome %></td>
+      <td><%= @student.frota.veiculo %></td>
+      <td><%= @student.frota.placa %></td>
+      <td><%= @student.frota.renavam %></td>
+      <td><%= @student.frota.chassi %></td>
+      <td><%= @student.frota.rota %></td>
+      <td><%= @student.frota.motorista %></td>
+      <td><%= @student.frota.roteirista %></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Editar', edit_student_path(@student) %> |
 <%= link_to 'Voltar', students_path %>
