@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= l(@appointment.data) %>
+</p>
+
+<p>
+  <strong>Horario:</strong>
+  <%= @appointment.horario %>
+</p>
+
+<p>
+  <strong>Aluno:</strong>
+  <%= @appointment.student.nome %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @appointment.descricao %>
+</p>
+
+<%= link_to 'Editar', edit_appointment_path(@appointment) %> |
+<%= link_to 'Voltar', appointments_path %>

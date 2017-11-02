@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dt vencimento:</strong>
+  <%= @conta_a_pagar.dt_vencimento %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @conta_a_pagar.nome %>
+</p>
+
+<p>
+  <strong>Nr nota:</strong>
+  <%= @conta_a_pagar.nr_nota %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @conta_a_pagar.valor %>
+</p>
+
+<%= link_to 'Editar', edit_conta_a_pagar_path(@conta_a_pagar) %> |
+<%= link_to 'Voltar', conta_a_pagars_path %>

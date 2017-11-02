@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Planos de ação</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Evolução</th>
+      <th>Aluno</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @action_plans.each do |action_plan| %>
+      <% estudante = action_plan.student.nome %>
+      <tr>
+        <td><%= l action_plan.data %></td>
+        <td><%= action_plan.evolucao %></td>
+        <td><%= estudante %></td>
+        <td><%= link_to 'Detalhes', action_plan %></td>
+        <td><%= link_to 'Editar', edit_action_plan_path(action_plan) %></td>
+        <td><%= link_to 'Excluir', action_plan, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo plano de ação', new_action_plan_path %>

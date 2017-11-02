@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Uf</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.nome %></td>
+        <td><%= city.uf %></td>
+        <td><%= link_to 'Mostrar', city %></td>
+        <td><%= link_to 'Editar', edit_city_path(city) %></td>
+        <td><%= link_to 'Excluir', city, method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Cidade', new_city_path %>

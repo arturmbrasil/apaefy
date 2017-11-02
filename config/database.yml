@@ -21,7 +21,12 @@ default: &default
   password: db97!#!!
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5433
+  pool: 5
+  user: postgres
+  password: '1234'
+  host: localhost
+
 
 development:
   <<: *default

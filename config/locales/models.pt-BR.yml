@@ -1,0 +1,14 @@
+"pt-BR":
+  activerecord:
+    models:
+      student: Aluno
+      appointment: Agendamento
+      medicine: Medicamento
+      action_plan: Plano de Ação
+      food_restriction: Restrições Alimentares
+      responsible: Responsável
+      conta_a_pagar: Conta a pagar
+      conta_a_receber: Conta a receber
+      payment: Pagamento
+      product: Produto
+      special_need: Necessidade especial
