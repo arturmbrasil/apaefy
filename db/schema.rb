@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019223713) do
-ActiveRecord::Schema.define(version: 20171029181749) do
+ActiveRecord::Schema.define(version: 20171102182021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +64,20 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "sexo"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "conta_a_pagars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "dt_vencimento"
     t.string "nome"
@@ -101,6 +114,22 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.index ["student_id"], name: "index_food_restrictions_on_student_id"
   end
 
+  create_table "fornecedors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.string "telefone"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
+    t.text "centro_custo"
+    t.string "email"
+    t.string "logradouro"
+    t.string "numero_log"
+    t.string "bairro"
+    t.string "site"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "frotas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "veiculo"
@@ -112,6 +141,39 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.string "roteirista"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "funcionarios", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "sexo"
+    t.string "data_admissao"
+    t.string "ctps"
+    t.integer "cnh"
+    t.string "cns"
+    t.string "status"
+    t.string "telefone"
+    t.string "usuario"
+    t.string "senha"
+    t.uuid "setor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_funcionarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
+    t.index ["setor_id"], name: "index_funcionarios_on_setor_id"
   end
 
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -148,6 +210,17 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "titulo"
+    t.text "descricao"
+    t.string "status"
+    t.text "metas"
+    t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.date "data_nascimento"
@@ -158,6 +231,14 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_responsibles_on_student_id"
+  end
+
+  create_table "setors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "descricao"
+    t.string "permissao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "special_needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -180,76 +261,6 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "telefone"
-    t.string "sexo"
-    t.string "cnpj"
-    t.string "inscricao_estadual"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fornecedors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "nome"
-    t.string "telefone"
-    t.string "cnpj"
-    t.string "inscricao_estadual"
-    t.text "centro_custo"
-    t.string "email"
-    t.string "logradouro"
-    t.string "numero_log"
-    t.string "bairro"
-    t.string "site"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "funcionarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "sexo"
-    t.string "data_admissao"
-    t.string "ctps"
-    t.integer "cnh"
-    t.string "cns"
-    t.string "status"
-    t.string "telefone"
-    t.string "usuario"
-    t.string "senha"
-    t.uuid "setor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["setor_id"], name: "index_funcionarios_on_setor_id"
-  end
-
-  create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "titulo"
-    t.text "descricao"
-    t.string "status"
-    t.text "metas"
-    t.float "valor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "setors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "descricao"
-    t.string "permissao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -267,16 +278,6 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "abastecimentos", "frotas"
-  add_foreign_key "action_plans", "students"
-  add_foreign_key "addresses", "cities"
-  add_foreign_key "appointments", "students"
-  add_foreign_key "conta_a_recebers", "doacaos"
-  add_foreign_key "doacaos", "parceiros"
-  add_foreign_key "food_restrictions", "students"
-  add_foreign_key "medicines", "students"
-  add_foreign_key "responsibles", "students"
-  add_foreign_key "special_needs", "students"
   create_table "voluntarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "codigo"
     t.string "nome"
@@ -292,5 +293,15 @@ ActiveRecord::Schema.define(version: 20171029181749) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "abastecimentos", "frotas"
+  add_foreign_key "action_plans", "students"
+  add_foreign_key "addresses", "cities"
+  add_foreign_key "appointments", "students"
+  add_foreign_key "conta_a_recebers", "doacaos"
+  add_foreign_key "doacaos", "parceiros"
+  add_foreign_key "food_restrictions", "students"
   add_foreign_key "funcionarios", "setors"
+  add_foreign_key "medicines", "students"
+  add_foreign_key "responsibles", "students"
+  add_foreign_key "special_needs", "students"
 end

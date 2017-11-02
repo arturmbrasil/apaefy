@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+
+  devise_for :funcionarios, :controllers => { registrations: 'registrations' }
   resources :addresses
   resources :appointments
   resources :cities
@@ -15,17 +16,16 @@ Rails.application.routes.draw do
   resources :medicines
   resources :students
   resources :appointments
-  devise_for :users
+  #devise_for :users
 
-  resources :funcionarios
   resources :projetos
   resources :colaboradors
   resources :fornecedors
   resources :voluntarios
 
-
-  get 'abastecimentos/search' => 'abastecimentos#search'
-  get 'frotas/search' => 'frotas#search'
-
+  devise_scope :funcionario do
+    root to: "devise/sessions#new"
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
