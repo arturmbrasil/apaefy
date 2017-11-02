@@ -1,0 +1,79 @@
+<%= form_with(model: funcionario, local: true) do |form| %>
+  <% if funcionario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(funcionario.errors.count, "error") %> prohibited this funcionario from being saved:</h2>
+
+      <ul>
+      <% funcionario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- <div class="field">
+    <%= form.label "Código" %>
+    <%= form.text_field :codigo, id: :funcionario_codigo %>
+  </div> -->
+
+  <div class="field">
+    <%= form.label "Nome" %>
+    <%= form.text_field :nome, id: :funcionario_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Data de nascimento" %>
+    <%= form.date_select :data_nascimento, id: :funcionario_data_nascimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label "RG" %>
+    <%= form.text_field :rg, id: :funcionario_rg %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CTPS" %>
+    <%= form.text_field :ctps, id: :funcionario_ctps %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Usuário" %>
+    <%= form.text_field :usuario, id: :funcionario_usuario %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Senha" %>
+    <%= form.password_field :senha, id: :funcionario_senha %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Sexo" %>
+    <%= select :funcionario, :sexo, [["Masculino","M"], ["Feminino","F"]] %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Data de Admissão" %>
+    <%= form.date_select :data_admissao, id: :funcionario_data_admissao %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CNS" %>
+    <%= form.text_field :cns, id: :funcionario_cns %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CNH" %>
+    <%= form.text_field :cnh, id: :funcionario_cnh %>
+  </div>
+
+  <div class="field">
+    <%= check_box :funcionario, :status, {} , "S", "N"%>
+    <span><%= label_tag "Ativo" %></span>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Cadastrar Funcionário" %>
+  </div>
+
+  <!--<%= form_tag "#", method: :get%>-->
+<% end %>

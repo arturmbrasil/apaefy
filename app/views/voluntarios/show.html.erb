@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @voluntario.codigo %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @voluntario.nome %>
+</p>
+
+<p>
+  <strong>Data nascimento:</strong>
+  <%= @voluntario.data_nascimento %>
+</p>
+
+<p>
+  <strong>Rg:</strong>
+  <%= @voluntario.rg %>
+</p>
+
+<p>
+  <strong>Cpf:</strong>
+  <%= @voluntario.cpf %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @voluntario.telefone %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @voluntario.sexo %>
+</p>
+
+<%= link_to 'Editar', edit_voluntario_path(@voluntario) %> |
+<%= link_to 'Voltar', voluntarios_path %>

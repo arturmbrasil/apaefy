@@ -1,0 +1,62 @@
+<%= form_with(model: colaborador, local: true) do |form| %>
+  <% if colaborador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(colaborador.errors.count, "error") %> prohibited this colaborador from being saved:</h2>
+
+      <ul>
+      <% colaborador.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="field">
+    <%= form.label "Código" %>
+    <%= form.number_field :codigo, id: :colaborador_codigo %>
+  </div> -->
+
+  <div class="field">
+    <%= form.label "Nome" %>
+    <%= form.text_field :nome, id: :colaborador_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Data de nascimento" %>
+    <%= form.date_select :data_nascimento, id: :colaborador_data_nascimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label "RG" %>
+    <%= form.text_field :rg, id: :colaborador_rg %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CPF" %>
+    <%= form.text_field :cpf, id: :colaborador_cpf %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Telefone" %>
+    <%= form.text_field :telefone, id: :colaborador_telefone %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Sexo" %>
+    <%= select :colaborador, :sexo, [["Masculino","M"], ["Feminino","F"]] %>
+  </div>
+
+  <div class="field">
+    <%= form.label "CNPJ" %>
+    <%= form.text_field :cnpj, id: :colaborador_cnpj %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Inscrição estadual" %>
+    <%= form.text_field :inscricao_estadual, id: :colaborador_inscricao_estadual %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Cadastar Colaborador" %>
+  </div>
+<% end %>

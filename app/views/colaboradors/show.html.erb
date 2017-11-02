@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @colaborador.codigo %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @colaborador.nome %>
+</p>
+
+<p>
+  <strong>Data nascimento:</strong>
+  <%= @colaborador.data_nascimento %>
+</p>
+
+<p>
+  <strong>Rg:</strong>
+  <%= @colaborador.rg %>
+</p>
+
+<p>
+  <strong>Cpf:</strong>
+  <%= @colaborador.cpf %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @colaborador.telefone %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @colaborador.sexo %>
+</p>
+
+<p>
+  <strong>Cnpj:</strong>
+  <%= @colaborador.cnpj %>
+</p>
+
+<p>
+  <strong>Inscricao estadual:</strong>
+  <%= @colaborador.inscricao_estadual %>
+</p>
+
+<%= link_to 'Editar', edit_colaborador_path(@colaborador) %> |
+<%= link_to 'Voltar', colaboradors_path %>

@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Funcionários</h1>
+
+<%= form_tag funcionarios_path, :method => 'get' do%>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Buscar"%>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>Data de nascimento</th>
+      <th>RG</th>
+      <th>Sexo</th>
+      <th>Data de admissão</th>
+      <th>CNS</th>
+      <th>CNH</th>
+      <th>CTPS</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @funcionarios.each do |funcionario| %>
+      <tr>
+        <td><%= funcionario.codigo %></td>
+        <td><%= funcionario.nome %></td>
+        <td><%= l funcionario.data_nascimento %></td>
+        <td><%= funcionario.rg %></td>
+        <td><%= funcionario.sexo %></td>
+        <td><%= l funcionario.data_admissao %></td>
+        <td><%= funcionario.cns %></td>
+        <td><%= funcionario.cnh %></td>
+        <td><%= funcionario.ctps %></td>
+        <td><%= link_to 'Exibir', funcionario %></td>
+        <td><%= link_to 'Editar', edit_funcionario_path(funcionario) %></td>
+        <td><%= link_to 'Excluir', funcionario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Funcionário', new_funcionario_path %>

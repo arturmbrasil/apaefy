@@ -130,6 +130,26 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.string "telefome"
     t.string "cnpj"
     t.string "inscricao_estatual"
+  create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "sexo"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fornecedors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.string "telefone"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -180,6 +200,33 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["frota_id"], name: "index_students_on_frota_id"
+  create_table "funcionarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "usuario"
+    t.string "senha"
+    t.string "sexo"
+    t.date "data_admissao"
+    t.string "ctps"
+    t.integer "cnh"
+    t.string "cns"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "titulo"
+    t.string "descricao"
+    t.string "status"
+    t.string "metas"
+    t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -197,6 +244,20 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "voluntarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "usuario"
+    t.string "senha"
+    t.string "sexo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "abastecimentos", "frotas"

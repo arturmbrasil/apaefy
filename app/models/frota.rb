@@ -1,7 +1,7 @@
 class Frota < ApplicationRecord
 
 	#Campos obrigatórios
-	validates :nome, presence: true, uniqueness: true
+  validates :nome, presence: true, uniqueness: true
   validates :veiculo, presence: true
   validates :placa, presence: true, length: { is: 7 }
   validates :renavam, presence: true, length: {is: 11 }
