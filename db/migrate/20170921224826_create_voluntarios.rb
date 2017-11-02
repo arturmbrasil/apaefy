@@ -10,7 +10,7 @@ class CreateVoluntarios < ActiveRecord::Migration[5.1]
       t.string :usuario
       t.string :senha
       t.string :sexo
-
+      t.text :atuacao
       t.timestamps
     end
   end

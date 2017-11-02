@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921225557) do
+ActiveRecord::Schema.define(version: 20171029181749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 20170921225557) do
     t.string "telefone"
     t.string "cnpj"
     t.string "inscricao_estadual"
+    t.text "centro_custo"
+    t.string "email"
+    t.string "logradouro"
+    t.string "numero_log"
+    t.string "bairro"
+    t.string "site"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,25 +52,36 @@ ActiveRecord::Schema.define(version: 20170921225557) do
     t.date "data_nascimento"
     t.string "rg"
     t.string "cpf"
-    t.string "usuario"
-    t.string "senha"
     t.string "sexo"
-    t.date "data_admissao"
+    t.string "data_admissao"
     t.string "ctps"
     t.integer "cnh"
     t.string "cns"
     t.string "status"
+    t.string "telefone"
+    t.string "usuario"
+    t.string "senha"
+    t.uuid "setor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["setor_id"], name: "index_funcionarios_on_setor_id"
   end
 
   create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "codigo"
     t.string "titulo"
-    t.string "descricao"
+    t.text "descricao"
     t.string "status"
-    t.string "metas"
+    t.text "metas"
     t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "setors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "descricao"
+    t.string "permissao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,8 +113,10 @@ ActiveRecord::Schema.define(version: 20170921225557) do
     t.string "usuario"
     t.string "senha"
     t.string "sexo"
+    t.text "atuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "funcionarios", "setors"
 end

@@ -9,6 +9,58 @@
   </head>
 
   <body>
+    <div class="page charts-page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <!-- Search Box-->
+          <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="#" role="search">
+              <input type="search" placeholder="What are you looking for..." class="form-control">
+            </form>
+          </div>
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+                <!-- Navbar Brand --><a href="index.html" class="navbar-brand">
+                  <div class="brand-text brand-big hidden-lg-down"><img src="img/logo-big.png" alt="APAE" height="40px"></div>
+                  <div class="brand-text brand-small"><img src="img/logo-small.png" alt="APAE" height="40px"></div></a>
+                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+			  <li class="nav-item"><a href="login.html" class="nav-link logout">Sair<i class="fa fa-sign-out"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              <h1 class="h4">Usuário</h1>
+              <p>Setor</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <ul class="list-unstyled">
+		  <li class="active"> <a href="./"><i class="icon-home"></i>Inicio</a></li>
+            <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Cadastros</a>
+            <ul id="dashvariants" class="collapse list-unstyled">
+            <li> <%= link_to "Cadastro de Funcionários", "new_funcionarios_path" %></li>
+            <li> <%= link_to "Cadastro de Colaboradores", "new_colaboradors_path" %></li>
+            <li> <%= link_to "Cadastro de Voluntários", "new_voluntarios_path" %></li>
+            <li> <%= link_to "Cadastro de Fornecedores", "new_fornecedors_path" %></li>
+            <li> <%= link_to "Cadastro de Projetos", "new_projetos_path" %></li>
+          </ul>
+        </nav>
     <%= yield %>
+    </div>
   </body>
 </html>

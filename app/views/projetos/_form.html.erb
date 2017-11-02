@@ -1,4 +1,4 @@
-<%= form_with(model: projeto, local: true) do |form| %>
+<%= form_with(model: projeto, local: true, html: {class: "form-horizontal"}) do |form| %>
   <% if projeto.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(projeto.errors.count, "error") %> prohibited this projeto from being saved:</h2>
@@ -16,20 +16,26 @@
     <%= form.number_field :codigo, id: :projeto_codigo %>
   </div>-->
 
-  <div class="field">
-    <%= form.label "Título" %>
-    <%= form.text_field :titulo, id: :projeto_titulo %>
-  </div>
+<div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Título</label>
+                          <div class="col-sm-9">
+                            <%= form.text_field :titulo, id: :projeto_titulo, class: "form-control" %>
+                          </div>
+                        </div>
+  <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Descrição</label>
+                          <div class="col-sm-9">
+                            <%= form.text_area :descricao, id: :projeto_descricao, cols: 41, rows: 3, class: "form-control" %>
+                          </div>
+                        </div>
 
-  <div class="field">
-    <%= form.label "Descrição" %>
-    <%= form.text_area :descricao, id: :projeto_descricao, cols: 60, rows: 10 %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Status" %>
-    <%= form.text_field :status, id: :projeto_status %>
-  </div>
+  <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Status</label>
+                          
+                          <div class="col-sm-9 select">
+                          <%= select :projeto, :status, [["Andamento", "A"], ["Finalizado", "F"]], {}, class: "form-control"%>  
+                          </div>
+                        </div>
 
   <div class="field">
     <%= form.label "Metas" %>

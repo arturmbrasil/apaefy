@@ -1,62 +1,74 @@
-<%= form_with(model: colaborador, local: true) do |form| %>
+<%= form_with(model: colaborador, local: true, html: {class: "form-horizontal col-lg-12"}) do |form| %>
   <% if colaborador.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(colaborador.errors.count, "error") %> prohibited this colaborador from being saved:</h2>
+      <h2>
+        <%= pluralize(colaborador.errors.count, "error") %> prohibited this colaborador from being saved:</h2>
 
       <ul>
-      <% colaborador.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% colaborador.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <!--<div class="field">
-    <%= form.label "Código" %>
-    <%= form.number_field :codigo, id: :colaborador_codigo %>
-  </div> -->
+      <div class="form-group row no-padding-bottom">
+        <label class="col-sm-3 form-control-label" for="nome">Nome</label>
+        <div class="col-sm-5">
+          <%= form.text_field :nome, id: :colaborador_nome, class: "form-control" %>
+            <span class="help-block-none">Insira o nome do colaborador</span>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "Nome" %>
-    <%= form.text_field :nome, id: :colaborador_nome %>
-  </div>
+      <div class="form-group row  no-padding-bottom">
+        <label class="col-sm-3 form-control-label" for="data">Data de Nascimento</label>
+        <div class="col-sm-4">
+          <%= form.date_field :data_nascimento, id: :colaborador_data_nascimento, class: "form-control" %>
+            <span class="help-block-none">Insira a data de nascimento do colaborador</span>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "Data de nascimento" %>
-    <%= form.date_select :data_nascimento, id: :colaborador_data_nascimento %>
-  </div>
+      <div class="form-group row  no-padding-bottom">
+        <label class="col-sm-3 form-control-label" for="sexo">Sexo</label>
+        <div class="col-sm-6">
+          <%= radio_button :colaborador, :sexo, "M", class: "radio-template"%>
+            <label for="rdMasc">Masculino  </label>
+            <%= radio_button :colaborador, :sexo, "F", class: "radio-template"%>
+              <label for="rdFem">Feminino</label>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "RG" %>
-    <%= form.text_field :rg, id: :colaborador_rg %>
-  </div>
+      <div class="form-group row">
+        <label class="col-sm-3 form-control-label">RG</label>
+        <div class="col-sm-9">
+          <%= form.text_field :rg, id: :colaborador_rg, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "CPF" %>
-    <%= form.text_field :cpf, id: :colaborador_cpf %>
-  </div>
+      <div class="form-group row">
+        <label class="col-sm-3 form-control-label">CPF/CNPJ</label>
+        <div class="col-sm-9">
+          <%= form.text_field :cpf, id: :colaborador_cpf, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "Telefone" %>
-    <%= form.text_field :telefone, id: :colaborador_telefone %>
-  </div>
+      <div class="form-group row">
+        <label class="col-sm-3 form-control-label">Telefone</label>
+        <div class="col-sm-9">
+          <%= form.text_field :telefone, id: :colaborador_telefone, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "Sexo" %>
-    <%= select :colaborador, :sexo, [["Masculino","M"], ["Feminino","F"]] %>
-  </div>
+      <div class="form-group row">
+        <label class="col-sm-3 form-control-label">Inscrição estadual</label>
+        <div class="col-sm-9">
+          <%= form.text_field :inscricao_estadual, id: :colaborador_inscricao_estadual, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label "CNPJ" %>
-    <%= form.text_field :cnpj, id: :colaborador_cnpj %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Inscrição estadual" %>
-    <%= form.text_field :inscricao_estadual, id: :colaborador_inscricao_estadual %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Cadastar Colaborador" %>
-  </div>
-<% end %>
+      <div class="actions">
+        <%= form.submit "Cadastar Colaborador", class: "btn btn-primary" %>
+      </div>
+      <% end %>

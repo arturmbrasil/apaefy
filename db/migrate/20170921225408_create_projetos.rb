@@ -3,9 +3,9 @@ class CreateProjetos < ActiveRecord::Migration[5.1]
     create_table :projetos, id: :uuid do |t|
       t.integer :codigo
       t.string :titulo
-      t.string :descricao
+      t.text :descricao
       t.string :status
-      t.string :metas
+      t.text :metas
       t.float :valor
 
       t.timestamps

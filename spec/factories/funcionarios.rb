@@ -1,12 +1,19 @@
 FactoryGirl.define do
   factory :funcionario do
-    codigo ""
+    codigo 1
     nome "MyString"
-    data_nascimento "2017-09-21"
+    data_nascimento "2017-10-29"
     rg "MyString"
+    cpf "MyString"
+    sexo "MyString"
+    data_admissao "MyString"
+    ctps "MyString"
+    cnh 1
+    cns "MyString"
+    status "MyString"
+    telefone "MyString"
     usuario "MyString"
     senha "MyString"
-    sexo "MyString"
-    data_admissao "2017-09-21"
+    setor nil
   end
 end

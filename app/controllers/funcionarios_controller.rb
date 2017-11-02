@@ -1,5 +1,6 @@
 class FuncionariosController < ApplicationController
   before_action :set_funcionario, only: [:show, :edit, :update, :destroy]
+  before_action :set_setors_for_select
 
   # GET /funcionarios
   # GET /funcionarios.json
@@ -63,14 +64,6 @@ class FuncionariosController < ApplicationController
     end
   end
 
-  def search(param)
-    if param
-      @funcionarios = Funcionario.where("nome like ? or codigo = ? ", "%#{param}%", param);
-    else
-      @funcionarios = Funcionario.all;
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_funcionario
@@ -79,6 +72,10 @@ class FuncionariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def funcionario_params
-      params.require(:funcionario).permit(:codigo, :nome, :data_nascimento, :rg, :usuario, :senha, :sexo, :data_admissao, :ctps, :cnh, :cns, :status)
+      params.require(:funcionario).permit(:codigo, :nome, :data_nascimento, :rg, :usuario, :senha, :sexo, :data_admissao, :ctps, :cnh, :cns, :status, :telefone, :cpf, :setor_id)
+    end
+
+    def set_setors_for_select
+      @setor_options = Setor.all
     end
 end
