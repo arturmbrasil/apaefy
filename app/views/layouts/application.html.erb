@@ -6,6 +6,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <script>
+      $('#sandbox-container .input-group.date').datepicker({
+        format: "dd/mm/yyyy"
+      });
+    </script>
   </head>
 
   <body>
@@ -32,7 +38,7 @@
               </div>
               <!-- Navbar Menu -->
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-			  <li class="nav-item"><a href="login.html" class="nav-link logout">Sair<i class="fa fa-sign-out"></i></a></li>
+			  <li class="nav-item"><%= link_to "Sair", destroy_funcionario_session_path, method: :delete, class: "nav-link logout" %><i class="fa fa-sign-out"></i></li>
               </ul>
             </div>
           </div>
