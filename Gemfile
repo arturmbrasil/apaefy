@@ -8,9 +8,11 @@ end
 gem "rails", "~> 5.1.2"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
+gem 'rails-i18n', '~> 5.0.0'
 
 # Authentication
 gem "devise"
+gem "devise-i18n"
 
 # Front end
 gem "sass-rails", "~> 5.0"

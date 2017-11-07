@@ -28,6 +28,9 @@ module Apaefy
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
+    config.i18n.default_locale = :'pt-BR'
+
     # Set uuid as default primary key
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid

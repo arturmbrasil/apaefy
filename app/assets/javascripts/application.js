@@ -64,6 +64,12 @@ $(function () {
   // ------------------------------------------------------- //
   // Transition Placeholders
   // ------------------------------------------------------ //
+  $('input.input-material').each(function () {
+    if ($(this).val() !== '') {
+      $(this).siblings('.label-material').addClass('active');
+    }
+  });
+
   $('input.input-material').on('focus', function () {
     $(this).siblings('.label-material').addClass('active');
   });
@@ -77,4 +83,6 @@ $(function () {
       $(this).siblings('.label-material').removeClass('active');
     }
   });
+
+  $(".alert").alert();
 });

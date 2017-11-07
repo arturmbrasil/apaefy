@@ -1831,15 +1831,10 @@ section.forms .line {
 }
 
 .login-page::before {
-  content: '';
   width: 100%;
   height: 100%;
   display: block;
   z-index: -1;
-  background: url(../img/bg.jpg);
-  background-size: cover;
-  -webkit-filter: blur(10px);
-  filter: blur(10px);
   z-index: 1;
   position: absolute;
   top: 0;
