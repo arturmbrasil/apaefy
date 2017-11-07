@@ -17,6 +17,8 @@ gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "jbuilder", "~> 2.5"
 gem "bootstrap", "~> 4.0.0.beta2.1"
+gem "jquery-rails"
+gem "feathericon-sass"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
