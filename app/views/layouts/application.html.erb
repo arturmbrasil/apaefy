@@ -8,7 +8,13 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class='page home-page'>
+    <%= render partial: 'shared/header' %>
+    <main class='page-content d-flex align-items-stretch'>
+      <%= render partial: 'shared/sidebar' %>
+      <div class='content-inner active'>
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>
