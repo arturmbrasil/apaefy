@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum gender: { man: 'M', woman: 'W' }
+  enum gender: { male: 'M', female: 'F' }
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true

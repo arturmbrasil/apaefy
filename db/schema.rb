@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20171107041053) do
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171107041053) do
     t.string "phone_numbers", default: [], array: true
     t.string "document_rg", null: false
     t.string "document_cpf", null: false
-    t.datetime "admission_date", default: "2017-11-07 04:19:45", null: false
+    t.datetime "admission_date", default: "2017-11-08 01:52:53", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

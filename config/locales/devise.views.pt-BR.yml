@@ -2,6 +2,13 @@ pt-BR:
   activerecord:
     attributes:
       user:
+        name: Nome
+        document_cpf: CPF
+        document_rg: RG
+        gender: Sexo
+        birthday: Data de nascimento
+        phone_numbers: Telefone
+        admission_date: Data de admissão
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
@@ -25,8 +32,11 @@ pt-BR:
         unconfirmed_email: E-mail não confirmado
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
+      user/gender:
+        male: Homem
+        female: Mulher
     models:
-      user: Usuário
+      user: Funcionário
   devise:
     confirmations:
       confirmed: A sua conta foi confirmada com sucesso.
