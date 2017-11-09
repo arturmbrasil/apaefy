@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.string "cep"
     t.string "bairro"
     t.uuid "city_id"
+    t.uuid "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_addresses_on_city_id"
+    t.index ["student_id"], name: "index_addresses_on_student_id"
   end
 
   create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -256,9 +258,10 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.string "cpf_aluno"
     t.string "telefone"
     t.string "sexo"
-    t.string "restricoes_alimentares"
+    t.uuid "frota_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["frota_id"], name: "index_students_on_frota_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -296,6 +299,7 @@ ActiveRecord::Schema.define(version: 20171102182021) do
   add_foreign_key "abastecimentos", "frotas"
   add_foreign_key "action_plans", "students"
   add_foreign_key "addresses", "cities"
+  add_foreign_key "addresses", "students"
   add_foreign_key "appointments", "students"
   add_foreign_key "conta_a_recebers", "doacaos"
   add_foreign_key "doacaos", "parceiros"
@@ -304,4 +308,5 @@ ActiveRecord::Schema.define(version: 20171102182021) do
   add_foreign_key "medicines", "students"
   add_foreign_key "responsibles", "students"
   add_foreign_key "special_needs", "students"
+  add_foreign_key "students", "frotas"
 end

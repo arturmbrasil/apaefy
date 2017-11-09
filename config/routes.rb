@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :funcionarios, :controllers => { registrations: 'registrations' }
   resources :addresses
   resources :appointments
