@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: fleet, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, class: 'form-control-label' %>
+        <%= f.text_field :name, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :vehicle, class: 'form-control-label' %>
+        <%= f.text_field :vehicle, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :license_plate, class: 'form-control-label' %>
+        <%= f.text_field :license_plate, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :document_renavam, class: 'form-control-label' %>
+        <%= f.text_field :document_renavam, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :chassis, class: 'form-control-label' %>
+        <%= f.text_field :chassis, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :route, class: 'form-control-label' %>
+        <%= f.text_field :route, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :driver_name, class: 'form-control-label' %>
+        <%= f.text_field :driver_name, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :router, class: 'form-control-label' %>
+        <%= f.text_field :router, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

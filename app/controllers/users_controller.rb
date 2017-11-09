@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'user was successfully created.' }
+        format.html { redirect_to users_url, notice: 'Funcionário foi cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'user was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'Funcionário foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to user_url, notice: 'user was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Funcionário foi excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -59,6 +59,6 @@ class UsersController < ApplicationController
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, phone_numbers: [])
+        .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, phone_numbers: [])
     end
 end

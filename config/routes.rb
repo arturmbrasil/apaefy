@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :medicines
+  resources :fleets
+  resources :students
   root 'dashboard#index'
 
   devise_for :users, controllers: {

@@ -10,11 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107041053) do
+ActiveRecord::Schema.define(version: 20171109223514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "fleets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "vehicle", null: false
+    t.string "license_plate", null: false
+    t.string "document_renavam", null: false
+    t.string "chassis", null: false
+    t.string "route", null: false
+    t.string "driver_name", null: false
+    t.string "router", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "dosage", null: false
+    t.string "time_interval", null: false
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.string "name", null: false
+    t.date "birthday", null: false
+    t.string "document_rg", default: "", null: false
+    t.string "document_cpf", default: "", null: false
+    t.string "phone_numbers", default: [], array: true
+    t.string "gender", limit: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,14 +65,20 @@ ActiveRecord::Schema.define(version: 20171107041053) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
+    t.boolean "active", default: true, null: false
+    t.boolean "admin", default: false, null: false
     t.string "gender", limit: 1, null: false
+    t.string "role", limit: 3, null: false
     t.date "birthday", null: false
     t.string "phone_numbers", default: [], array: true
     t.string "document_rg", null: false
     t.string "document_cpf", null: false
-    t.datetime "admission_date", default: "2017-11-08 01:52:53", null: false
+    t.string "document_cnh", null: false
+    t.string "document_cns", null: false
+    t.datetime "admission_date", default: "2017-11-09 22:36:10", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "medicines", "students"
 end

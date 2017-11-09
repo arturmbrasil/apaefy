@@ -16,12 +16,26 @@
         <% end %>
       </div>
       <div class="form-group">
+        <%= f.label :role, class: 'form-control-label' %>
+        <%= f.select :role, [], {}, { class: 'form-control', required: true } do %>
+          <%= options_for_select(User.roles.map { |g| [User.human_attribute_name("role.#{g.first}"), g.last] }, User.roles[user.role]) %>
+        <% end %>
+      </div>
+      <div class="form-group">
         <%= f.label :document_rg, class: 'form-control-label' %>
         <%= f.text_field :document_rg, class: 'form-control', required: true %>
       </div>
       <div class="form-group">
         <%= f.label :document_cpf, class: 'form-control-label' %>
         <%= f.text_field :document_cpf, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :document_cnh, class: 'form-control-label' %>
+        <%= f.text_field :document_cnh, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :document_cns, class: 'form-control-label' %>
+        <%= f.text_field :document_cns, class: 'form-control', required: true %>
       </div>
       <div class="form-group">
         <%= f.label :phone_numbers, class: 'form-control-label' %>
