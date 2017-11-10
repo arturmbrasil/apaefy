@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @fleet.name %>
+</p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @fleet.vehicle %>
+</p>
+
+<p>
+  <strong>License plate:</strong>
+  <%= @fleet.license_plate %>
+</p>
+
+<p>
+  <strong>Document renavam:</strong>
+  <%= @fleet.document_renavam %>
+</p>
+
+<p>
+  <strong>Chassis:</strong>
+  <%= @fleet.chassis %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @fleet.route %>
+</p>
+
+<p>
+  <strong>Driver name:</strong>
+  <%= @fleet.driver_name %>
+</p>
+
+<p>
+  <strong>Router:</strong>
+  <%= @fleet.router %>
+</p>
+
+<%= link_to 'Edit', edit_fleet_path(@fleet) %> |
+<%= link_to 'Back', fleets_path %>

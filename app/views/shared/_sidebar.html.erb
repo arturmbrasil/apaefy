@@ -1,0 +1,45 @@
+<nav class="side-navbar">
+  <!-- Sidebar Header-->
+  <div class="sidebar-header d-flex align-items-center">
+    <div class="avatar">
+      <img src="http://i.pravatar.cc/300" alt="..." class="img-fluid rounded-circle">
+    </div>
+    <div class="title">
+      <h1 class="h4"><%= current_user.name %></h1>
+    </div>
+  </div>
+  <!-- Sidebar Navidation Menus-->
+  <span class="heading">Main</span>
+  <ul class="list-unstyled">
+    <li>
+      <a href="./">
+        <%= icon('home') %>
+        Home
+      </a>
+    </li>
+    <li>
+      <%= link_to users_path do %>
+        <%= icon('users') %>
+        Funcionários
+      <% end %>
+    </li>
+    <li>
+      <%= link_to students_path do %>
+        <%= icon('graduation-cap ') %>
+        Alunos
+      <% end %>
+    </li>
+    <li>
+      <%= link_to fleets_path do %>
+        <%= icon('truck') %>
+        Frotas
+      <% end %>
+    </li>
+    <li>
+      <%= link_to medicines_path do %>
+        <%= icon('medkit') %>
+        Medicamentos
+      <% end %>
+    </li>
+  </ul>
+</nav>

@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :medicine do
-    nome "MyString"
-    dosagem "MyString"
-    intervalo_tempo "MyString"
+    name "MyString"
+    dosage "MyString"
+    time_interval "MyString"
     student nil
   end
 end

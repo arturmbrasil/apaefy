@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+  resources :medicines
+  resources :fleets
+  resources :students
+  root 'dashboard#index'
 
+  devise_for :users, controllers: {
+    passwords: 'users/passwords',
+    sessions: 'users/sessions'
+  }
 
-  devise_for :funcionarios, :controllers => { registrations: 'registrations' }
-  resources :addresses
+  resources :users
+
+ resources :addresses
   resources :appointments
   resources :cities
   resources :abastecimentos
@@ -17,16 +26,10 @@ Rails.application.routes.draw do
   resources :medicines
   resources :students
   resources :appointments
-  #devise_for :users
 
   resources :projetos
   resources :colaboradors
   resources :fornecedors
   resources :voluntarios
-
-  devise_scope :funcionario do
-    root to: "devise/sessions#new"
-  end
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

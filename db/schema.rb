@@ -11,12 +11,63 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20171102182021) do
+ActiveRecord::Schema.define(version: 20171109230552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
-  create_table "abastecimentos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.uuid "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "fleets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "vehicle", null: false
+    t.string "license_plate", null: false
+    t.string "document_renavam", null: false
+    t.string "chassis", null: false
+    t.string "route", null: false
+    t.string "driver_name", null: false
+    t.string "router", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "dosage", null: false
+    t.string "time_interval", null: false
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "acronym"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.string "name", null: false
+    t.date "birthday", null: false
+    t.string "document_rg", default: "", null: false
+    t.string "document_cpf", default: "", null: false
+    t.string "phone_numbers", default: [], array: true
+    t.string "gender", limit: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+create_table "abastecimentos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "combustivel"
     t.uuid "frota_id"
     t.float "litros"
@@ -36,19 +87,6 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.index ["student_id"], name: "index_action_plans_on_student_id"
   end
 
-  create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "logradouro"
-    t.integer "numero"
-    t.string "cep"
-    t.string "bairro"
-    t.uuid "city_id"
-    t.uuid "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_addresses_on_city_id"
-    t.index ["student_id"], name: "index_addresses_on_student_id"
-  end
-
   create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "data"
     t.time "horario"
@@ -57,13 +95,6 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_appointments_on_student_id"
-  end
-
-  create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.string "uf"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -132,62 +163,6 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "frotas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.string "veiculo"
-    t.string "placa"
-    t.bigint "renavam"
-    t.string "chassi"
-    t.string "rota"
-    t.string "motorista"
-    t.string "roteirista"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "funcionarios", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.integer "codigo"
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "sexo"
-    t.string "data_admissao"
-    t.string "ctps"
-    t.integer "cnh"
-    t.string "cns"
-    t.string "status"
-    t.string "telefone"
-    t.string "usuario"
-    t.string "senha"
-    t.uuid "setor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_funcionarios_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
-    t.index ["setor_id"], name: "index_funcionarios_on_setor_id"
-  end
-
-  create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.string "dosagem"
-    t.string "intervalo_tempo"
-    t.uuid "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_medicines_on_student_id"
-  end
-
   create_table "parceiros", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "telefome"
@@ -235,14 +210,6 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.index ["student_id"], name: "index_responsibles_on_student_id"
   end
 
-  create_table "setors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "descricao"
-    t.string "permissao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "special_needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "descricao"
     t.uuid "student_id"
@@ -251,20 +218,7 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.index ["student_id"], name: "index_special_needs_on_student_id"
   end
 
-  create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg_aluno"
-    t.string "cpf_aluno"
-    t.string "telefone"
-    t.string "sexo"
-    t.uuid "frota_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["frota_id"], name: "index_students_on_frota_id"
-  end
-
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -277,10 +231,24 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.boolean "active", default: true, null: false
+    t.boolean "admin", default: false, null: false
+    t.string "gender", limit: 1, null: false
+    t.string "role", limit: 3, null: false
+    t.date "birthday", null: false
+    t.string "phone_numbers", default: [], array: true
+    t.string "document_rg", null: false
+    t.string "document_cpf", null: false
+    t.string "document_cnh", null: false
+    t.string "document_cns", null: false
+    t.datetime "admission_date", default: "2017-11-09 22:36:10", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cities", "states"
+  add_foreign_key "medicines", "students"
   create_table "voluntarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "codigo"
     t.string "nome"
@@ -295,8 +263,6 @@ ActiveRecord::Schema.define(version: 20171102182021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_foreign_key "abastecimentos", "frotas"
   add_foreign_key "action_plans", "students"
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "students"
@@ -307,6 +273,5 @@ ActiveRecord::Schema.define(version: 20171102182021) do
   add_foreign_key "funcionarios", "setors"
   add_foreign_key "medicines", "students"
   add_foreign_key "responsibles", "students"
-  add_foreign_key "special_needs", "students"
-  add_foreign_key "students", "frotas"
+  add_foreign_key "special_needs", "students
 end

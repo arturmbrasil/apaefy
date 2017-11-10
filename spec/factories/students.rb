@@ -1,14 +1,10 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :student do
-    nome "MyString"
-    data_nascimento "2017-09-14"
-    rg_aluno "MyString"
-    cpf_aluno "MyString"
-    telefone "MyString"
-    sexo "MyString"
-    responsavel_curador "MyString"
-    restricoes_alimentares "MyString"
-    rg_responsavel "MyString"
-    cpf_responsavel "MyString"
+    name "MyString"
+    birthday "2017-11-09"
+    document_rg "MyString"
+    document_cpf "MyString"
+    phone_numbers "MyString"
+    gender "MyString"
   end
 end

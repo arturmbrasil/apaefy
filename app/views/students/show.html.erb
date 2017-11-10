@@ -1,142 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Detalhes do Aluno</h1>
-
 <p>
-  <strong>Nome:</strong>
-  <%= @student.nome %>
+  <strong>Name:</strong>
+  <%= @student.name %>
 </p>
 
 <p>
-  <strong>Data nascimento:</strong>
-  <%= l @student.data_nascimento %>
+  <strong>Birthday:</strong>
+  <%= @student.birthday %>
 </p>
 
 <p>
-  <strong>Rg aluno:</strong>
-  <%= @student.rg_aluno %>
+  <strong>Document rg:</strong>
+  <%= @student.document_rg %>
 </p>
 
 <p>
-  <strong>Cpf aluno:</strong>
-  <%= @student.cpf_aluno %>
+  <strong>Document cpf:</strong>
+  <%= @student.document_cpf %>
 </p>
 
 <p>
-  <strong>Telefone:</strong>
-  <%= @student.telefone %>
+  <strong>Phone numbers:</strong>
+  <%= @student.phone_numbers %>
 </p>
 
 <p>
-  <strong>Sexo:</strong>
-  <%= @student.sexo %>
+  <strong>Gender:</strong>
+  <%= @student.gender %>
 </p>
 
-<br>
-<h2>Restrições Alimentares</h2>
-<table>
-  <% @student.food_restrictions.each do |food| %>
-    <tr>
-      <td><%= food.restriction %></td>
-    </tr>
-  <% end %>
-</table>
-
-<br>
-<h2>Necessidades Especiais</h2>
-<table>
-  <% @student.special_needs.each do |need| %>
-    <tr>
-      <td><%= need.descricao %></td>
-    </tr>
-  <% end %>
-</table>
-
-
-<br>
-<h2>Responsáveis</h2>
-<table>
-  <thead>
-    <th>Nome</th>
-    <th>Data de nascimento</th>
-    <th>Telefone</th>
-    <th>RG</th>
-    <th>CPF</th>
-  </thead>
-  <tbody>
-    <% @student.responsibles.each do |resp| %>
-      <tr>
-        <td><%= resp.nome %></td>
-        <td><%= resp.data_nascimento %></td>
-        <td><%= resp.telefone %></td>
-        <td><%= resp.rg %></td>
-        <td><%= resp.cpf %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<h2>Medicamentos</h2>
-<table>
-  <thead>
-    <th><strong>Nome</strong></th>
-    <th><strong>Dosagem</strong></th>
-    <th><strong>Intervalo de Tempo</strong></th>
-  </thead>
-  <tbody>
-    <% @student.medicines.each do |med| %>
-      <tr>
-        <td><%= med.nome %></td>
-        <td><%= med.dosagem %></td>
-        <td><%= med.intervalo_tempo %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<h2>Endereço</h2>
-<table>
-  <thead>
-    <th>Logradouro</th>
-    <th>Numero</th>
-    <th>CEP</th>
-    <th>Bairro</th>
-    <th>Cidade</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @student.address.logradouro %></td>
-      <td><%= @student.address.numero %></td>
-      <td><%= @student.address.cep %></td>
-      <td><%= @student.address.bairro %></td>
-      <td><%= @student.address.city.nome %></td>
-    </tr>
-  </tbody>
-</table>
-<h2>Frota</h2>
-<table>
-  <thead>
-    <th>Nome</th>
-    <th>Veículo</th>
-    <th>Placa</th>
-    <th>Renavam</th>
-    <th>Chassi</th>
-    <th>Rota</th>
-    <th>Motorista</th>
-    <th>Roteirista</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @student.frota.nome %></td>
-      <td><%= @student.frota.veiculo %></td>
-      <td><%= @student.frota.placa %></td>
-      <td><%= @student.frota.renavam %></td>
-      <td><%= @student.frota.chassi %></td>
-      <td><%= @student.frota.rota %></td>
-      <td><%= @student.frota.motorista %></td>
-      <td><%= @student.frota.roteirista %></td>
-    </tr>
-  </tbody>
-</table>
-
-<%= link_to 'Editar', edit_student_path(@student) %> |
-<%= link_to 'Voltar', students_path %>
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

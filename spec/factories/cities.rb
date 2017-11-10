@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :city do
-    nome "MyString"
-    uf "MyString"
+    name "MyString"
+    state nil
   end
 end
