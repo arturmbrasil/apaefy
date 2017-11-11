@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label "Data de nascimento" %>
-    <%= form.date_select :data_nascimento, id: :funcionario_data_nascimento %>
+    <%= form.date_field :data_nascimento, id: :funcionario_data_nascimento %>
   </div>
 
   <div class="field">
@@ -48,12 +48,12 @@
 
   <div class="field">
     <%= form.label "Sexo" %>
-    <%= select :funcionario, :sexo, [["Masculino","M"], ["Feminino","F"]] %>
+    <%= select :funcionario, :sexo, [["Masculino","M"], ["Feminino","F"]], { include_blank: 'Selecione o sexo' } %>
   </div>
 
   <div class="field">
     <%= form.label "Data de Admissão" %>
-    <%= form.date_select :data_admissao, id: :funcionario_data_admissao %>
+    <%= form.date_field :data_admissao, id: :funcionario_data_admissao %>
   </div>
 
   <div class="field">
@@ -63,7 +63,7 @@
 
   <div class="field">
     <%= form.label "CNH" %>
-    <%= form.text_field :cnh, id: :funcionario_cnh %>
+    <%= form.number_field :cnh, id: :funcionario_cnh %>
   </div>
 
   <div class="field">

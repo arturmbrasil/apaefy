@@ -33,7 +33,7 @@ class AbastecimentosController < ApplicationController
 
     respond_to do |format|
       if @abastecimento.save
-        format.html { redirect_to @abastecimento, notice: 'Abastecimento foi criado com sucesso.' }
+        format.html { redirect_to @abastecimento, notice: 'Abastecimento criado com sucesso!' }
         format.json { render :show, status: :created, location: @abastecimento }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class AbastecimentosController < ApplicationController
   def update
     respond_to do |format|
       if @abastecimento.update(abastecimento_params)
-        format.html { redirect_to @abastecimento, notice: 'Abastecimento foi atualizado com sucesso.' }
+        format.html { redirect_to @abastecimento, notice: 'Abastecimento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @abastecimento }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class AbastecimentosController < ApplicationController
   def destroy
     @abastecimento.destroy
     respond_to do |format|
-      format.html { redirect_to abastecimentos_url, notice: 'Abastecimento foi excluído com sucesso.' }
+      format.html { redirect_to abastecimentos_url, notice: 'Abastecimento excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
@@ -73,7 +73,7 @@ class AbastecimentosController < ApplicationController
       @abastecimentos = Abastecimento.all;
     end
   end
-  
+
   private
 
     def options_for_select

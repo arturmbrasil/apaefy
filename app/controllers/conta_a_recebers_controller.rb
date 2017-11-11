@@ -28,7 +28,7 @@ class ContaARecebersController < ApplicationController
 
     respond_to do |format|
       if @conta_a_receber.save
-        format.html { redirect_to @conta_a_receber, notice: 'Conta a receber was successfully created.' }
+        format.html { redirect_to @conta_a_receber, notice: 'Conta a receber criada com sucesso!' }
         format.json { render :show, status: :created, location: @conta_a_receber }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ContaARecebersController < ApplicationController
   def update
     respond_to do |format|
       if @conta_a_receber.update(conta_a_receber_params)
-        format.html { redirect_to @conta_a_receber, notice: 'Conta a receber was successfully updated.' }
+        format.html { redirect_to @conta_a_receber, notice: 'Conta a receber alterada com sucesso!' }
         format.json { render :show, status: :ok, location: @conta_a_receber }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ContaARecebersController < ApplicationController
   def destroy
     @conta_a_receber.destroy
     respond_to do |format|
-      format.html { redirect_to conta_a_recebers_url, notice: 'Conta a receber was successfully destroyed.' }
+      format.html { redirect_to conta_a_recebers_url, notice: 'Conta a receber excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

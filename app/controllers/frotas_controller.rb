@@ -30,7 +30,7 @@ class FrotasController < ApplicationController
 
     respond_to do |format|
       if @frota.save
-        format.html { redirect_to @frota, notice: 'Frota foi criada com sucesso.' }
+        format.html { redirect_to @frota, notice: 'Frota criada com sucesso!' }
         format.json { render :show, status: :created, location: @frota }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class FrotasController < ApplicationController
   def update
     respond_to do |format|
       if @frota.update(frota_params)
-        format.html { redirect_to @frota, notice: 'Frota foi atualizada com sucesso.' }
+        format.html { redirect_to @frota, notice: 'Frota alterada com sucesso!' }
         format.json { render :show, status: :ok, location: @frota }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class FrotasController < ApplicationController
   def destroy
     @frota.destroy
     respond_to do |format|
-      format.html { redirect_to frotas_url, notice: 'Frota foi excluída com sucesso.' }
+      format.html { redirect_to frotas_url, notice: 'Frota excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

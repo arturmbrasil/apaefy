@@ -6,9 +6,9 @@
   <thead>
     <tr>
       <th>Data</th>
-      <th>Horario</th>
+      <th>Horário</th>
       <th>Aluno</th>
-      <th>Descrição</th>
+      <th>Funcionário</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.data %></td>
-        <td><%= appointment.horario %></td>
+        <td><%= l appointment.data %></td>
+        <td><%= l appointment.horario, format: :time_only %></td>
         <td><%= appointment.student.nome %></td>
-        <td><%= appointment.descricao %></td>
+        <td><%= appointment.funcionario.nome %></td>
         <td><%= link_to 'Detalhes', appointment %></td>
         <td><%= link_to 'Editar', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Excluir', appointment, method: :delete, data: { confirm: 'Tem certeza?' } %></td>

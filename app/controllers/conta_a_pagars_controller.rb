@@ -28,7 +28,7 @@ class ContaAPagarsController < ApplicationController
 
     respond_to do |format|
       if @conta_a_pagar.save
-        format.html { redirect_to @conta_a_pagar, notice: 'Conta a pagar was successfully created.' }
+        format.html { redirect_to @conta_a_pagar, notice: 'Conta a pagar criada com sucesso!' }
         format.json { render :show, status: :created, location: @conta_a_pagar }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ContaAPagarsController < ApplicationController
   def update
     respond_to do |format|
       if @conta_a_pagar.update(conta_a_pagar_params)
-        format.html { redirect_to @conta_a_pagar, notice: 'Conta a pagar was successfully updated.' }
+        format.html { redirect_to @conta_a_pagar, notice: 'Conta a pagar alterada com sucesso!' }
         format.json { render :show, status: :ok, location: @conta_a_pagar }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ContaAPagarsController < ApplicationController
   def destroy
     @conta_a_pagar.destroy
     respond_to do |format|
-      format.html { redirect_to conta_a_pagars_url, notice: 'Conta a pagar was successfully destroyed.' }
+      format.html { redirect_to conta_a_pagars_url, notice: 'Conta a pagar excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

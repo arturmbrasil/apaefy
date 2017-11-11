@@ -28,7 +28,7 @@ class VoluntariosController < ApplicationController
 
     respond_to do |format|
       if @voluntario.save
-        format.html { redirect_to @voluntario, notice: 'Voluntario was successfully created.' }
+        format.html { redirect_to @voluntario, notice: 'Voluntário criado com sucesso!' }
         format.json { render :show, status: :created, location: @voluntario }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class VoluntariosController < ApplicationController
   def update
     respond_to do |format|
       if @voluntario.update(voluntario_params)
-        format.html { redirect_to @voluntario, notice: 'Voluntario was successfully updated.' }
+        format.html { redirect_to @voluntario, notice: 'Voluntário alterado com sucesso!' }
         format.json { render :show, status: :ok, location: @voluntario }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class VoluntariosController < ApplicationController
   def destroy
     @voluntario.destroy
     respond_to do |format|
-      format.html { redirect_to voluntarios_url, notice: 'Voluntario was successfully destroyed.' }
+      format.html { redirect_to voluntarios_url, notice: 'Voluntário excluído com sucesso!' }
       format.json { head :no_content }
     end
   end

@@ -27,6 +27,11 @@
   </div>
 
   <div class="field">
+    <%= form.label "Funcionário" %>
+    <%= form.collection_select(:funcionario_id, @funcionario_options_for_select, :id, :nome, { include_blank: 'Selecione o funcionário' }) %>
+  </div>
+
+  <div class="field">
     <%= form.label :descricao %>
     <%= form.text_area :descricao, id: :appointment_descricao, placeholder: "Descrição do agendamento" %>
   </div>

@@ -53,15 +53,31 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.date "data"
     t.time "horario"
     t.uuid "student_id"
+    t.uuid "funcionario_id"
     t.string "descricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["funcionario_id"], name: "index_appointments_on_funcionario_id"
     t.index ["student_id"], name: "index_appointments_on_student_id"
   end
 
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "uf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "telefone"
+    t.string "sexo"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,6 +118,16 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.index ["student_id"], name: "index_food_restrictions_on_student_id"
   end
 
+  create_table "fornecedors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.string "telefone"
+    t.string "cnpj"
+    t.string "inscricao_estadual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "frotas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome"
     t.string "veiculo"
@@ -111,6 +137,24 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.string "rota"
     t.string "motorista"
     t.string "roteirista"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "funcionarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "nome"
+    t.date "data_nascimento"
+    t.string "rg"
+    t.string "cpf"
+    t.string "usuario"
+    t.string "senha"
+    t.string "sexo"
+    t.date "data_admissao"
+    t.string "ctps"
+    t.integer "cnh"
+    t.string "cns"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -130,26 +174,6 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.string "telefome"
     t.string "cnpj"
     t.string "inscricao_estatual"
-  create_table "colaboradors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "telefone"
-    t.string "sexo"
-    t.string "cnpj"
-    t.string "inscricao_estadual"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fornecedors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "nome"
-    t.string "telefone"
-    t.string "cnpj"
-    t.string "inscricao_estadual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -165,6 +189,17 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.float "price"
     t.text "description"
     t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "titulo"
+    t.string "descricao"
+    t.string "status"
+    t.string "metas"
+    t.float "valor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -200,33 +235,6 @@ ActiveRecord::Schema.define(version: 20171019223713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["frota_id"], name: "index_students_on_frota_id"
-  create_table "funcionarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "usuario"
-    t.string "senha"
-    t.string "sexo"
-    t.date "data_admissao"
-    t.string "ctps"
-    t.integer "cnh"
-    t.string "cns"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "projetos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "titulo"
-    t.string "descricao"
-    t.string "status"
-    t.string "metas"
-    t.float "valor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -264,6 +272,7 @@ ActiveRecord::Schema.define(version: 20171019223713) do
   add_foreign_key "action_plans", "students"
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "students"
+  add_foreign_key "appointments", "funcionarios"
   add_foreign_key "appointments", "students"
   add_foreign_key "conta_a_recebers", "doacaos"
   add_foreign_key "doacaos", "parceiros"

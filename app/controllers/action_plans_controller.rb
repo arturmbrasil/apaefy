@@ -29,7 +29,7 @@ class ActionPlansController < ApplicationController
 
     respond_to do |format|
       if @action_plan.save
-        format.html { redirect_to @action_plan, notice: 'Action plan was successfully created.' }
+        format.html { redirect_to @action_plan, notice: 'Plano de ação criado com sucesso!' }
         format.json { render :show, status: :created, location: @action_plan }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ActionPlansController < ApplicationController
   def update
     respond_to do |format|
       if @action_plan.update(action_plan_params)
-        format.html { redirect_to @action_plan, notice: 'Action plan was successfully updated.' }
+        format.html { redirect_to @action_plan, notice: 'Plano de ação alterado com sucesso!' }
         format.json { render :show, status: :ok, location: @action_plan }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ActionPlansController < ApplicationController
   def destroy
     @action_plan.destroy
     respond_to do |format|
-      format.html { redirect_to action_plans_url, notice: 'Action plan was successfully destroyed.' }
+      format.html { redirect_to action_plans_url, notice: 'Plano de ação excluído com sucesso!' }
       format.json { head :no_content }
     end
   end

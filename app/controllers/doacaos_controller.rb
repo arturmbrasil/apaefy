@@ -30,7 +30,7 @@ class DoacaosController < ApplicationController
 
     respond_to do |format|
       if @doacao.save
-        format.html { redirect_to @doacao, notice: 'Doacao was successfully created.' }
+        format.html { redirect_to @doacao, notice: 'Doação criada com sucesso!' }
         format.json { render :show, status: :created, location: @doacao }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class DoacaosController < ApplicationController
   def update
     respond_to do |format|
       if @doacao.update(doacao_params)
-        format.html { redirect_to @doacao, notice: 'Doacao was successfully updated.' }
+        format.html { redirect_to @doacao, notice: 'Doação alterada com sucesso!' }
         format.json { render :show, status: :ok, location: @doacao }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class DoacaosController < ApplicationController
   def destroy
     @doacao.destroy
     respond_to do |format|
-      format.html { redirect_to doacaos_url, notice: 'Doacao was successfully destroyed.' }
+      format.html { redirect_to doacaos_url, notice: 'Doação excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

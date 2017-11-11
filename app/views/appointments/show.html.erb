@@ -2,17 +2,22 @@
 
 <p>
   <strong>Data:</strong>
-  <%= l(@appointment.data) %>
+  <%= l @appointment.data %>
 </p>
 
 <p>
   <strong>Horario:</strong>
-  <%= @appointment.horario %>
+  <%= l @appointment.horario, format: :time_only %>
 </p>
 
 <p>
   <strong>Aluno:</strong>
   <%= @appointment.student.nome %>
+</p>
+
+<p>
+  <strong>Funcionario:</strong>
+  <%= @appointment.funcionario.nome %>
 </p>
 
 <p>
