@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @cities = State.find(@user.state_id).cities.map { |city| [city.name, city.id] } if @user.city
   end
 
   def create
@@ -50,15 +51,15 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params
-        .require(:user)
-        .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, phone_numbers: [])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params
+      .require(:user)
+      .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, :city_id , :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
 end

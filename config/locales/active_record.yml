@@ -11,6 +11,11 @@ pt-BR:
         role: Função
         birthday: Data de nascimento
         phone_numbers: Telefone
+        city: Cidade
+        address_street: Logradouro
+        address_number: Número
+        address_zip_code: CEP
+        address_neighborhood: Bairro
         admission_date: Data de admissão
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
@@ -73,3 +78,5 @@ pt-BR:
       fleet: Frota
       student: Aluno
       medicine: Medicamento
+      city: Cidade
+      state: Estado

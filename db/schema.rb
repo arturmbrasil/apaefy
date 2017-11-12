@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109230552) do
+ActiveRecord::Schema.define(version: 20171112220804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,10 +91,17 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
     t.datetime "admission_date", default: "2017-11-09 22:36:10", null: false
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "cities", "states"
   add_foreign_key "medicines", "students"
+  add_foreign_key "users", "cities"
 end
