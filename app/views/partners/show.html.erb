@@ -1,0 +1,15 @@
+<section class="client">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-close">
+        <%= link_to 'Editar', edit_partner_path(@partner), class: 'btn btn-primary' %>
+      </div>
+      <div class="card-body text-center">
+        <div class="client-title">
+          <h1><%= @partner.name %></h1>
+          <h4><%= @partner.full_address %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

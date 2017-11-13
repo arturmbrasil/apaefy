@@ -1,3 +1,4 @@
+
 class AddAddressToStudents < ActiveRecord::Migration[5.1]
   def change
     change_table :students do |t|

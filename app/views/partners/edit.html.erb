@@ -1,6 +1,6 @@
 <header class="page-header">
   <div class="container-fluid">
-    <h2 class="no-margin-bottom">Aluno: <%= @student.name %></h2>
+    <h2 class="no-margin-bottom">Parceiro: <%= @partner.name %></h2>
   </div>
 </header>
 <ul class='breadcrumb'>
@@ -9,17 +9,17 @@
       <%= link_to 'Início', root_path %>
     </li>
     <li class='breadcrumb-item'>
-      <%= link_to 'Alunos', students_path %>
+      <%= link_to 'Parceiros', partners_path %>
     </li>
     <li class='breadcrumb-item active'>
-      <%= @student.name %>
+      <%= @partner.name %>
     </li>
   </div>
 </ul>
 <section class="forms">
   <div class="container-fluid">
     <div class="bg-white has-shadow">
-      <%= render 'form', student: @student %>
+      <%= render 'form', partner: @partner %>
     </div>
   </div>
 </section>

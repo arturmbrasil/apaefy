@@ -80,6 +80,16 @@ pt-BR:
         dosage: Dosagem
         time_interval: Intervalo de tempo
         student_id: Aluno
+      partner:
+        name: Nome
+        document_cnpj: CNPJ
+        document_state_registration: Incrição estadual
+        phone_numbers: Telefone
+        city: Cidade
+        address_street: Logradouro
+        address_number: Número
+        address_zip_code: CEP
+        address_neighborhood: Bairro
     models:
       user: Funcionário
       fleet: Frota
@@ -87,3 +97,4 @@ pt-BR:
       medicine: Medicamento
       city: Cidade
       state: Estado
+      partner: Parceiro

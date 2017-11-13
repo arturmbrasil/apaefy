@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113042913) do
+ActiveRecord::Schema.define(version: 20171113171554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,23 @@ ActiveRecord::Schema.define(version: 20171113042913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "partners", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "phone_numbers", default: [], array: true
+    t.string "document_cnpj", default: "", null: false
+    t.string "document_state_registration", default: "", null: false
+    t.string "email", default: "", null: false
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_partners_on_city_id"
+    t.index ["email"], name: "index_partners_on_email", unique: true
   end
 
   create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -113,6 +130,7 @@ ActiveRecord::Schema.define(version: 20171113042913) do
   add_foreign_key "cities", "states"
   add_foreign_key "fleets", "users", column: "driver_id"
   add_foreign_key "medicines", "students"
+  add_foreign_key "partners", "cities"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
   add_foreign_key "users", "cities"
