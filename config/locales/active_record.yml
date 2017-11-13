@@ -56,6 +56,11 @@ pt-BR:
         gender: Sexo
         birthday: Data de nascimento
         phone_numbers: Telefone
+        city: Cidade
+        address_street: Logradouro
+        address_number: Número
+        address_zip_code: CEP
+        address_neighborhood: Bairro
       student/gender:
         male: Masculino
         female: Feminio

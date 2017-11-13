@@ -19,6 +19,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    @cities = State.find(@student.state_id).cities.map { |city| [city.name, city.id] } if @student.city
   end
 
   # POST /students
@@ -69,6 +70,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, phone_numbers: [])
+      params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
     end
 end

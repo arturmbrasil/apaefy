@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112220804) do
+ActiveRecord::Schema.define(version: 20171113003915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20171112220804) do
     t.string "gender", limit: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.index ["city_id"], name: "index_students_on_city_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -103,5 +109,6 @@ ActiveRecord::Schema.define(version: 20171112220804) do
 
   add_foreign_key "cities", "states"
   add_foreign_key "medicines", "students"
+  add_foreign_key "students", "cities"
   add_foreign_key "users", "cities"
 end

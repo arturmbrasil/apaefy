@@ -1,6 +1,25 @@
-<h1>Editing Student</h1>
-
-<%= render 'form', student: @student %>
-
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Funcionário: <%= @student.name %></h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Alunos', students_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      <%= @student.name %>
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', student: @student %>
+    </div>
+  </div>
+</section>

@@ -60,6 +60,6 @@ class UsersController < ApplicationController
   def user_params
     params
       .require(:user)
-      .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, :city_id , :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+      .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
   end
 end
