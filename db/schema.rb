@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113181831) do
+ActiveRecord::Schema.define(version: 20171113203714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,27 @@ ActiveRecord::Schema.define(version: 20171113181831) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "student_appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.uuid "user_id"
+    t.date "date", null: false
+    t.time "time", null: false
+    t.text "obs", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_appointments_on_student_id"
+    t.index ["user_id"], name: "index_student_appointments_on_user_id"
+  end
+
+  create_table "student_schedulings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.date "date", default: "2017-11-13", null: false
+    t.time "schedule", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_schedulings_on_student_id"
+  end
+
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "active", default: true, null: false
     t.string "name", null: false
@@ -142,6 +163,9 @@ ActiveRecord::Schema.define(version: 20171113181831) do
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
+  add_foreign_key "student_appointments", "students"
+  add_foreign_key "student_appointments", "users"
+  add_foreign_key "student_schedulings", "students"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
   add_foreign_key "users", "cities"

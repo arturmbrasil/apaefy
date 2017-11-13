@@ -12,6 +12,7 @@ pt-BR:
         birthday: Data de nascimento
         phone_numbers: Telefone
         city: Cidade
+        city_id: Cidade
         address_street: Logradouro
         address_number: Número
         address_zip_code: CEP
@@ -93,6 +94,11 @@ pt-BR:
       partner_donation:
         value: Valor
         payment_type: Tipo de pagamento
+      student_appointment:
+        date: Data
+        time: Horário
+        obs: Observação
+        user: Funcionário
     models:
       user: Funcionário
       fleet: Frota

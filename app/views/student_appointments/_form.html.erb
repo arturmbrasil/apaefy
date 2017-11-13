@@ -1,0 +1,42 @@
+<%= form_with(model: student_appointment, local: true) do |form| %>
+  <% if student_appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student_appointment.errors.count, "error") %> prohibited this student_appointment from being saved:</h2>
+
+      <ul>
+      <% student_appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <%= form.text_field :student_id, id: :student_appointment_student_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :student_appointment_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :student_appointment_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time %>
+    <%= form.time_select :time, id: :student_appointment_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :obs %>
+    <%= form.text_area :obs, id: :student_appointment_obs %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

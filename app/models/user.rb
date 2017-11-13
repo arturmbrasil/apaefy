@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :city, optional: true
+  has_many :student_appointments, dependent: :destroy
   delegate :state_id, to: :city, allow_nil: true
   delegate :state, to: :city, allow_nil: true
 
