@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-    @cities = State.find(@student.state_id).cities.map { |city| [city.name, city.id] } if @student.city
+    @cities = @student.state.cities.map { |city| [city.name, city.id] } if @student.city
   end
 
   # POST /students

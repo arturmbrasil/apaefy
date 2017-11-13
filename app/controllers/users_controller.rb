@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @cities = State.find(@user.state_id).cities.map { |city| [city.name, city.id] } if @user.city
+    @cities = @user.state.cities.map { |city| [city.name, city.id] } if @user.city
   end
 
   def create

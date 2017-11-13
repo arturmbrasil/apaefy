@@ -1,0 +1,11 @@
+<tr>
+  <td><%= medicine.name %></td>
+  <td><%= medicine.dosage %></td>
+  <td><%= medicine.time_interval %></td>
+  <td><%= l medicine.created_at, format: :long %></td>
+  <td>
+    <%= link_to medicine_path(medicine), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+      <%= icon('trash') %> Excluir
+    <% end %>
+  </td>
+</tr>

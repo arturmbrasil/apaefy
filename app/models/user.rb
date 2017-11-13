@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   belongs_to :city, optional: true
   delegate :state_id, to: :city, allow_nil: true
+  delegate :state, to: :city, allow_nil: true
 
   validates :name, presence: true
   validates :gender, presence: true

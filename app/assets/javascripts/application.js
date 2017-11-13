@@ -128,4 +128,43 @@ $(function () {
   $('.js-document-cpf').mask('000.000.000-00', {reverse: true});
   $('.js-phone-number').mask(phoneMaskBehavior, phoneMaskOptions);
   $('.js-address-zip-code').mask('00000-000');
+
+  // Remote forms helpers
+  $.fn.renderFormErrors = function(errors) {
+    var form = this;
+    var modelName = $(this).data('model');
+    this.clearFormErrors();
+    return $.each(errors, function(field, messages) {
+      var input;
+      input = form.find('input, select, textarea').filter(function() {
+        var name;
+        name = $(this).attr('name');
+        if (name) {
+          return name.match(new RegExp(modelName + '\\[' + field + '\\(?'));
+        }
+      });
+      input.closest('.form-group').addClass('has-danger');
+      return input.parent().append('<div class="form-control-feedback">' + $.map(messages, function(m) {
+        return m.charAt(0).toUpperCase() + m.slice(1);
+      }).join('<br />') + '</div>');
+    });
+  };
+
+  $.fn.clearFormErrors = function() {
+    this.find('.form-group').removeClass('has-danger');
+    return this.find('div.form-control-feedback').remove();
+  };
+
+  $.fn.clearFormFields = function() {
+    return this.find(':input', '#myform').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+  };
+
+  // Remote forms on error
+  $('form[data-remote=true]').on('ajax:error', function(event) {
+    $(this).renderFormErrors(event.detail[0]);
+  });
+
+  $('form[data-remote=true]').on('ajax:success', function(event) {
+    location.reload();
+  });
 });

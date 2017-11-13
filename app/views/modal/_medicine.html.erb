@@ -1,0 +1,35 @@
+<div class="modal fade" id="medicine-modal" tabindex="-1" role="dialog" aria-labelledby="medicamento" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <%= form_with(model: medicine, remote: true, html: {'data-type': 'json', 'data-model': medicine.class.name.downcase}) do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Novo medicamento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= f.hidden_field :student_id %>
+          <div class="form-group">
+            <%= f.label :name, class: 'form-control-label' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :dosage, class: 'form-control-label' %>
+            <%= f.text_field :dosage, class: 'form-control', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :time_interval, class: 'form-control-label' %>
+            <%= f.text_field :time_interval, class: 'form-control', required: true %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

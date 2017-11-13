@@ -34,6 +34,9 @@
                 <td><%= student.document_rg %></td>
                 <td><%= student.phone_numbers.first %></td>
                 <td>
+                  <%= link_to student_path(student), class: 'btn btn-sm' do %>
+                    <%= icon('eye') %>
+                  <% end %>
                   <%= link_to edit_student_path(student), class: 'btn btn-sm' do %>
                     <%= icon('pencil-square-o') %>
                   <% end %>
@@ -49,4 +52,3 @@
     </div>
   </div>
 </section>
-

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   resources :users
-  resources :medicines
+  resources :medicines, only: [:create, :destroy]
   resources :fleets
   resources :students
 
