@@ -14,6 +14,7 @@
 //= require jquery3
 //= require tether
 //= require bootstrap
+//= require jquery-mask
 //= require_tree .
 
 $(function () {
@@ -113,4 +114,18 @@ $(function () {
       $('.js-city-select').html(options);
     });
   });
+
+  // JQuery Mask
+  var phoneMaskBehavior = function(val) {
+    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+  };
+  var phoneMaskOptions = {
+    onKeyPress: function(val, e, field, options) {
+      field.mask(phoneMaskBehavior.apply({}, arguments), options);
+    }
+  };
+
+  $('.js-document-cpf').mask('000.000.000-00', {reverse: true});
+  $('.js-phone-number').mask(phoneMaskBehavior, phoneMaskOptions);
+  $('.js-address-zip-code').mask('00000-000');
 });

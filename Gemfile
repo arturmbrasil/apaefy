@@ -8,7 +8,7 @@ end
 gem "rails", "~> 5.1.2"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
-gem 'rails-i18n', '~> 5.0.0'
+gem "rails-i18n", "~> 5.0.0"
 gem "cpf_cnpj"
 
 # Authentication
@@ -22,7 +22,8 @@ gem "jbuilder", "~> 2.5"
 gem "bootstrap", "4.0.0.alpha6"
 gem "tether-rails"
 gem "jquery-rails"
-gem 'font-awesome-sass', '~> 4.7.0'
+gem "font-awesome-sass", "~> 4.7.0"
+gem 'rails-assets-jquery-mask', source: 'https://rails-assets.org'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
