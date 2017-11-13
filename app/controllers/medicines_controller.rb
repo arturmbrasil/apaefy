@@ -16,7 +16,7 @@ class MedicinesController < ApplicationController
   def destroy
     @medicine.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Medicamento excluído com sucesso.' }
+      format.html { redirect_to student_path(@medicine.student_id), notice: 'Medicamento excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

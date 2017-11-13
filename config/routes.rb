@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :partner_donations
-  resources :partners
   root 'dashboard#index'
 
   devise_for :users, controllers: {
@@ -12,6 +10,8 @@ Rails.application.routes.draw do
   resources :medicines, only: [:create, :destroy]
   resources :fleets
   resources :students
+  resources :partner_donations, only: [:create, :destroy]
+  resources :partners
 
   namespace :api, constraints: { format: :json } do
     resources :states, only: [] do
