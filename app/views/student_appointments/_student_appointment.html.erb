@@ -1,0 +1,10 @@
+<tr>
+  <td><%= student_appointment.user.name %></td>
+  <td><%= l student_appointment.date, format: :long %></td>
+  <td><%= l student_appointment.time, format: '%H:%m' %></td>
+  <td>
+    <%= link_to student_appointments_path(student_appointment), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+      <%= icon('trash') %> Excluir
+    <% end %>
+  </td>
+</tr>
