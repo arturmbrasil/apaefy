@@ -34,6 +34,9 @@
                 <td><%= user.document_rg %></td>
                 <td><%= user.phone_numbers.first %></td>
                 <td>
+                  <%= link_to user_path(user), class: 'btn btn-sm' do %>
+                    <%= icon('eye') %>
+                  <% end %>
                   <%= link_to edit_user_path(user), class: 'btn btn-sm' do %>
                     <%= icon('pencil-square-o') %>
                   <% end %>
