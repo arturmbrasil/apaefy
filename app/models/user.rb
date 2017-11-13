@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :role, presence: true
   validates :birthday, presence: true
   validates :document_rg, presence: true
-  validates :document_cpf, presence: true
+  validates :document_cpf, presence: true, cpf: true
   validates :document_cnh, presence: true
   validates :document_cns, presence: true
   validates :admission_date, presence: true

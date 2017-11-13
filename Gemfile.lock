@@ -60,6 +60,7 @@ GEM
     byebug (9.1.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    cpf_cnpj (0.4.1)
     crass (1.0.2)
     debug_inspector (0.0.3)
     devise (4.3.0)
@@ -236,6 +237,7 @@ DEPENDENCIES
   bootstrap (= 4.0.0.alpha6)
   bullet
   byebug
+  cpf_cnpj
   devise
   devise-i18n
   factory_bot_rails

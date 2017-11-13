@@ -27,7 +27,7 @@
         <%= f.text_field :document_rg, class: 'form-control', required: true %>
       </div>
       <div class="form-group">
-        <%= f.label :document_cpf, class: 'form-control-label' %>
+        <%= f.label :document_cpf, class: "form-control-label #{ 'has-error' unless user.errors[:document_cpf].blank?}" %>
         <%= f.text_field :document_cpf, class: 'form-control', required: true %>
       </div>
       <div class="form-group">
