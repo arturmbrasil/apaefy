@@ -15,7 +15,6 @@
 //= require tether
 //= require bootstrap
 //= require jquery-mask
-//= require_tree .
 
 $(function () {
 
@@ -128,6 +127,7 @@ $(function () {
   $('.js-document-cpf').mask('000.000.000-00', {reverse: true});
   $('.js-phone-number').mask(phoneMaskBehavior, phoneMaskOptions);
   $('.js-address-zip-code').mask('00000-000');
+  $('.js-license-plate').mask('000-0000');
 
   // Remote forms helpers
   $.fn.renderFormErrors = function(errors) {

@@ -49,6 +49,7 @@ pt-BR:
         teacher: Professor
         technician: Técnico
         doctor: Médico
+        driver: Motorista
       student:
         name: Nome
         document_cpf: CPF
@@ -70,9 +71,10 @@ pt-BR:
         license_plate: Placa
         document_renavam: Renavam
         chassis: Chassi
-        route: Rota
-        driver_name: Motorista
-        router: Roterista
+        driver: Motorista
+        students: Alunos
+        starting_address: Endereço da partida
+        destination_address: Endereço do destino
       medicine:
         name: Nome
         dosage: Dosagem

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113003915) do
+ActiveRecord::Schema.define(version: 20171113042913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,12 @@ ActiveRecord::Schema.define(version: 20171113003915) do
     t.string "license_plate", null: false
     t.string "document_renavam", null: false
     t.string "chassis", null: false
-    t.string "route", null: false
-    t.string "driver_name", null: false
-    t.string "router", null: false
+    t.string "starting_address", null: false
+    t.string "destination_address", null: false
+    t.uuid "driver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_fleets_on_driver_id"
   end
 
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -69,7 +70,9 @@ ActiveRecord::Schema.define(version: 20171113003915) do
     t.string "address_number", default: "", null: false
     t.string "address_neighborhood", default: "", null: false
     t.string "address_zip_code", default: "", null: false
+    t.uuid "fleet_id"
     t.index ["city_id"], name: "index_students_on_city_id"
+    t.index ["fleet_id"], name: "index_students_on_fleet_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 20171113003915) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-09 22:36:10", null: false
+    t.datetime "admission_date", default: "2017-11-13 04:13:46", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -108,7 +111,9 @@ ActiveRecord::Schema.define(version: 20171113003915) do
   end
 
   add_foreign_key "cities", "states"
+  add_foreign_key "fleets", "users", column: "driver_id"
   add_foreign_key "medicines", "students"
   add_foreign_key "students", "cities"
+  add_foreign_key "students", "fleets"
   add_foreign_key "users", "cities"
 end
