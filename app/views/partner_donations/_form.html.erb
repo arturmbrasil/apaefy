@@ -1,0 +1,37 @@
+<%= form_with(model: partner_donation, local: true) do |form| %>
+  <% if partner_donation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(partner_donation.errors.count, "error") %> prohibited this partner_donation from being saved:</h2>
+
+      <ul>
+      <% partner_donation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value, id: :partner_donation_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payment_type %>
+    <%= form.text_field :payment_type, id: :partner_donation_payment_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item %>
+    <%= form.text_field :item, id: :partner_donation_item %>
+  </div>
+
+  <div class="field">
+    <%= form.label :partner_id %>
+    <%= form.text_field :partner_id, id: :partner_donation_partner_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

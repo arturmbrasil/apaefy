@@ -90,6 +90,9 @@ pt-BR:
         address_number: Número
         address_zip_code: CEP
         address_neighborhood: Bairro
+      partner_donation:
+        value: Valor
+        payment_type: Tipo de pagamento
     models:
       user: Funcionário
       fleet: Frota

@@ -1,4 +1,6 @@
 class Partner < ApplicationRecord
+  has_many :donations, class_name: 'PartnerDonation', dependent: :destroy
+
   belongs_to :city
   delegate :state_id, to: :city, allow_nil: true
   delegate :state, to: :city, allow_nil: true

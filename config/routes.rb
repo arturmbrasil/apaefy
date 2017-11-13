@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :partner_donations
   resources :partners
   root 'dashboard#index'
 

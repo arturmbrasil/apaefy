@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @partner_donation.value %>
+</p>
+
+<p>
+  <strong>Payment type:</strong>
+  <%= @partner_donation.payment_type %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @partner_donation.item %>
+</p>
+
+<p>
+  <strong>Partner:</strong>
+  <%= @partner_donation.partner %>
+</p>
+
+<%= link_to 'Edit', edit_partner_donation_path(@partner_donation) %> |
+<%= link_to 'Back', partner_donations_path %>

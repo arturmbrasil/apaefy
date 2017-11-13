@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113171554) do
+ActiveRecord::Schema.define(version: 20171113181831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20171113171554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "partner_donations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "value", default: 0.0, null: false
+    t.string "payment_type", default: "", null: false
+    t.string "item", default: "", null: false
+    t.uuid "partner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_partner_donations_on_partner_id"
   end
 
   create_table "partners", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -130,6 +140,7 @@ ActiveRecord::Schema.define(version: 20171113171554) do
   add_foreign_key "cities", "states"
   add_foreign_key "fleets", "users", column: "driver_id"
   add_foreign_key "medicines", "students"
+  add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
