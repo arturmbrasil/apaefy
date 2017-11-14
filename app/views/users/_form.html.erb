@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-body">
     <%= form_with(model: user, local: true) do |f| %>
+      <%= errors_for(user) %>
       <div class="form-group">
         <%= f.label :name, class: 'form-control-label' %>
         <%= f.text_field :name, class: 'form-control', required: true %>
@@ -27,7 +28,7 @@
       </div>
       <div class="form-group">
         <%= f.label :document_cpf, class: 'form-control-label' %>
-        <%= f.text_field :document_cpf, class: 'form-control', required: true %>
+        <%= f.text_field :document_cpf, class: 'form-control js-document-cpf', required: true %>
       </div>
       <div class="form-group">
         <%= f.label :document_cnh, class: 'form-control-label' %>
@@ -39,17 +40,40 @@
       </div>
       <div class="form-group">
         <%= f.label :phone_numbers, class: 'form-control-label' %>
-        <%= f.text_field :phone_numbers, class: 'form-control', multiple: true %>
+        <%= f.text_field :phone_numbers, class: 'form-control js-phone-number', multiple: true %>
       </div>
       <div class="form-group">
         <%= f.label :admission_date, class: 'form-control-label' %>
         <%= f.date_field :admission_date, class: 'form-control', required: true %>
       </div>
       <div class="form-group">
+        <%= f.label :state_id, 'Estado', class: 'form-control-label' %>
+        <%= f.collection_select(:state_id, State.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :city_id, class: 'form-control-label' %>
+        <%= f.select(:city_id, @cities ? @cities : [], {}, { class: 'form-control js-city-select' }) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address_street, class: 'form-control-label' %>
+        <%= f.text_field :address_street, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address_number, class: 'form-control-label' %>
+        <%= f.text_field :address_number, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address_neighborhood, class: 'form-control-label' %>
+        <%= f.text_field :address_neighborhood, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address_zip_code, class: 'form-control-label' %>
+        <%= f.text_field :address_zip_code, class: 'form-control js-address-zip-code' %>
+      </div>
+      <div class="form-group">
         <%= f.label :email, class: 'form-control-label' %>
         <%= f.email_field :email, class: 'form-control', required: true %>
       </div>
-
       <% if user.new_record? %>
         <div class="form-group">
           <%= f.label :password, class: 'form-control-label' %>

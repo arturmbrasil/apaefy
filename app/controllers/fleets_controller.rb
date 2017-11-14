@@ -4,21 +4,26 @@ class FleetsController < ApplicationController
   # GET /fleets
   # GET /fleets.json
   def index
-    @fleets = Fleet.all
+    @fleets = Fleet.includes(:driver).all
   end
 
   # GET /fleets/1
   # GET /fleets/1.json
   def show
+    @students = @fleet.students.includes(:city)
   end
 
   # GET /fleets/new
   def new
+    @students = Student.where(fleet: nil)
+    @drivers = User.where(role: :driver)
     @fleet = Fleet.new
   end
 
   # GET /fleets/1/edit
   def edit
+    @students = Student.where(fleet: nil).or(Student.where(fleet: @fleet))
+    @drivers = User.where(role: :driver)
   end
 
   # POST /fleets
@@ -62,13 +67,13 @@ class FleetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fleet
-      @fleet = Fleet.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_fleet
+    @fleet = Fleet.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def fleet_params
-      params.require(:fleet).permit(:name, :vehicle, :license_plate, :document_renavam, :chassis, :route, :driver_name, :router)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def fleet_params
+    params.require(:fleet).permit(:name, :vehicle, :license_plate, :document_renavam, :chassis, :driver_id, :starting_address, :destination_address, student_ids: [])
+  end
 end

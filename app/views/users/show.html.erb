@@ -1,2 +1,24 @@
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<section class="client">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-close">
+        <%= link_to 'Editar', edit_user_path(@user), class: 'btn btn-primary' %>
+      </div>
+      <div class="card-body text-center">
+        <div class="client-avatar">
+          <%= image_tag 'avatar', class: 'img-fluid rounded-circle' %>
+        </div>
+        <div class="client-title">
+          <h1><%= @user.name %></h1>
+          <h2><%= User.human_attribute_name("role.#{@user.role}") %></h2>
+          <% if @user.city %>
+            <span><%= "#{@user.city.name}/#{@user.state.acronym}" %></span>
+          <% end %>
+          <% unless @user.phone_numbers.empty? %>
+            <span><%= @user.phone_numbers.first %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

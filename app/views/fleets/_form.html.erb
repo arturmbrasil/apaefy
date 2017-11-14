@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-body">
     <%= form_with(model: fleet, local: true) do |f| %>
+      <%= errors_for(fleet) %>
+
       <div class="form-group">
         <%= f.label :name, class: 'form-control-label' %>
         <%= f.text_field :name, class: 'form-control', required: true %>
@@ -13,7 +15,7 @@
 
       <div class="form-group">
         <%= f.label :license_plate, class: 'form-control-label' %>
-        <%= f.text_field :license_plate, class: 'form-control', required: true %>
+        <%= f.text_field :license_plate, class: 'form-control js-license-plate', required: true %>
       </div>
 
       <div class="form-group">
@@ -27,18 +29,23 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :route, class: 'form-control-label' %>
-        <%= f.text_field :route, class: 'form-control', required: true %>
+        <%= f.label :driver, class: 'form-control-label' %>
+        <%= f.collection_select(:driver_id, @drivers, :id, :name, { prompt: true }, { class: 'form-control' }) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :driver_name, class: 'form-control-label' %>
-        <%= f.text_field :driver_name, class: 'form-control', required: true %>
+        <%= f.label :starting_address, class: 'form-control-label' %>
+        <%= f.text_field :starting_address, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :router, class: 'form-control-label' %>
-        <%= f.text_field :router, class: 'form-control', required: true %>
+        <%= f.label :destination_address, class: 'form-control-label' %>
+        <%= f.text_field :destination_address, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :students, class: 'form-control-label' %>
+        <%= f.collection_select(:student_ids, @students, :id, :name, { }, { class: 'form-control', multiple: true }) %>
       </div>
 
       <div class="form-group">

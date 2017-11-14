@@ -10,11 +10,12 @@ require 'json'
 
 User.create({
   name: 'Admin',
+  admin: true,
   gender: 'M',
   role: 'FIN',
   birthday: Date.today,
   document_rg: 123,
-  document_cpf: 123,
+  document_cpf: 43748411804,
   document_cnh: 123,
   document_cns: 123,
   email: 'admin@admin.com',

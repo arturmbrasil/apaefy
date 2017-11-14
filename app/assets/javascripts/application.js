@@ -14,7 +14,7 @@
 //= require jquery3
 //= require tether
 //= require bootstrap
-//= require_tree .
+//= require jquery-mask
 
 $(function () {
 
@@ -84,5 +84,90 @@ $(function () {
     }
   });
 
-  $(".alert").alert();
+  // Bootstrap alert close button
+  $('.alert').alert();
+
+  // State & City Select
+
+  var fetchCities = function(stateId, fn) {
+    $.get('/api/states/' + stateId + '/cities', function(result) {
+      fn(result);
+    });
+  };
+
+  var buildCitiesOptions = function(cities) {
+    var options = [];
+    for (var i = 0; i < cities.length; i++) {
+      var el = document.createElement('option');
+      el.value = cities[i].id;
+      el.text = cities[i].name;
+      options.push(el);
+    }
+
+    return options;
+  };
+
+  $('.js-state-select').on('change', function() {
+    fetchCities(this.value, function (cities) {
+      var options = buildCitiesOptions(cities);
+      $('.js-city-select').html(options);
+    });
+  });
+
+  // JQuery Mask
+  var phoneMaskBehavior = function(val) {
+    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+  };
+  var phoneMaskOptions = {
+    onKeyPress: function(val, e, field, options) {
+      field.mask(phoneMaskBehavior.apply({}, arguments), options);
+    }
+  };
+
+  $('.js-document-cpf').mask('000.000.000-00', { reverse: true });
+  $('.js-document-cnpj').mask('00.000.000/0000-00', { reverse: true });
+  $('.js-phone-number').mask(phoneMaskBehavior, phoneMaskOptions);
+  $('.js-address-zip-code').mask('00000-000');
+  $('.js-license-plate').mask('000-0000');
+  $('.js-currency').mask('#.##0,00', { reverse: true });
+
+
+  // Remote forms helpers
+  $.fn.renderFormErrors = function(errors) {
+    var form = this;
+    var modelName = $(this).data('model');
+    this.clearFormErrors();
+    return $.each(errors, function(field, messages) {
+      var input;
+      input = form.find('input, select, textarea').filter(function() {
+        var name;
+        name = $(this).attr('name');
+        if (name) {
+          return name.match(new RegExp(modelName + '\\[' + field + '\\(?'));
+        }
+      });
+      input.closest('.form-group').addClass('has-danger');
+      return input.parent().append('<div class="form-control-feedback">' + $.map(messages, function(m) {
+        return m.charAt(0).toUpperCase() + m.slice(1);
+      }).join('<br />') + '</div>');
+    });
+  };
+
+  $.fn.clearFormErrors = function() {
+    this.find('.form-group').removeClass('has-danger');
+    return this.find('div.form-control-feedback').remove();
+  };
+
+  $.fn.clearFormFields = function() {
+    return this.find(':input', '#myform').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+  };
+
+  // Remote forms on error
+  $('form[data-remote=true]').on('ajax:error', function(event) {
+    $(this).renderFormErrors(event.detail[0]);
+  });
+
+  $('form[data-remote=true]').on('ajax:success', function(event) {
+    location.reload();
+  });
 });

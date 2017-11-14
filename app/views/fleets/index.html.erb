@@ -22,11 +22,7 @@
               <th>Nome</th>
               <th>Veículo</th>
               <th>Placa</th>
-              <th>Renavam</th>
-              <th>Chassi</th>
-              <th>Rota</th>
               <th>Motorista</th>
-              <th>Roterista</th>
               <th></th>
             </tr>
           </thead>
@@ -36,12 +32,11 @@
                 <td><%= fleet.name %></td>
                 <td><%= fleet.vehicle %></td>
                 <td><%= fleet.license_plate %></td>
-                <td><%= fleet.document_renavam %></td>
-                <td><%= fleet.chassis %></td>
-                <td><%= fleet.route %></td>
-                <td><%= fleet.driver_name %></td>
-                <td><%= fleet.router %></td>
+                <td><%= fleet.driver.name %></td>
                 <td>
+                  <%= link_to fleet_path(fleet), class: 'btn btn-sm' do %>
+                    <%= icon('eye') %>
+                  <% end %>
                   <%= link_to edit_fleet_path(fleet), class: 'btn btn-sm' do %>
                     <%= icon('pencil-square-o') %>
                   <% end %>

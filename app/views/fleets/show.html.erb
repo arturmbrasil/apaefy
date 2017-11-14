@@ -1,44 +1,65 @@
-<p id="notice"><%= notice %></p>
+<section class="client">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-close">
+        <%= link_to 'Editar', edit_fleet_path(@fleet), class: 'btn btn-primary' %>
+      </div>
+      <div class="card-body text-center">
+        <div class="client-title">
+          <h1><%= @fleet.name %></h1>
+          <h3><%= @fleet.starting_address %> até <%= @fleet.destination_address %></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <h3>Alunos</h3>
+      </div>
+      <div class="card-body">
+        <% unless @students.empty? %>
+          <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Endereço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @students.each do |student| %>
+              <tr>
+                <td><%= student.name %></td>
+                <td><%= student.full_address %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <h4 class="text-center">Nenhum aluno adicionado a essa rota.</h4>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <h3>Itinerário</h3>
+      </div>
+      <div class="card-body" style="height: 500px;">
+        <div class="js-itinerary-map" id="map"></div>
+        <div id="map-panel"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>
-  <strong>Name:</strong>
-  <%= @fleet.name %>
-</p>
+<script type="application/json" class="js-students-adresses">
+  <%= raw @students.map { |student| { name: student.name, address: student.full_address} }.to_json %>
+</script>
+<script type="application/json" class="js-fleet-data"><%= raw @fleet.to_json %></script>
 
-<p>
-  <strong>Vehicle:</strong>
-  <%= @fleet.vehicle %>
-</p>
-
-<p>
-  <strong>License plate:</strong>
-  <%= @fleet.license_plate %>
-</p>
-
-<p>
-  <strong>Document renavam:</strong>
-  <%= @fleet.document_renavam %>
-</p>
-
-<p>
-  <strong>Chassis:</strong>
-  <%= @fleet.chassis %>
-</p>
-
-<p>
-  <strong>Route:</strong>
-  <%= @fleet.route %>
-</p>
-
-<p>
-  <strong>Driver name:</strong>
-  <%= @fleet.driver_name %>
-</p>
-
-<p>
-  <strong>Router:</strong>
-  <%= @fleet.router %>
-</p>
-
-<%= link_to 'Edit', edit_fleet_path(@fleet) %> |
-<%= link_to 'Back', fleets_path %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'fleets' %>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD03qcZOKymKdh_nQFvhJoJBInhQZxYCWk&callback=initMap"></script>
+<% end %>

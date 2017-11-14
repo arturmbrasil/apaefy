@@ -2,7 +2,7 @@
   <!-- Sidebar Header-->
   <div class="sidebar-header d-flex align-items-center">
     <div class="avatar">
-      <img src="http://i.pravatar.cc/300" alt="..." class="img-fluid rounded-circle">
+      <%= image_tag 'avatar', class: 'img-fluid rounded-circle' %>
     </div>
     <div class="title">
       <h1 class="h4">
@@ -33,15 +33,15 @@
     </li>
     <li>
       <%= link_to fleets_path do %>
-        <%= icon('truck') %>
+        <%= icon('bus') %>
           Frotas
           <% end %>
     </li>
     <li>
-      <%= link_to medicines_path do %>
-        <%= icon('medkit') %>
-          Medicamentos
-          <% end %>
+      <%= link_to partners_path do %>
+        <%= icon('handshake-o ') %>
+        Parceiros
+      <% end %>
     </li>
     <li>
       <%= link_to colaboradors_path do %>

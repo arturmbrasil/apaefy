@@ -11,6 +11,12 @@ pt-BR:
         role: Função
         birthday: Data de nascimento
         phone_numbers: Telefone
+        city: Cidade
+        city_id: Cidade
+        address_street: Logradouro
+        address_number: Número
+        address_zip_code: CEP
+        address_neighborhood: Bairro
         admission_date: Data de admissão
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
@@ -44,6 +50,7 @@ pt-BR:
         teacher: Professor
         technician: Técnico
         doctor: Médico
+        driver: Motorista
       student:
         name: Nome
         document_cpf: CPF
@@ -51,6 +58,11 @@ pt-BR:
         gender: Sexo
         birthday: Data de nascimento
         phone_numbers: Telefone
+        city: Cidade
+        address_street: Logradouro
+        address_number: Número
+        address_zip_code: CEP
+        address_neighborhood: Bairro
       student/gender:
         male: Masculino
         female: Feminio
@@ -60,16 +72,38 @@ pt-BR:
         license_plate: Placa
         document_renavam: Renavam
         chassis: Chassi
-        route: Rota
-        driver_name: Motorista
-        router: Roterista
+        driver: Motorista
+        students: Alunos
+        starting_address: Endereço da partida
+        destination_address: Endereço do destino
       medicine:
         name: Nome
         dosage: Dosagem
         time_interval: Intervalo de tempo
         student_id: Aluno
+      partner:
+        name: Nome
+        document_cnpj: CNPJ
+        document_state_registration: Incrição estadual
+        phone_numbers: Telefone
+        city: Cidade
+        address_street: Logradouro
+        address_number: Número
+        address_zip_code: CEP
+        address_neighborhood: Bairro
+      partner_donation:
+        value: Valor
+        payment_type: Tipo de pagamento
+      student_appointment:
+        date: Data
+        time: Horário
+        obs: Observação
+        user: Funcionário
     models:
       user: Funcionário
       fleet: Frota
       student: Aluno
       medicine: Medicamento
+      city: Cidade
+      state: Estado
+      partner: Parceiro

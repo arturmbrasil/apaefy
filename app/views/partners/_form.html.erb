@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: partner, local: true) do |f| %>
+      <%= errors_for(partner) %>
+
+      <div class="form-group">
+        <%= f.label :name, class: 'form-control-label' %>
+        <%= f.text_field :name, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :document_cnpj, class: 'form-control-label' %>
+        <%= f.text_field :document_cnpj, class: 'form-control js-document-cnpj' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :document_state_registration, class: 'form-control-label' %>
+        <%= f.text_field :document_state_registration, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :phone_numbers, class: 'form-control-label' %>
+        <%= f.text_field :phone_numbers, class: 'form-control js-phone-number', multiple: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :state_id, 'Estado', class: 'form-control-label' %>
+        <%= f.collection_select(:state_id, State.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :city, class: 'form-control-label' %>
+        <%= f.select(:city_id, @cities ? @cities : [], {}, { class: 'form-control js-city-select' }) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address_street, class: 'form-control-label' %>
+        <%= f.text_field :address_street, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address_number, class: 'form-control-label' %>
+        <%= f.text_field :address_number, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address_neighborhood, class: 'form-control-label' %>
+        <%= f.text_field :address_neighborhood, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address_zip_code, class: 'form-control-label' %>
+        <%= f.text_field :address_zip_code, class: 'form-control js-address-zip-code' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

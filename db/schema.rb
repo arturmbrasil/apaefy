@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109230552) do
+ActiveRecord::Schema.define(version: 20171113203714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,11 +115,12 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.string "license_plate", null: false
     t.string "document_renavam", null: false
     t.string "chassis", null: false
-    t.string "route", null: false
-    t.string "driver_name", null: false
-    t.string "router", null: false
+    t.string "starting_address", null: false
+    t.string "destination_address", null: false
+    t.uuid "driver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_fleets_on_driver_id"
   end
 
   create_table "food_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -189,14 +190,33 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.index ["student_id"], name: "index_medicines_on_student_id"
   end
 
-  create_table "parceiros", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nome"
-    t.string "telefome"
-    t.string "cnpj"
-    t.string "inscricao_estatual"
+  create_table "partner_donations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "value", default: 0.0, null: false
+    t.string "payment_type", default: "", null: false
+    t.string "item", default: "", null: false
+    t.uuid "partner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_partner_donations_on_partner_id"
   end
+
+  create_table "partners", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "phone_numbers", default: [], array: true
+    t.string "document_cnpj", default: "", null: false
+    t.string "document_state_registration", default: "", null: false
+    t.string "email", default: "", null: false
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_partners_on_city_id"
+    t.index ["email"], name: "index_partners_on_email", unique: true
+  end
+
 
   create_table "payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "payment_type"
@@ -236,13 +256,6 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.index ["student_id"], name: "index_responsibles_on_student_id"
   end
 
-  create_table "setors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "codigo"
-    t.string "descricao"
-    t.string "permissao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "special_needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "descricao"
@@ -259,6 +272,27 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "student_appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.uuid "user_id"
+    t.date "date", null: false
+    t.time "time", null: false
+    t.text "obs", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_appointments_on_student_id"
+    t.index ["user_id"], name: "index_student_appointments_on_user_id"
+  end
+
+  create_table "student_schedulings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.date "date", default: "2017-11-13", null: false
+    t.time "schedule", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_schedulings_on_student_id"
+  end
+
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "active", default: true, null: false
     t.string "name", null: false
@@ -269,6 +303,14 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.string "gender", limit: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.uuid "fleet_id"
+    t.index ["city_id"], name: "index_students_on_city_id"
+    t.index ["fleet_id"], name: "index_students_on_fleet_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -295,7 +337,13 @@ ActiveRecord::Schema.define(version: 20171109230552) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-10 21:43:47", null: false
+    t.datetime "admission_date", default: "2017-11-13 04:13:46", null: false
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -321,11 +369,19 @@ ActiveRecord::Schema.define(version: 20171109230552) do
   add_foreign_key "addresses", "students"
   add_foreign_key "appointments", "students"
   add_foreign_key "cities", "states"
+  add_foreign_key "fleets", "users", column: "driver_id"
   add_foreign_key "conta_a_recebers", "doacaos"
   add_foreign_key "doacaos", "parceiros"
   add_foreign_key "food_restrictions", "students"
-  add_foreign_key "funcionarios", "setors"
   add_foreign_key "medicines", "students"
+  add_foreign_key "partner_donations", "partners"
+  add_foreign_key "partners", "cities"
+  add_foreign_key "student_appointments", "students"
+  add_foreign_key "student_appointments", "users"
+  add_foreign_key "student_schedulings", "students"
+  add_foreign_key "students", "cities"
+  add_foreign_key "students", "fleets"
+  add_foreign_key "users", "cities"
   add_foreign_key "responsibles", "students"
   add_foreign_key "special_needs", "students"
 end

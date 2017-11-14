@@ -1,6 +1,6 @@
 <header class="page-header">
   <div class="container-fluid">
-    <h2 class="no-margin-bottom">Novo medicamento</h2>
+    <h2 class="no-margin-bottom">Novo parceiro</h2>
   </div>
 </header>
 <ul class='breadcrumb'>
@@ -9,7 +9,7 @@
       <%= link_to 'Início', root_path %>
     </li>
     <li class='breadcrumb-item'>
-      <%= link_to 'Medicamentos', medicines_path %>
+      <%= link_to 'Parceiros', partners_path %>
     </li>
     <li class='breadcrumb-item active'>
       Novo
@@ -19,7 +19,7 @@
 <section class="forms">
   <div class="container-fluid">
     <div class="bg-white has-shadow">
-      <%= render 'form', medicine: @medicine %>
+      <%= render 'form', partner: @partner %>
     </div>
   </div>
 </section>
