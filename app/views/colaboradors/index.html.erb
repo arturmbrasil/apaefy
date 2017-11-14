@@ -1,48 +1,68 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Colaboradores</h1>
-
-<%= form_tag colaboradors_path, :method => 'get' do%>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Buscar"%>
-<%end%>
-
-<table>
-  <thead>
-    <tr>
-      <th>Código</th>
+<header class='page-header'>
+  <div class='container-fluid clearfix'>
+    <%= link_to 'Cadastrar colaborador', new_colaborador_path, class: 'btn btn-primary float-right' %>
+    <h2 class='no-margin-bottom'>Colaboradores</h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item active'>Colaboradores</li>
+  </div>
+</ul>
+<section class="tables">
+  <div class="container-fluid">
+    <div class="card">
+    <div class="card-header">
+      <%= form_tag colaboradors_path, :method => 'get' do%>
+      <div class= "input-group">
+        <%= text_field_tag :search, params[:search], class: "form-control" %>
+        <span class= "input-group-btn">
+        <%= submit_tag "Buscar", class: "btn btn-primary"%>
+        </span>
+        </div>
+      <%end%>
+    </div>
+      <div class="card-block">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
       <th>Nome</th>
       <th>Data de nascimento</th>
-      <th>Rg</th>
-      <th>CPF</th>
-      <th>Telefone</th>
       <th>Sexo</th>
-      <th>CNPJ</th>
+      <th>RG</th>
+      <th>CPF/CNPJ</th>
+      <th>Telefone</th>
       <th>Inscrição estadual</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @colaboradors.each do |colaborador| %>
-      <tr>
-        <td><%= colaborador.codigo %></td>
+      <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @colaboradors.each do |colaborador| %>
+              <tr>
         <td><%= colaborador.nome %></td>
-        <td><%= colaborador.data_nascimento %></td>
+        <td><%= l colaborador.data_nascimento %></td>
+        <td><%= if colaborador.sexo.eql? 'M' then 'Masculino' elsif colaborador.sexo.eql? 'F' then 'Feminino' else '' end %></td>
         <td><%= colaborador.rg %></td>
         <td><%= colaborador.cpf %></td>
         <td><%= colaborador.telefone %></td>
-        <td><%= colaborador.sexo %></td>
-        <td><%= colaborador.cnpj %></td>
         <td><%= colaborador.inscricao_estadual %></td>
-        <td><%= link_to 'Show', colaborador %></td>
-        <td><%= link_to 'Edit', edit_colaborador_path(colaborador) %></td>
-        <td><%= link_to 'Destroy', colaborador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Novo Colaborador', new_colaborador_path %>
+                <td>
+                  <%= link_to edit_colaborador_path(colaborador), class: 'btn btn-sm' do %>
+                    <%= icon('pencil-square-o') %>
+                  <% end %>
+                  <%= link_to colaborador_path(colaborador), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+                    <%= icon('trash') %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

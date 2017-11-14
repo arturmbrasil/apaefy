@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :voluntario do
     codigo 1
     nome "MyString"

@@ -1,6 +1,6 @@
 class Colaborador < ApplicationRecord
 
-    enum gender: { male: 'M', female: 'F' }
+    enum sexos: { masculino: 'M', feminino: 'F' }
 
     validates :nome, :data_nascimento, :rg, :cpf, :telefone, :sexo, :inscricao_estadual, presence: true
 

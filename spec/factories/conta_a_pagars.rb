@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :conta_a_pagar do
     dt_vencimento "2017-10-15"
     nome "MyString"

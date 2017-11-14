@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :responsible do
     nome "MyString"
     data_nascimento "2017-09-21"

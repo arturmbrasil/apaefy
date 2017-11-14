@@ -1,37 +1,54 @@
-<p id="notice"><%= notice %></p>
+<header class='page-header'>
+  <div class='container-fluid clearfix'>
+    <%= link_to 'Cadastrar Projeto', new_projeto_path, class: 'btn btn-primary float-right' %>
+    <h2 class='no-margin-bottom'>Projetos</h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item active'>Projetos</li>
+  </div>
+</ul>
+<section class="tables">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-block">
+        <table class="table table-striped table-sm">
 
-<h1>Projetos</h1>
-
-<table>
   <thead>
     <tr>
-      <th>Código</th>
       <th>Título</th>
       <th>Descrição</th>
       <th>Status</th>
-      <th>Metas</th>
       <th>Valor</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @projetos.each do |projeto| %>
       <tr>
-        <td><%= projeto.codigo %></td>
         <td><%= projeto.titulo %></td>
         <td><%= projeto.descricao %></td>
-        <td><%= projeto.status %></td>
-        <td><%= projeto.metas %></td>
+        <td><%= if projeto.status.eql? 'A' then 'Andamento' elsif projeto.status.eql? 'F' then 'Finalizado' else '' end %></td>
         <td><%= projeto.valor %></td>
-        <td><%= link_to 'Exibir', projeto %></td>
-        <td><%= link_to 'Editar', edit_projeto_path(projeto) %></td>
-        <td><%= link_to 'Excluir', projeto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+                  <%= link_to edit_projeto_path(projeto), class: 'btn btn-sm' do %>
+                    <%= icon('pencil-square-o') %>
+                  <% end %>
+                  <%= link_to projeto_path(projeto), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+                    <%= icon('trash') %>
+                  <% end %>
+                </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+  </div>
+    </div>
+  </div>
+</section>
 
-<br>
-
-<%= link_to 'Novo Projeto', new_projeto_path %>

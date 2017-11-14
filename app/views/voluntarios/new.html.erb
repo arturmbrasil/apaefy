@@ -1,13 +1,25 @@
-<%= render 'temp' %>
-
-<%= render 'form', voluntario: @voluntario %>
-
-<%= link_to 'Voltar', voluntarios_path, class: "btn btn-danger text-white" %>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Novo Voluntário</h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Voluntários', users_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      Novo
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', voluntario: @voluntario %>
+    </div>
+  </div>
+</section>

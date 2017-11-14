@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :parceiro do
     nome "MyString"
     telefome "MyString"

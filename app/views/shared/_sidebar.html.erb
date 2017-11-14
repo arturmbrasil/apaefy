@@ -5,7 +5,9 @@
       <img src="http://i.pravatar.cc/300" alt="..." class="img-fluid rounded-circle">
     </div>
     <div class="title">
-      <h1 class="h4"><%= current_user.name %></h1>
+      <h1 class="h4">
+        <%= current_user.name %>
+      </h1>
     </div>
   </div>
   <!-- Sidebar Navidation Menus-->
@@ -14,32 +16,56 @@
     <li>
       <a href="./">
         <%= icon('home') %>
-        Home
+          Home
       </a>
     </li>
     <li>
       <%= link_to users_path do %>
         <%= icon('users') %>
-        Funcionários
-      <% end %>
+          Funcionários
+          <% end %>
     </li>
     <li>
       <%= link_to students_path do %>
         <%= icon('graduation-cap ') %>
-        Alunos
-      <% end %>
+          Alunos
+          <% end %>
     </li>
     <li>
       <%= link_to fleets_path do %>
         <%= icon('truck') %>
-        Frotas
-      <% end %>
+          Frotas
+          <% end %>
     </li>
     <li>
       <%= link_to medicines_path do %>
         <%= icon('medkit') %>
-        Medicamentos
-      <% end %>
+          Medicamentos
+          <% end %>
+    </li>
+    <li>
+      <%= link_to colaboradors_path do %>
+        <%= icon('universal-access')%>
+          Colaboradores
+          <% end %>
+    </li>
+    <li>
+      <%= link_to fornecedors_path do %>
+        <%= icon('ticket')%>
+          Fornecedores
+          <% end %>
+    </li>
+    <li>
+      <%= link_to projetos_path do %>
+        <%= icon('podcast')%>
+          Projetos
+          <% end %>
+    </li>
+    <li>
+      <%= link_to voluntarios_path do %>
+        <%= icon('user-circle')%>
+          Voluntários
+          <% end %>
     </li>
   </ul>
 </nav>

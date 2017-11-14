@@ -1,6 +1,25 @@
-<h1>Editar Projeto</h1>
-
-<%= render 'form', projeto: @projeto %>
-
-<%= link_to 'Exibir', @projeto %> |
-<%= link_to 'Voltar', projetos_path %>
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Projeto: <%= @projeto.titulo %></h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Funcionários', projetos_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      <%= @projeto.titulo %>
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', projeto: @projeto %>
+    </div>
+  </div>
+</section>

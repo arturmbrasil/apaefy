@@ -8,18 +8,18 @@
 require 'net/http'
 require 'json'
 
-# User.create({
-#   name: 'Admin',
-#   gender: 'M',
-#   role: 'FIN',
-#   birthday: Date.today,
-#   document_rg: 123,
-#   document_cpf: 123,
-#   document_cnh: 123,
-#   document_cns: 123,
-#   email: 'admin@admin.com',
-#   password: 'admin123'
-# });
+User.create({
+  name: 'Admin',
+  gender: 'M',
+  role: 'FIN',
+  birthday: Date.today,
+  document_rg: 123,
+  document_cpf: 123,
+  document_cnh: 123,
+  document_cns: 123,
+  email: 'admin@admin.com',
+  password: 'admin123'
+});
 
 url = 'https://gist.githubusercontent.com/letanure/3012978/raw/36fc21d9e2fc45c078e0e0e07cce3c81965db8f9/estados-cidades.json'
 uri = URI(url)

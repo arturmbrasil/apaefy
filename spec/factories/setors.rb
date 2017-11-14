@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :setor do
     codigo 1
     descricao "MyString"

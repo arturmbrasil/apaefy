@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :projeto do
     codigo 1
     titulo "MyString"

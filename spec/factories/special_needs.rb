@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :special_need do
     descricao "MyString"
     student nil

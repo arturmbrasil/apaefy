@@ -1,53 +1,51 @@
-<%= form_with(model: projeto, local: true, html: {class: "form-horizontal"}) do |form| %>
-  <% if projeto.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(projeto.errors.count, "error") %> prohibited this projeto from being saved:</h2>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: projeto, local: true, html: {class: "form-horizontal"}) do |form| %>
+      <% if projeto.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(projeto.errors.count, "error") %> prohibited this projeto from being saved:</h2>
 
-      <ul>
-      <% projeto.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% projeto.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+              <% end %>
+          </ul>
+        </div>
+        <% end %>
 
-  <!--<div class="field">
-    <%= form.label "Código" %>
-    <%= form.number_field :codigo, id: :projeto_codigo %>
-  </div>-->
+          <div class="form-group">
+            <%= form.label :titulo, class: 'form-control-label' %>
+              <%= form.text_field :titulo, id: :projeto_titulo,class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :descricao, class: 'form-control-label' %>
+              <%= form.text_area :descricao, id: :projeto_descricao, cols: 41,s: 3,class: "form-control", required: true %>
+          </div>
 
-<div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Título</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :titulo, id: :projeto_titulo, class: "form-control" %>
-                          </div>
-                        </div>
-  <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Descrição</label>
-                          <div class="col-sm-9">
-                            <%= form.text_area :descricao, id: :projeto_descricao, cols: 41, rows: 3, class: "form-control" %>
-                          </div>
-                        </div>
+          <div class="form-group">
+            <%= form.label :status, class: 'form-control-label' %>
 
-  <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Status</label>
-                          
-                          <div class="col-sm-9 select">
-                          <%= select :projeto, :status, [["Andamento", "A"], ["Finalizado", "F"]], {}, class: "form-control"%>  
-                          </div>
-                        </div>
+              <div class="select">
+                <%= select :projeto, :status, [["Andamento", "A"], ["Finalizado", "F"]], {},class: "form-control", required: true%>
+              </div>
+          </div>
 
-  <div class="field">
-    <%= form.label "Metas" %>
-    <%= form.text_field :metas, id: :projeto_metas %>
+          <div class="form-group">
+            <%= form.label "Metas", class: "form-control-label" %>
+              <%= form.text_field :metas, id: :projeto_metas, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label "Orçamento", class: "form-control-label" %>
+              <%= form.text_field :valor, id: :projeto_valor, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.submit "Criar Projeto", class: "btn btn-primary" %>
+          </div>
+          <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label "Orçamento" %>
-    <%= form.text_field :valor, id: :projeto_valor %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Criar Projeto" %>
-  </div>
-<% end %>
+</div>

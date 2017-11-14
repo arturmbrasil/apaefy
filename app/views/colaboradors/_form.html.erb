@@ -1,60 +1,64 @@
-<%= form_with(model: colaborador, local: true) do |form| %>
-  <% if colaborador.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(colaborador.errors.count, "error") %> prohibited this colaborador from being saved:</h2>
+<div class="card">
+  <div class="card-body">
 
-      <ul>
-        <% colaborador.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-          <% end %>
-      </ul>
-    </div>
-    <% end %>
+    <%= form_with(model: colaborador, local: true) do |form| %>
+      <% if colaborador.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(colaborador.errors.count, "error") %> prohibited this colaborador from being saved:</h2>
 
-
-      <div class="form-group">
-        <%= form.label :nome, class: 'form-control-label' %>
-          <%= form.text_field :nome, class: "form-control", required: true %>
-            <%= form.text_field :name, class: 'form-control', required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :data_nascimento, class: 'form-control-label' %>
-          <%= form.date_field :data_nascimento, class: "form-control", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :sexo, class: 'form-control-label' %>
-          <%= form.select :sexo, [], {}, { class: 'form-control', required: true } do %>
-            <%= options_for_select(Colaborador.genders.map { |g| [Colaborador.human_attribute_name("gender.#{g.first}"), g.last] }, Colaborador.genders[colaborador.sexo]) %>
+          <ul>
+            <% colaborador.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
               <% end %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :rg, class: 'form-control-label' %>
-          <%= form.text_field :rg, class: "form-control", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :cpf, class: 'form-control-label' %>
-          <%= form.text_field :cpf,  class: "form-control", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :telefone, class: 'form-control-label' %>
-          <%= form.text_field :telefone, class: "form-control", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :inscricao_estadual, class: 'form-control-label' %>
-          <%= form.text_field :inscricao_estadual, class: "form-control", required: true %>
-      </div>
+          </ul>
+        </div>
+        <% end %>
 
 
-      <div class="actions">
-        <%= form.submit "Cadastar Colaborador", class: "btn btn-primary" %>
-      </div>
-      <% end %>
+          <div class="form-group">
+            <%= form.label :nome, class: 'form-control-label' %>
+              <%= form.text_field :nome, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :data_nascimento, class: 'form-control-label' %>
+              <%= form.date_field :data_nascimento, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :sexo, class: 'form-control-label' %>
+              <%= form.select :sexo, [], {}, { class: 'form-control', required: true } do %>
+                <%= options_for_select(Colaborador.sexos.map { |g| [Colaborador.human_attribute_name("sexos.#{g.first}"), g.last] }, colaborador.sexo) %>
+                  <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :rg, class: 'form-control-label' %>
+              <%= form.text_field :rg, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'CPF/CNPJ', class: 'form-control-label' %>
+              <%= form.text_field :cpf,  class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :telefone, class: 'form-control-label' %>
+              <%= form.text_field :telefone, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :inscricao_estadual, class: 'form-control-label' %>
+              <%= form.text_field :inscricao_estadual, class: "form-control", required: true %>
+          </div>
+
+
+          <div class="actions">
+            <%= form.submit "Cadastar Colaborador", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+  </div>
+</div>

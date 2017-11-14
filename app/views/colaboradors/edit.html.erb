@@ -1,6 +1,25 @@
-<h1>Editar Colaborador</h1>
-
-<%= render 'form', colaborador: @colaborador %>
-
-<%= link_to 'Exibir', @colaborador %> |
-<%= link_to 'Voltar', colaboradors_path %>
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Colaborador: <%= @colaborador.nome %></h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Colaboradors', colaboradors_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      <%= @colaborador.nome %>
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', colaborador: @colaborador %>
+    </div>
+  </div>
+</section>

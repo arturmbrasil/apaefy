@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/thoughtbot/shoulda-matchers.git
-  revision: 4b160bd19ecca7f97d7ac22dccd5fde9b0da5a9f
-  branch: rails-5
-  specs:
-    shoulda-matchers (3.1.2)
-      activesupport (>= 4.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,7 +42,7 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (7.1.6)
       execjs
-    bcrypt (3.1.11)
+    bcrypt (3.1.11-x64-mingw32)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -66,8 +58,8 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.1.0)
-    coderay (1.1.2)
     cocoon (1.2.11)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -94,7 +86,7 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
-    ffi (1.9.18)
+    ffi (1.9.18-x64-mingw32)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
     globalid (0.4.1)
@@ -118,19 +110,18 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
-    mini_mime (0.1.4)
+    mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
     nio4r (2.1.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.1-x64-mingw32)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.21.0-x64-mingw32)
-    popper_js (1.12.5)
     powerpack (0.1.1)
     pry (0.11.2)
       coderay (~> 1.1.0)
@@ -232,7 +223,6 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tzinfo (1.2.4)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
@@ -260,7 +250,6 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  bcrypt
   better_errors
   binding_of_caller
   bootstrap (= 4.0.0.alpha6)
@@ -272,7 +261,6 @@ DEPENDENCIES
   devise-i18n
   factory_bot_rails
   font-awesome-sass (~> 4.7.0)
-  i18n (~> 0.8.6)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

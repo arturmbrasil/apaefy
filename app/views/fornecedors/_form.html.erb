@@ -1,92 +1,68 @@
-<%= form_with(model: fornecedor, local: true, html: {class: "form-horizontal"} ) do |form| %>
-  <% if fornecedor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(fornecedor.errors.count, "error") %> prohibited this fornecedor from being saved:</h2>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: fornecedor, local: true, html: {class: "form-horizontal"} ) do |form| %>
+      <% if fornecedor.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(fornecedor.errors.count, "error") %> prohibited this fornecedor from being saved:</h2>
 
-      <ul>
-      <% fornecedor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% fornecedor.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+              <% end %>
+          </ul>
+        </div>
+        <% end %>
 
-  <!-- <div class="field">
-    <%= form.label "Código" %>
-    <%= form.number_field :codigo, id: :fornecedor_codigo %>
-  </div> -->
+          <div class="form-group">
+            <%= form.label :nome, class: 'form-control-label' %>
+              <%= form.text_field :nome, id: :fornecedor_nome, class: "form-control", required: true %>
+          </div>
 
-  <div class="form-group row">
-    <label class="col-sm-3 form-control-label">Nome</label>
-      <div class="col-sm-9">
-        <%= form.text_field :nome, id: :fornecedor_nome, class: "form-control" %>
-      </div>
+          <div class="form-group">
+            <%= form.label :telefone, class: 'form-control-label' %>
+              <%= form.text_field :telefone, id: :fornecedor_telefone, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'CNPJ', class: 'form-control-label' %>
+              <%= form.text_field :cnpj, id: :fornecedor_cnpj, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :inscricao_estadual, class: 'form-control-label' %>
+              <%= form.text_field :inscricao_estadual, id: :fornecedor_inscricao_estadual, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'Centro de Custo', class: 'form-control-label' %>
+              <%= form.text_field :centro_custo, id: :fornecedor_centro_custo, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :email, class: 'form-control-label' %>
+              <%= form.text_field :email, id: :fornecedor_email, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :logradouro, class: 'form-control-label' %>
+              <%= form.text_field :logradouro, id: :fornecedor_logradouro, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label "Número do logradouro", class: 'form-control-label' %>
+              <%= form.text_field :numero_log, id: :fornecedor_numero_log, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :bairro, class: 'form-control-label' %>
+              <%= form.text_field :bairro, id: :fornecedor_bairro, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :site, class: 'form-control-label' %>
+              <%= form.text_field :site, id: :fornecedor_site, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.submit "Cadastrar Fornecedor", class: "btn btn-primary" %>
+          </div>
+          <% end %>
   </div>
-
-  <div class="form-group row">
-    <label class="col-sm-3 form-control-label">Telefone</label>
-      <div class="col-sm-9">
-        <%= form.text_field :telefone, id: :fornecedor_telefone, class: "form-control" %>
-      </div>
-  </div>
-
-  <div class="form-group row">
-    <label class="col-sm-3 form-control-label">CNPJ</label>
-      <div class="col-sm-9">
-        <%= form.text_field :cnpj, id: :fornecedor_cnpj, class: "form-control" %>
-      </div>
-    </div>
-
-  <div class="form-group row">
-    <label class="col-sm-3 form-control-label">Inscrição Estadual</label>
-      <div class="col-sm-9">
-        <%= form.text_field :inscricao_estadual, id: :fornecedor_inscricao_estadual, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Centro de Custo</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :centro_custo, id: :fornecedor_centro_custo, class: "form-control" %>
-                          </div>
-                        </div>
-						<div class="form-group row">
-                          <label class="col-sm-3 form-control-label">E-mail</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :email, id: :fornecedor_email, class: "form-control" %>
-                          </div>
-                        </div>
-						<div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Logradouro</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :logradouro, id: :fornecedor_logradouro, class: "form-control" %>
-                          </div>
-                        </div>
-						<div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Nº Logradouro</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :numero_logradouro, id: :fornecedor_numero_logradouro, class: "form-control" %>
-                          </div>
-                        </div>
-						<div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Bairro</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :bairro, id: :fornecedor_bairro, class: "form-control" %>
-                          </div>
-                        </div>
-						<div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Site</label>
-                          <div class="col-sm-9">
-                            <%= form.text_field :site, id: :fornecedor_site, class: "form-control" %>
-                          </div>
-                        </div>
-						<div class="form-group row">
-                          <div class="col-sm-4 offset-sm-3">
-                            <%= form.submit "Cadastrar Fornecedor", class: "btn btn-primary" %>
-                          </div>
-                        </div>
-
-  <div class="actions">
-    
-  </div>
-<% end %>
+</div>

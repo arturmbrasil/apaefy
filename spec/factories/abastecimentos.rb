@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :abastecimento do
     combustivel "MyString"
     frota nil

@@ -13,6 +13,7 @@ gem 'rails-i18n', '~> 5.0.0'
 # Authentication
 gem "devise"
 gem "devise-i18n"
+#gem 'bcrypt', platforms: :ruby
 
 # Front end
 gem "sass-rails", "~> 5.0"
@@ -28,10 +29,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'wdm', '>= 0.1.0', platforms: %i[mingw mswin x64_mingw]
 
 gem "cocoon"
-gem "devise"
-gem "rails-i18n"
 gem "coffee-rails"
-gem "jquery-rails"
 gem "turbolinks"
 
 group :development, :test do

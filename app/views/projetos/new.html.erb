@@ -1,13 +1,25 @@
-<%= render 'temp' %>
-
-<%= render 'form', projeto: @projeto %>
-
-<%= link_to 'Voltar', projetos_path %>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Novo Projeto</h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Projetos', projetos_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      Novo
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', projeto: @projeto %>
+    </div>
+  </div>
+</section>

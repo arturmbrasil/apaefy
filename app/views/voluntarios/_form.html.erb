@@ -1,93 +1,74 @@
-<%= form_with(model: voluntario, local: true, html: {class: "form-horizontal col-lg-12"}) do |form| %>
-  <% if voluntario.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(voluntario.errors.count, "error") %> prohibited this voluntario from being saved:</h2>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: voluntario, local: true) do |form| %>
+      <% if voluntario.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(voluntario.errors.count, "error") %> prohibited this voluntario from being saved:</h2>
 
-      <ul>
-        <% voluntario.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-          <% end %>
-      </ul>
-    </div>
-    <% end %>
-
-      <!--<div class="field">
-    <%= form.label "Código" %>
-    <%= form.number_field :codigo, id: :voluntario_codigo %>
-  </div>-->
-
-  <div class="form-group row no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="nome">Nome</label>
-              <div class="col-sm-5">
-                <%= form.text_field :nome, id: :voluntario_nome, class: "form-control" %><span class="help-block-none">Insira o nome do voluntário</span>
-              </div>
-            </div>
-
-  <div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="data">Data de Nascimento</label>
-              <div class="col-sm-4">
-                <%= form.date_field :data_nascimento, id: :voluntario_data_nascimento, class: "form-control" %><span class="help-block-none">Insira a data de nascimento do voluntário</span>
-              </div>
-            </div>
-
-      <div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="sexo">Sexo</label>
-        <div class="col-sm-6">
-          <%= radio_button :voluntario, :sexo, "M", class: "radio-template"%>
-            <label for="rdMasc">Masculino  </label>
-            <%= radio_button :voluntario, :sexo, "F", class: "radio-template"%>
-              <label for="rdFem">Feminino</label>
+          <ul>
+            <% voluntario.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+              <% end %>
+          </ul>
         </div>
-      </div>
+        <% end %>
 
-<div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="rg">RG</label>
-              <div class="col-sm-2">
-                <%= form.text_field :rg, id: :voluntario_rg, class: "form-control" %><span class="help-block-none">Insira o RG do voluntário</span>
-              </div>
-            </div>
-
-  <div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="cpf">CPF</label>
-              <div class="col-sm-2">
-                <%= form.text_field :cpf, id: :voluntario_cpf, class: "form-control" %><span class="help-block-none">Insira o CPF do voluntário</span>
-              </div>
-            </div>
-
-      <div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="telefone">Telefone</label>
-              <div class="col-sm-4">
-                <%= form.text_field :telefone, id: :voluntario_telefone, class: "form-control" %><span class="help-block-none">Insira o telefone de contato</span>
-              </div>
-            </div>
-
-<div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label">Atuação</label>
-              <div class="col-sm-6">
-                <%= form.text_area :atuacao, id: :voluntario_atuacao, class: "form-control" %><span class="help-block-none">Insira o área de atuação</span>
-              </div>
-            </div>
-
-<div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="usuario">Usuário</label>
-              <div class="col-sm-3">
-                <%= form.text_field :usuario, id: :voluntario_usuario, class: "form-control" %><span class="help-block-none">Insira o nome de usuário</span>
-              </div>
-            </div>
-
-<div class="form-group row  no-padding-bottom">
-              <label class="col-sm-3 form-control-label" for="senha">Senha</label>
-              <div class="col-sm-3">
-                <%= form.password_field :senha, id: :voluntario_senha, class: "form-control" %><span class="help-block-none">Insira a senha</span>
-              </div>
-            </div>
+          <div class="form-group">
+            <%= form.label :nome, class: 'form-control-label' %>
+              <%= form.text_field :nome, id: :voluntario_nome, class: "form-control" %>
+          </div>
 
 
-      <div class="form-group row">
-        <div class="col-sm-4 offset-sm-3">
-          <%= form.submit "Cadastrar Voluntário", class: "btn btn-primary"%>
+  <div class="form-group">
+    <%= form.label "Data de Nascimento", class: 'form-control-label' %>
+      <%= form.date_field :data_nascimento, id: :voluntario_data_nascimento, class: "form-control" %>
+  </div>
 
-            <% end %>
+  <div class="form-group">
+    <%= form.label :sexo, class: 'form-control-label' %>
+      <%= form.select :sexo, [], {}, { class: 'form-control', required: true } do %>
+        <%= options_for_select(Voluntario.sexos.map { |g| [Voluntario.human_attribute_name("gender.#{g.first}"), g.last] }, voluntario.sexo) %>
+          <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :rg, class: 'form-control-label' %>
+      <%= form.text_field :rg, id: :voluntario_rg, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :cpf, class: 'form-control-label' %>
+      <%= form.text_field :cpf, id: :voluntario_cpf, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :telefone, class: 'form-control-label' %>
+      <%= form.text_field :telefone, id: :voluntario_telefone, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :atuacao, class: 'form-control-label' %>
+      <%= form.text_area :atuacao, id: :voluntario_atuacao, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :usuario, class: 'form-control-label' %>
+      <%= form.text_field :usuario, id: :voluntario_usuario, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :senha, class: 'form-control-label' %>
+      <%= form.password_field :senha, id: :voluntario_senha, class: "form-control" %>
+  </div>
+
+
+<div class="form-group">
+  <%= form.submit "Cadastrar Voluntário", class: "btn btn-primary"%>
+</div>
+
+<% end %>
+  </div>
+  </div>

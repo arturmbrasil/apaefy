@@ -1,44 +1,53 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Voluntários</h1>
-
-<%= form_tag voluntarios_path, :method => 'get' do%>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Buscar"%>
-<%end%>
-
-<table>
+<header class='page-header'>
+  <div class='container-fluid clearfix'>
+    <%= link_to 'Cadastrar voluntário', new_voluntario_path, class: 'btn btn-primary float-right' %>
+    <h2 class='no-margin-bottom'>Voluntários</h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item active'>Voluntários</li>
+  </div>
+</ul>
+<section class="tables">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-block">
+        <table class="table table-striped table-sm">
   <thead>
     <tr>
-      <th>Código</th>
       <th>Nome</th>
       <th>Data de nascimento</th>
       <th>RG</th>
       <th>CPF</th>
       <th>Telefone</th>
       <th>Sexo</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @voluntarios.each do |voluntario| %>
       <tr>
-        <td><%= voluntario.codigo %></td>
         <td><%= voluntario.nome %></td>
         <td><%= l voluntario.data_nascimento %></td>
         <td><%= voluntario.rg %></td>
         <td><%= voluntario.cpf %></td>
         <td><%= voluntario.telefone %></td>
-        <td><%= voluntario.sexo %></td>
-        <td><%= link_to 'Exibir', voluntario %></td>
-        <td><%= link_to 'Editar', edit_voluntario_path(voluntario) %></td>
-        <td><%= link_to 'Excluir', voluntario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= Voluntario.sexos[voluntario.sexo] %></td>
+        <td>
+                  <%= link_to edit_voluntario_path(voluntario), class: 'btn btn-sm' do %>
+                    <%= icon('pencil-square-o') %>
+                  <% end %>
+                  <%= link_to voluntario_path(voluntario), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+                    <%= icon('trash') %>
+                  <% end %>
+                </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Novo Voluntário', new_voluntario_path %>

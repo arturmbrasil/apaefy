@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :doacao do
     valor 1.5
     forma_pagamento "MyString"

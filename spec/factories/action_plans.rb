@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :action_plan do
     data "MyString"
     evolucao "MyString"

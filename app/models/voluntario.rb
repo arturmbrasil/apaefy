@@ -1,6 +1,8 @@
 class Voluntario < ApplicationRecord
     validates :nome, :data_nascimento, :rg, :cpf, :telefone, :sexo, :usuario, :senha, presence: true
 
+    enum sexos: { masculino: 'M', feminino: 'F' }
+
     def save
         if self.codigo.blank?
             codigo = ActiveRecord::Base.connection.execute("select coalesce(max(codigo),0) nextcd from voluntarios")

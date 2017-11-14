@@ -28,7 +28,7 @@ class FornecedorsController < ApplicationController
 
     respond_to do |format|
       if @fornecedor.save
-        format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }
+        format.html { redirect_to fornecedors_url, notice: 'Fornecedor was successfully created.' }
         format.json { render :show, status: :created, location: @fornecedor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FornecedorsController < ApplicationController
   def update
     respond_to do |format|
       if @fornecedor.update(fornecedor_params)
-        format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully updated.' }
+        format.html { redirect_to fornecedors_url, notice: 'Fornecedor was successfully updated.' }
         format.json { render :show, status: :ok, location: @fornecedor }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class FornecedorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fornecedor_params
-      params.require(:fornecedor).permit(:codigo, :nome, :telefone, :cnpj, :inscricao_estadual)
+      params.require(:fornecedor).permit(:codigo, :nome, :telefone, :cnpj, :inscricao_estadual, :centro_custo, :numero_log, :bairro, :email, :logradouro, :site)
     end
 end

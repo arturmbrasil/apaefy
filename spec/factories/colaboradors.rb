@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :colaborador do
     codigo 1
     nome "MyString"
