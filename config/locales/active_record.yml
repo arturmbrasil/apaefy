@@ -43,7 +43,7 @@ pt-BR:
         updated_at: Atualizado em
       user/gender:
         male: Masculino
-        female: Feminio
+        female: Feminino
       user/role:
         finance: Financeiro
         director: Diretor
@@ -65,7 +65,7 @@ pt-BR:
         address_neighborhood: Bairro
       student/gender:
         male: Masculino
-        female: Feminio
+        female: Feminino
       fleet:
         name: Nome
         vehicle: Veículo
