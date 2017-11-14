@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: supply, local: true) do |f| %>
+      <%= errors_for(supply) %>
+
+      <div class="form-group">
+        <%= f.label :fuel, class: 'form-control-label' %>
+        <%= f.text_field :fuel, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :fleet, class: 'form-control-label' %>
+        <%= f.collection_select(:fleet_id, @fleet_options_for_select, :id, :name, { prompt: true }, { class: 'form-control' }) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :liters, class: 'form-control-label' %>
+        <%= f.text_field :liters, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :value, class: 'form-control-label' %>
+        <%= f.text_field :value, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :supply_date, class: 'form-control-label' %>
+        <%= f.date_field :supply_date, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
