@@ -11,6 +11,12 @@ class CreateVoluntarios < ActiveRecord::Migration[5.1]
       t.string :senha
       t.string :sexo
       t.text :atuacao
+      t.string :status
+      t.string :address_street, null: false, default: ''
+      t.string :address_number, null: false, default: ''
+      t.string :address_neighborhood, null: false, default: ''
+      t.string :address_zip_code, null: false, default: ''
+      t.references :city, foreign_key: true, type: :uuid
       t.timestamps
     end
   end

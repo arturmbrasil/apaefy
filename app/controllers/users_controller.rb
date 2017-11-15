@@ -50,6 +50,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def relatorio
+    @funcionario = User.new
+  end
+
+  def generate
+    @funcionario = User.new(relatorio_params)
+    @funcionarios_exp = @funcionario.relatorio
+    respond_to do |format|
+      format.html
+      format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=\"funcionarios_#{Time.now.to_s}.xlsx\""}
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -61,5 +74,9 @@ class UsersController < ApplicationController
     params
       .require(:user)
       .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
+
+  def relatorio_params
+    params.require(:user).permit(:order, :data_inicial, :data_final, :setor)
   end
 end

@@ -1,0 +1,72 @@
+<body>
+  <!-- Page Header-->
+  <header class="page-header">
+    <div class="container-fluid">
+      <h2 class="no-margin-bottom">Relatório de Funcionarios</h2>
+    </div>
+  </header>
+  <!-- Breadcrumb-->
+  <ul class="breadcrumb">
+    <div class="container-fluid">
+      <li class='breadcrumb-item'>
+        <%= link_to 'Início', root_path %>
+        </li>
+        <li class='breadcrumb-item'>
+        <%= link_to 'Funcionários', users_path %>
+        </li>
+      <li class="breadcrumb-item active">Relatório de Funcionarios</li>
+    </div>
+  </ul>
+
+  <!-- Seção do Relatorio -->
+  <section class="forms dashboard-counts">
+    <div class="container-fluid">
+      <div class="row bg-white has-shadow">
+        <!-- Relatorio -->
+        <div class="col-lg-12">
+          <div class="card no-shadow no-margin-bottom">
+
+            <div class="card-block no-padding-bottom">
+              <h4 class="card-title">Relatório de Funcionários</h4>
+              <%= form_with(model: @funcionario, local: true, method: :get, :url => generate_users_path(:format => 'xlsx')) do |form|%>
+                <div class=" form-group container">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <!-- Ordenado Por -->
+                      <label class="form-control-label">Ordenar por:</label>
+                      <div id="radio">
+                        <label>
+                          <%= form.radio_button(:order, "name") %> Nome</label>
+                      </div>
+                      <div id="radio">
+                        <label>
+                          <%= form.radio_button(:order, "birthday") %> Data de Nascimento</label>
+                      </div>
+                      <div id="radio">
+                        <label>
+                          <%= form.radio_button(:order, "role") %> Função</label>
+                      </div>
+                    </div>
+                    <!-- Parciais -->
+                    <div class="col-sm-8">
+                      <div class="inline">
+                        <label>Data Inicial </label>
+                        <%= form.date_field :data_inicial, class: "form-control", required: true %>
+                        <label>Data Final </label>
+                        <%= form.date_field :data_final, class: "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Botão Gerar -->
+                  <div class="row">
+                    <button type="submit" class="btn btn-primary">Gerar Relatorio</button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>

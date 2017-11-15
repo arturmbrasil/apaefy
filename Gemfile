@@ -33,6 +33,9 @@ gem 'wdm', '>= 0.1.0', platforms: %i[mingw mswin x64_mingw]
 gem "cocoon"
 gem "coffee-rails"
 gem "turbolinks"
+gem 'axlsx_rails'
+gem 'rubyzip', '= 1.0.0'
+gem 'axlsx', '= 2.0.1'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

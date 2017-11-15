@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users
+  get '/users/relatorio', to: 'users#relatorio'
+  resources :users do
+    collection do
+      get 'generate', to: 'users#generate', constraints: {format: 'xlsx'}
+    end
+  end
   resources :medicines, only: [:create, :destroy]
   resources :fleets
   resources :students
@@ -36,9 +41,25 @@ Rails.application.routes.draw do
   resources :students
   resources :appointments
 
-  resources :projetos
+  get '/projetos/relatorio', to: 'projetos#relatorio'
+  resources :projetos do
+    collection do
+      get 'generate', to: 'projetos#generate', constraints: {format: :xlsx}
+    end
+  end
   resources :colaboradors
-  resources :fornecedors
-  resources :voluntarios
+  get '/fornecedors/relatorio', to: 'fornecedors#relatorio'
+  resources :fornecedors do
+    collection do
+      get 'generate', to: 'fornecedors#generate', constraints: {format: :xlsx}
+    end
+  end
+  get '/voluntarios/relatorio', to: 'voluntarios#relatorio'
+  resources :voluntarios do
+    collection do
+      get 'generate', to: 'voluntarios#generate', constraints: {format: :xlsx}
+    end
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

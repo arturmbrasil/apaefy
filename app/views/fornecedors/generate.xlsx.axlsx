@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+sexos = {'M' => 'Masculino', 'F' => 'Feminino'}
+wb.add_worksheet(name: 'plan1') do |sheet|
+  sheet.add_row ['Nome', 'Telefone', 'CNPJ', 'Inscrição Estadual', 'Centro de Custo', 'Email', 'Logradouro', 'Número', 'Bairro', 'CEP', 
+  'Estado', 'Cidade', 'Site']
+  @fornecedors_exp.each do |row|
+    sheet.add_row [row.nome, row.telefone, row.cnpj, row.inscricao_estadual, row.centro_custo, row.email, row.logradouro,
+   row.numero_log, row.bairro, row.cep, row.city.state.name, row.city.name, row.site]
+  end
+end

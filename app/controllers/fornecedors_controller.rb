@@ -19,6 +19,7 @@ class FornecedorsController < ApplicationController
 
   # GET /fornecedors/1/edit
   def edit
+    @cities = @fornecedor.state.cities.map { |city| [city.name, city.id] } if @fornecedor.city
   end
 
   # POST /fornecedors
@@ -61,6 +62,19 @@ class FornecedorsController < ApplicationController
     end
   end
 
+  def relatorio
+    @forn_rel = Fornecedor.new
+  end
+
+  def generate
+    @forn_rel = Fornecedor.new(fornecedor_params)
+    @fornecedors_exp = @forn_rel.relatorio
+    respond_to do |format|
+      format.html
+      format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=\"fornecedores_#{Time.now.to_s}.xlsx\""}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fornecedor
@@ -69,6 +83,10 @@ class FornecedorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fornecedor_params
-      params.require(:fornecedor).permit(:codigo, :nome, :telefone, :cnpj, :inscricao_estadual, :centro_custo, :numero_log, :bairro, :email, :logradouro, :site)
+      params.require(:fornecedor).permit(:codigo, :nome, :telefone, :cnpj, :inscricao_estadual, :centro_custo, :numero_log, :bairro, :email, :logradouro, :city_id, :site, :order)
+    end
+
+    def relatorio_params
+      params.require(:fornecedor).permit(:order, :city_id)
     end
 end

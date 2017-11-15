@@ -43,6 +43,13 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (7.1.6)
       execjs
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
+    axlsx_rails (0.5.1)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bcrypt (3.1.11-x64-mingw32)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -93,6 +100,7 @@ GEM
       sass (>= 3.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    htmlentities (4.3.4)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -196,6 +204,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
+    rubyzip (1.0.0)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -253,14 +262,16 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  axlsx (= 2.0.1)
+  axlsx_rails
   better_errors
   binding_of_caller
   bootstrap (= 4.0.0.alpha6)
   bullet
   byebug
-  cpf_cnpj
   cocoon
   coffee-rails
+  cpf_cnpj
   devise
   devise-i18n
   factory_bot_rails
@@ -276,6 +287,7 @@ DEPENDENCIES
   rails-i18n (~> 5.0.0)
   rspec-rails (~> 3.6)
   rubocop
+  rubyzip (= 1.0.0)
   sass-rails (~> 5.0)
   shoulda-matchers
   spring

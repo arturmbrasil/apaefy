@@ -19,6 +19,7 @@ class ColaboradorsController < ApplicationController
 
   # GET /colaboradors/1/edit
   def edit
+    @cities = @colaborador.state.cities.map { |city| [city.name, city.id] } if @colaborador.city
   end
 
   # POST /colaboradors
@@ -28,7 +29,7 @@ class ColaboradorsController < ApplicationController
 
     respond_to do |format|
       if @colaborador.save
-        format.html { redirect_to colaboradors_url, notice: 'Colaborador was successfully created.' }
+        format.html { redirect_to colaboradors_url, notice: 'Colaborador cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @colaborador }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ColaboradorsController < ApplicationController
   def update
     respond_to do |format|
       if @colaborador.update(colaborador_params)
-        format.html { redirect_to colaboradors_url, notice: 'Colaborador was successfully updated.' }
+        format.html { redirect_to colaboradors_url, notice: 'Colaborador atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @colaborador }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class ColaboradorsController < ApplicationController
   def destroy
     @colaborador.destroy
     respond_to do |format|
-      format.html { redirect_to colaboradors_url, notice: 'Colaborador was successfully destroyed.' }
+      format.html { redirect_to colaboradors_url, notice: 'Colaborador excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class ColaboradorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def colaborador_params
-      params.require(:colaborador).permit(:codigo, :nome, :data_nascimento, :rg, :cpf, :telefone, :sexo, :cnpj, :inscricao_estadual)
+      params.require(:colaborador).permit(:codigo, :nome, :data_nascimento, :rg, :cpf, :telefone, :sexo, :cnpj, :inscricao_estadual,  :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code)
     end
 end

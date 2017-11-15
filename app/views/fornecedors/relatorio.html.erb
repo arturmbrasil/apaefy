@@ -1,0 +1,71 @@
+<body>
+  <!-- Page Header-->
+  <header class="page-header">
+    <div class="container-fluid">
+      <h2 class="no-margin-bottom">Relatório de Fornecedores</h2>
+    </div>
+  </header>
+  <!-- Breadcrumb-->
+  <ul class="breadcrumb">
+    <div class="container-fluid">
+      <li class="breadcrumb-item">
+        <a href="index.html">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Relatório de Fornecedores</li>
+    </div>
+  </ul>
+
+  <!-- Seção do Relatorio -->
+  <section class="forms dashboard-counts">
+    <div class="container-fluid">
+      <div class="row bg-white has-shadow">
+        <!-- Relatorio -->
+        <div class="col-lg-12">
+          <div class="card no-shadow no-margin-bottom">
+
+            <div class="card-block no-padding-bottom">
+              <h4 class="card-title">Relatório de Fornecedores</h4>
+              <%= form_with(model: @forn_rel, local: true, method: :get, :url => generate_fornecedors_path(:format => 'xlsx')) do |form|%>
+                <div class=" form-group container">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <!-- Ordenado Por -->
+                      <label class="form-control-label">Ordenar por:</label>
+                      <div id="radio">
+                        <label>
+                          <%= form.radio_button(:order, "nome") %> Nome</label>
+                      </div>
+                      <div id="radio">
+                        <label>
+                          <%= form.radio_button(:order, "c.name") %> Cidade</label>
+                      </div>
+                    </div>
+                    <!-- Parciais -->
+                    <div class="col-sm-8">
+                      <div class="inline">
+                        <label>Selecione uma Cidade</label>
+                        <div class="form-group">
+                            <%= form.label :state_id, 'Estado', class: 'form-control-label' %>
+                            <%= form.collection_select(:state_id, State.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>
+                        </div>
+                        <div class="form-group">
+                            <%= form.label :city_id, "Cidade", class: 'form-control-label' %>
+                            <%= form.select(:city_id, @cities ? @cities : [], {}, { class: 'form-control js-city-select' }) %>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                  <!-- Botão Gerar -->
+                  <div class="row">
+                    <button type="submit" class="btn btn-primary">Gerar Relatorio</button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>

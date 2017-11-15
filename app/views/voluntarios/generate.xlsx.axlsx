@@ -1,0 +1,9 @@
+wb = xlsx_package.workbook
+sexos = {'M' => 'Masculino', 'F' => 'Feminino'}
+wb.add_worksheet(name: 'plan1') do |sheet|
+  sheet.add_row ['Nome', 'Data de Nascimento', 'RG', 'CPF', 'Telefone', 'Sexo', 'Atuação', 'Status', 'Rua', 'Número', 'CEP', 'Estado', 'Cidade']
+  @voluntarios_exp.each do |row|
+    sheet.add_row [row.nome, row.data_nascimento, row.rg, row.cpf, row.telefone, sexos[row.sexo], row.atuacao, if row.status.eql? 'N' then 'Inativo' else 'Ativo' end,
+  row.address_street, row.address_number, row.address_zip_code, row.city.state.name, row.city.name]
+  end
+end

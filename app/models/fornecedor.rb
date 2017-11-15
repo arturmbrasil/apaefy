@@ -1,13 +1,12 @@
 class Fornecedor < ApplicationRecord
-    validates :nome, :telefone, :cnpj, :inscricao_estadual, presence: true
+    attr_accessor :order
+    validates :nome, :telefone, :cnpj, :inscricao_estadual, :numero_log, :logradouro, :bairro, :centro_custo, presence: true
 
-    def save
-        if self.codigo.blank?
-            codigo = ActiveRecord::Base.connection.execute("select coalesce(max(codigo),0) nextcd from fornecedors")
-            if codigo.present?
-                self.codigo = codigo[0]["nextcd"] + 1
-            end 
-        end
-        super
+    belongs_to :city, optional: true
+    delegate :state_id, to: :city, allow_nil: true
+    delegate :state, to: :city, allow_nil: true
+
+    def relatorio
+        Fornecedor.joins("JOIN cities c on city_id = c.id").where(city_id: city_id).order(order)
     end
 end

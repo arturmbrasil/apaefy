@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :order, :data_inicial, :data_final, :setor
+
   enum gender: { male: 'M', female: 'F' }
   enum role: { finance: 'FIN', director: 'DIR', teacher: 'TEA', technician: 'TEC', doctor: 'DOC', driver: 'DRI' }
 
@@ -18,4 +20,8 @@ class User < ApplicationRecord
   validates :document_cnh, presence: true
   validates :document_cns, presence: true
   validates :admission_date, presence: true
+
+  def relatorio
+    User.where(admission_date: data_inicial..data_final).order(order)
+  end
 end

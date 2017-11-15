@@ -28,7 +28,7 @@ class VoluntariosController < ApplicationController
 
     respond_to do |format|
       if @voluntario.save
-        format.html { redirect_to voluntarios_url, notice: 'Voluntario was successfully created.' }
+        format.html { redirect_to voluntarios_url, notice: 'Voluntário cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @voluntario }
       else
         format.html { render :new }
@@ -61,6 +61,19 @@ class VoluntariosController < ApplicationController
     end
   end
 
+  def relatorio
+    @vol_test = Voluntario.new
+  end
+
+  def generate
+    @vol_test = Voluntario.new(relatorio_params)
+    @voluntarios_exp = @vol_test.relatorio
+    respond_to do |format|
+      format.html
+      format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=\"voluntarios_#{Time.now.to_s}.xlsx\""}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_voluntario
@@ -69,6 +82,10 @@ class VoluntariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def voluntario_params
-      params.require(:voluntario).permit(:codigo, :nome, :data_nascimento, :rg, :cpf, :telefone, :usuario, :senha, :sexo)
+      params.require(:voluntario).permit(:codigo, :nome, :data_nascimento, :rg, :cpf, :telefone, :usuario, :senha, :sexo, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, :atuacao, :order, :data_inicial, :data_final)
+    end
+
+    def relatorio_params
+      params.require(:voluntario).permit(:order, :data_inicial, :data_final)
     end
 end

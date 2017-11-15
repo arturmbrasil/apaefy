@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'plan1') do |sheet|
+  sheet.add_row ['Nome', 'Email', 'Sexo', 'Função', 'Data de Nascimento', 'Número telefônico', 'RG', 'CPF', 'Número', 'CNH', 'CNS', 
+  'Data de Admissão', 'Estado', 'Cidade', 'Rua', 'Número', 'Bairro', 'CEP', 'Status']
+  @funcionarios_exp.each do |row|
+    sheet.add_row [row.name, row.email, row.gender, row.role, row.birthday, row.phone_numbers.first, row.document_rg,
+   row.document_cpf, row.document_cnh, row.document_cns, row.admission_date, row.city.state.name, row.city.name,
+   row.address_street, row.address_number, row.address_neighborhood, row.address_zip_code, if not row.active then 'Inativo' else 'Ativo' end]
+  end
+end

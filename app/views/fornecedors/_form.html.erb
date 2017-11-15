@@ -1,20 +1,7 @@
 <div class="card">
   <div class="card-body">
-    <%= form_with(model: fornecedor, local: true, html: {class: "form-horizontal"} ) do |form| %>
-      <% if fornecedor.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%= pluralize(fornecedor.errors.count, "error") %> prohibited this fornecedor from being saved:</h2>
-
-          <ul>
-            <% fornecedor.errors.full_messages.each do |message| %>
-              <li>
-                <%= message %>
-              </li>
-              <% end %>
-          </ul>
-        </div>
-        <% end %>
+    <%= form_with(model: fornecedor, local: true) do |form| %>
+      <%= errors_for(fornecedor) %>
 
           <div class="form-group">
             <%= form.label :nome, class: 'form-control-label' %>
@@ -23,12 +10,12 @@
 
           <div class="form-group">
             <%= form.label :telefone, class: 'form-control-label' %>
-              <%= form.text_field :telefone, id: :fornecedor_telefone, class: "form-control", required: true %>
+              <%= form.text_field :telefone, id: :fornecedor_telefone, class: "form-control js-phone-number", required: true %>
           </div>
 
           <div class="form-group">
             <%= form.label 'CNPJ', class: 'form-control-label' %>
-              <%= form.text_field :cnpj, id: :fornecedor_cnpj, class: "form-control", required: true %>
+              <%= form.text_field :cnpj, id: :fornecedor_cnpj, class: "form-control js-document-cnpj", required: true %>
           </div>
 
           <div class="form-group">
@@ -43,6 +30,14 @@
           <div class="form-group">
             <%= form.label :email, class: 'form-control-label' %>
               <%= form.text_field :email, id: :fornecedor_email, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <%= form.label :state_id, 'Estado', class: 'form-control-label' %>
+              <%= form.collection_select(:state_id, State.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>
+          </div>
+          <div class="form-group">
+            <%= form.label :city_id, "Cidade", class: 'form-control-label' %>
+              <%= form.select(:city_id, @cities ? @cities : [], {}, { class: 'form-control js-city-select' }) %>
           </div>
           <div class="form-group">
             <%= form.label :logradouro, class: 'form-control-label' %>

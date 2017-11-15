@@ -8,10 +8,12 @@ class CreateFornecedors < ActiveRecord::Migration[5.1]
       t.string :inscricao_estadual
       t.text :centro_custo
       t.string :email
-      t.string :logradouro
-      t.string :numero_log
-      t.string :bairro
+      t.string :logradouro, null: false, default: ''
+      t.string :numero_log, null: false, default: ''
+      t.string :bairro, null: false, default: ''
+      t.string :cep, null: false, default: ''
       t.string :site
+      t.references :city, foreign_key: true, type: :uuid
       t.timestamps
     end
   end

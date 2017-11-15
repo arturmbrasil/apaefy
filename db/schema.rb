@@ -77,8 +77,14 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.string "sexo"
     t.string "cnpj"
     t.string "inscricao_estadual"
+    t.uuid "city_id"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_colaboradors_on_city_id"
   end
 
   create_table "conta_a_pagars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -139,45 +145,15 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.string "inscricao_estadual"
     t.text "centro_custo"
     t.string "email"
-    t.string "logradouro"
-    t.string "numero_log"
-    t.string "bairro"
+    t.string "logradouro", default: "", null: false
+    t.string "numero_log", default: "", null: false
+    t.string "bairro", default: "", null: false
+    t.string "cep", default: "", null: false
     t.string "site"
+    t.uuid "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "funcionarios", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.integer "codigo"
-    t.string "nome"
-    t.date "data_nascimento"
-    t.string "rg"
-    t.string "cpf"
-    t.string "sexo"
-    t.string "data_admissao"
-    t.string "ctps"
-    t.integer "cnh"
-    t.string "cns"
-    t.string "status"
-    t.string "telefone"
-    t.string "usuario"
-    t.string "senha"
-    t.uuid "setor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_funcionarios_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
-    t.index ["setor_id"], name: "index_funcionarios_on_setor_id"
+    t.index ["city_id"], name: "index_fornecedors_on_city_id"
   end
 
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -188,6 +164,15 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_medicines_on_student_id"
+  end
+
+  create_table "parceiros", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome"
+    t.string "telefome"
+    t.string "cnpj"
+    t.string "inscricao_estatual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "partner_donations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -216,7 +201,6 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.index ["city_id"], name: "index_partners_on_city_id"
     t.index ["email"], name: "index_partners_on_email", unique: true
   end
-
 
   create_table "payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "payment_type"
@@ -256,6 +240,13 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.index ["student_id"], name: "index_responsibles_on_student_id"
   end
 
+  create_table "setors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo"
+    t.string "descricao"
+    t.string "permissao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "special_needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "descricao"
@@ -282,15 +273,6 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_appointments_on_student_id"
     t.index ["user_id"], name: "index_student_appointments_on_user_id"
-  end
-
-  create_table "student_schedulings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "student_id"
-    t.date "date", default: "2017-11-13", null: false
-    t.time "schedule", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_student_schedulings_on_student_id"
   end
 
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -337,7 +319,7 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-13 04:13:46", null: false
+    t.datetime "admission_date", default: "2017-11-15 16:33:16", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -359,8 +341,15 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.string "senha"
     t.string "sexo"
     t.text "atuacao"
+    t.string "status"
+    t.string "address_street", default: "", null: false
+    t.string "address_number", default: "", null: false
+    t.string "address_neighborhood", default: "", null: false
+    t.string "address_zip_code", default: "", null: false
+    t.uuid "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_voluntarios_on_city_id"
   end
 
   add_foreign_key "abastecimentos", "fleets", column: "fleets_id"
@@ -369,19 +358,21 @@ ActiveRecord::Schema.define(version: 20171113203714) do
   add_foreign_key "addresses", "students"
   add_foreign_key "appointments", "students"
   add_foreign_key "cities", "states"
-  add_foreign_key "fleets", "users", column: "driver_id"
+  add_foreign_key "colaboradors", "cities"
   add_foreign_key "conta_a_recebers", "doacaos"
   add_foreign_key "doacaos", "parceiros"
+  add_foreign_key "fleets", "users", column: "driver_id"
   add_foreign_key "food_restrictions", "students"
+  add_foreign_key "fornecedors", "cities"
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
+  add_foreign_key "responsibles", "students"
+  add_foreign_key "special_needs", "students"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"
-  add_foreign_key "student_schedulings", "students"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
   add_foreign_key "users", "cities"
-  add_foreign_key "responsibles", "students"
-  add_foreign_key "special_needs", "students"
+  add_foreign_key "voluntarios", "cities"
 end

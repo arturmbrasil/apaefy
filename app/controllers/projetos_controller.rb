@@ -28,7 +28,7 @@ class ProjetosController < ApplicationController
 
     respond_to do |format|
       if @projeto.save
-        format.html { redirect_to projetos_url, notice: 'Projeto was successfully created.' }
+        format.html { redirect_to projetos_url, notice: 'Projeto criado com sucesso.' }
         format.json { render :show, status: :created, location: @projeto }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ProjetosController < ApplicationController
   def update
     respond_to do |format|
       if @projeto.update(projeto_params)
-        format.html { redirect_to projetos_url, notice: 'Projeto was successfully updated.' }
+        format.html { redirect_to projetos_url, notice: 'Projeto atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @projeto }
       else
         format.html { render :edit }
@@ -56,8 +56,21 @@ class ProjetosController < ApplicationController
   def destroy
     @projeto.destroy
     respond_to do |format|
-      format.html { redirect_to projetos_url, notice: 'Projeto was successfully destroyed.' }
+      format.html { redirect_to projetos_url, notice: 'Projeto excluído com sucesso.' }
       format.json { head :no_content }
+    end
+  end
+
+  def relatorio
+    @proj_rel = Projeto.new
+  end
+
+  def generate
+    @proj_rel = Projeto.new(relatorio_params)
+    @projetos_exp = @proj_rel.relatorio
+    respond_to do |format|
+      format.html
+      format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=\"projetos_#{Time.now.to_s}.xlsx\""}
     end
   end
 
@@ -69,6 +82,10 @@ class ProjetosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def projeto_params
-      params.require(:projeto).permit(:codigo, :titulo, :descricao, :status, :metas, :valor)
+      params.require(:projeto).permit(:codigo, :titulo, :descricao, :status, :metas, :valor, :order, :data_final, :data_inicial)
+    end
+
+    def relatorio_params
+      params.require(:projeto).permit(:order, :data_inicial, :data_final)
     end
 end
