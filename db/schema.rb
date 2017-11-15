@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113203714) do
+ActiveRecord::Schema.define(version: 20171114175233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,6 +295,17 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.index ["fleet_id"], name: "index_students_on_fleet_id"
   end
 
+  create_table "supplies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "fuel"
+    t.uuid "fleet_id"
+    t.float "liters"
+    t.float "value"
+    t.date "supply_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fleet_id"], name: "index_supplies_on_fleet_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -319,7 +330,7 @@ ActiveRecord::Schema.define(version: 20171113203714) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-15 16:33:16", null: false
+    t.datetime "admission_date", default: "2017-11-14 17:19:57", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -373,6 +384,7 @@ ActiveRecord::Schema.define(version: 20171113203714) do
   add_foreign_key "student_appointments", "users"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
+  add_foreign_key "supplies", "fleets"
   add_foreign_key "users", "cities"
   add_foreign_key "voluntarios", "cities"
 end

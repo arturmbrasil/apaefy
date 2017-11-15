@@ -128,7 +128,7 @@ $(function () {
   $('.js-document-cnpj').mask('00.000.000/0000-00', { reverse: true });
   $('.js-phone-number').mask(phoneMaskBehavior, phoneMaskOptions);
   $('.js-address-zip-code').mask('00000-000');
-  $('.js-license-plate').mask('000-0000');
+  $('.js-license-plate').mask('AAA-0000');
   $('.js-currency').mask('#.##0,00', { reverse: true });
 
 

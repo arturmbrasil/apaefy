@@ -43,7 +43,7 @@ pt-BR:
         updated_at: Atualizado em
       user/gender:
         male: Masculino
-        female: Feminio
+        female: Feminino
       user/role:
         finance: Financeiro
         director: Diretor
@@ -65,7 +65,7 @@ pt-BR:
         address_neighborhood: Bairro
       student/gender:
         male: Masculino
-        female: Feminio
+        female: Feminino
       fleet:
         name: Nome
         vehicle: Veículo
@@ -99,6 +99,12 @@ pt-BR:
         time: Horário
         obs: Observação
         user: Funcionário
+      supply:
+        fuel: Combustível
+        fleet: Frota
+        liters: Litros 
+        value: Valor
+        supply_date: Data do Abastecimento
     models:
       user: Funcionário
       fleet: Frota
@@ -107,3 +113,4 @@ pt-BR:
       city: Cidade
       state: Estado
       partner: Parceiro
+      supply: Abastecimento

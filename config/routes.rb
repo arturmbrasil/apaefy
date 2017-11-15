@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :supplies
   resources :student_appointments
   root 'dashboard#index'
 
