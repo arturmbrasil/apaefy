@@ -59,6 +59,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.1.0)
+    chartkick (2.2.5)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     cpf_cnpj (0.4.1)
@@ -86,6 +87,8 @@ GEM
       sass (>= 3.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -252,12 +255,14 @@ DEPENDENCIES
   bootstrap (= 4.0.0.alpha6)
   bullet
   byebug
+  chartkick
   cpf_cnpj
   devise
   devise-i18n
   factory_bot_rails
   filterrific
   font-awesome-sass (~> 4.7.0)
+  groupdate
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

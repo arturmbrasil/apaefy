@@ -15,6 +15,8 @@
 //= require tether
 //= require bootstrap
 //= require jquery-mask
+//= require Chart.bundle
+//= require chartkick
 
 $(function () {
 
