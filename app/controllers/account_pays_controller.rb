@@ -28,7 +28,7 @@ class AccountPaysController < ApplicationController
 
     respond_to do |format|
       if @account_pay.save
-        format.html { redirect_to @account_pay, notice: 'Account pay was successfully created.' }
+        format.html { redirect_to @account_pay, notice: 'Conta a pagar criada com sucesso.' }
         format.json { render :show, status: :created, location: @account_pay }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AccountPaysController < ApplicationController
   def update
     respond_to do |format|
       if @account_pay.update(account_pay_params)
-        format.html { redirect_to @account_pay, notice: 'Account pay was successfully updated.' }
+        format.html { redirect_to @account_pay, notice: 'Conta a pagar atualizada.' }
         format.json { render :show, status: :ok, location: @account_pay }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AccountPaysController < ApplicationController
   def destroy
     @account_pay.destroy
     respond_to do |format|
-      format.html { redirect_to account_pays_url, notice: 'Account pay was successfully destroyed.' }
+      format.html { redirect_to account_pays_url, notice: 'Conta a pagar foi excluída.' }
       format.json { head :no_content }
     end
   end
