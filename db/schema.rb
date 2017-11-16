@@ -16,6 +16,23 @@ ActiveRecord::Schema.define(version: 20171115163414) do
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
+  create_table "account_pays", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.integer "nr_nota"
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_receivables", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "date"
+    t.string "name"
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "state_id"
@@ -81,6 +98,27 @@ ActiveRecord::Schema.define(version: 20171115163414) do
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_partners_on_city_id"
     t.index ["email"], name: "index_partners_on_email", unique: true
+  end
+
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "description", default: "", null: false
+    t.float "value", null: false
+    t.string "stock", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "description", default: "", null: false
+    t.string "status", default: "", null: false
+    t.string "goals", default: "", null: false
+    t.float "value", null: false
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -170,7 +208,11 @@ ActiveRecord::Schema.define(version: 20171115163414) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
+<<<<<<< HEAD
     t.datetime "admission_date", default: "2017-11-14 20:52:21", null: false
+=======
+    t.datetime "admission_date", default: "2017-11-15 21:23:46", null: false
+>>>>>>> 5259da2354fefa8df1a84f9f968e17519477c468
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -187,6 +229,7 @@ ActiveRecord::Schema.define(version: 20171115163414) do
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
+  add_foreign_key "projects", "users"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"
   add_foreign_key "student_responsibles", "students"

@@ -2,10 +2,23 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    (@filterrific = initialize_filterrific(
+      User,
+      params[:filterrific],
+      select_options: { sorted_by: User.options_for_sorted_by, sorted_by_role: User.options_for_sorted_by_role }
+    )) || return
+
+    @users = @filterrific.find.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv }
+    end
   end
 
   def show
+    @appointments = @user.student_appointments.includes(:student).order(:date, :time)
+    @projects = @user.projects.order(created_at: :desc)
   end
 
   def new

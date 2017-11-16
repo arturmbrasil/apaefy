@@ -1,6 +1,12 @@
 class PartnerDonationsController < ApplicationController
   before_action :set_partner_donation, only: [:destroy]
 
+  def index
+    respond_to do |format|
+      format.csv { send_data PartnerDonation.to_csv }
+    end
+  end
+
   def create
     @partner_donation = PartnerDonation.new(partner_donation_params)
 

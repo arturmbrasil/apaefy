@@ -14,8 +14,14 @@ Rails.application.routes.draw do
   resources :dietary_restrictions, only: [:create, :destroy]
   resources :fleets
   resources :students
-  resources :partner_donations, only: [:create, :destroy]
+  resources :partner_donations, only: [:index, :create, :destroy]
   resources :partners
+  resources :products
+  resources :projects
+  resources :supplies
+  resources :student_appointments
+  resources :account_pays
+  resources :account_receivables
 
   namespace :api, constraints: { format: :json } do
     resources :states, only: [] do

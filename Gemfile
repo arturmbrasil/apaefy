@@ -1,3 +1,4 @@
+ruby "2.4.1"
 source "https://rubygems.org"
 
 git_source(:github) do |repo_name|
@@ -10,6 +11,10 @@ gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
 gem "rails-i18n", "~> 5.0.0"
 gem "cpf_cnpj"
+gem "kaminari"
+gem "filterrific"
+gem "chartkick"
+gem "groupdate"
 
 # Authentication
 gem "devise"
@@ -24,6 +29,8 @@ gem "tether-rails"
 gem "jquery-rails"
 gem "font-awesome-sass", "~> 4.7.0"
 gem 'rails-assets-jquery-mask', source: 'https://rails-assets.org'
+
+gem 'faker'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

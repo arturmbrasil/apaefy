@@ -3,3 +3,39 @@
     <h2 class='no-margin-bottom'>Dashboard</h2>
   </div>
 </header>
+<section class="charts">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Alunos cadastrados por dia</h3>
+          </div>
+          <div class="card-body">
+            <%= line_chart Student.group_by_day(:created_at).count %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Produtos cadastrados por dia</h3>
+          </div>
+          <div class="card-body">
+            <%= line_chart Product.group_by_day(:created_at).count %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Funcionários por funções</h3>
+          </div>
+          <div class="card-body">
+            <%= pie_chart Hash[*User.group(:role).count.map { |key, value| [User.human_attribute_name("role.#{key}"), value]}.flatten] %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

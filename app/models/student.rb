@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'csv'
+
 class Student < ApplicationRecord
   enum gender: { male: 'M', female: 'F' }
 
@@ -15,6 +19,73 @@ class Student < ApplicationRecord
   validates :gender, presence: true
   validates :birthday, presence: true
   validates :document_cpf, cpf: true, allow_blank: true
+
+  # Filtros
+  filterrific(
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: %i[
+      sorted_by
+      search_query
+    ]
+  )
+
+  scope :search_query, lambda { |query|
+    return nil if query.blank?
+    terms = query.downcase.split(/\s+/)
+    terms = terms.map do |e|
+      (e.tr('*', '%') + '%').gsub(/%+/, '%')
+    end
+    num_or_conditions = 1
+    where(
+      terms.map do
+        or_clauses = [
+          'LOWER(students.name) LIKE ?'
+        ].join(' OR ')
+        "(#{or_clauses})"
+      end.join(' AND '),
+      *terms.map { |e| [e] * num_or_conditions }.flatten
+    )
+  }
+
+  scope :sorted_by, lambda { |sort_option|
+    direction = sort_option.match?(/desc$/) ? 'desc' : 'asc'
+    case sort_option.to_s
+    when /^created_at_/
+      order("students.created_at #{direction}")
+    when /^name_/
+      order("LOWER(students.name) #{direction}")
+    else
+      raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
+    end
+  }
+
+  def self.options_for_sorted_by
+    [
+      ['Nome (a-z)', 'name_asc'],
+      ['Data de cadastro (novos)', 'created_at_desc'],
+      ['Data de cadastro (antigos)', 'created_at_asc']
+    ]
+  end
+
+  def self.to_csv(options = {})
+    @students = Student.all
+    desired_columns = ['id', 'name', 'gender', 'birthday', 'document_cpf', 'document_rg', 'phone_numbers', 'created_at']
+    CSV.generate(options) do |csv|
+      csv << desired_columns.map { |column| self.human_attribute_name column }
+      @students.find_each do |student|
+        row = desired_columns.map do |col|
+          value = student.attributes.values_at(col)
+          if col == 'gender'
+            [self.human_attribute_name("gender.#{value.first}")]
+          else
+            value
+          end
+        end
+
+        csv << row.flatten
+      end
+    end
+  end
 
   def full_address
     "#{address_street}, nº #{address_number}, #{city.name}-#{state.acronym}"

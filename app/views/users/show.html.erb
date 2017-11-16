@@ -20,5 +20,63 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="recent-activities card">
+          <div class="card-header text-center">
+            <h3 class="h4">Agendamentos</h3>
+          </div>
+          <div class="card-body no-padding">
+            <% if @appointments.empty? %>
+              <b style="padding: 1rem">Nenhum agendamento cadastrado.</b>
+            <% end %>
+            <% @appointments.each do |appointment| %>
+              <div class="item">
+                <div class="row">
+                  <div class="col-4 date-holder text-right">
+                    <div class="icon">
+                      <%= icon('clock-o') %>
+                    </div>
+                    <div class="date">
+                      <span><%= l appointment.date, format: '%d/%m/%Y' %></span>
+                      <span class="text-info"><%= l appointment.time, format: '%H:%M' %></span>
+                    </div>
+                  </div>
+                  <div class="col-8 content">
+                    <h5><%= link_to appointment.student.name, student_path(appointment.student) %></h5>
+                    <p><%= appointment.obs %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="articles card">
+          <div class="card-header d-flex align-items-center">
+            <h2 class="h3">Projetos</h2>
+          </div>
+          <div class="card-body no-padding">
+            <% if @projects.empty? %>
+              <b>Nenhum projeto cadastrado.</b>
+            <% end %>
+            <% @projects.each do |project| %>
+              <div class="item d-flex justify-content-between">
+                <div class="info d-flex">
+                  <div class="title">
+                    <%= link_to edit_project_path project do %>
+                      <h5><%= project.title %></h5>
+                    <% end %>
+                    <p><%= project.description %></p>
+                  </div>
+                </div>
+                <div class="date text-right"><%= number_to_currency project.value %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
