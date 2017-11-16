@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     )) || return
 
     @users = @filterrific.find.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv }
+    end
   end
 
   def show

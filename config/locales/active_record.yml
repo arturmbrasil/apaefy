@@ -11,6 +11,7 @@ pt-BR:
         role: Função
         birthday: Data de nascimento
         phone_numbers: Telefone
+        state: Estado
         city: Cidade
         city_id: Cidade
         address_street: Logradouro

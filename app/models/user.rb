@@ -73,6 +73,52 @@ class User < ApplicationRecord
     ]
   end
 
+  def self.to_csv(options = {})
+    @users = User.includes(city: [:state])
+
+    desired_columns = [
+      'id',
+      'name',
+      'email',
+      'role',
+      'gender',
+      'document_cpf',
+      'document_rg',
+      'phone_numbers',
+      'admission_date',
+      'state',
+      'city',
+      'address_street',
+      'address_number',
+      'address_zip_code',
+      'address_neighborhood',
+      'created_at'
+    ]
+
+    CSV.generate(options) do |csv|
+      csv << desired_columns.map { |column| self.human_attribute_name column }
+      @users.find_each do |user|
+        row = desired_columns.map do |col|
+          value = user.attributes.values_at(col)
+          case col
+          when 'gender'
+            [self.human_attribute_name("gender.#{value.first}")]
+          when 'city'
+            user.city ? [user.city.name] : ['']
+          when 'state'
+            user.city ? [user.state.name] : ['']
+          when 'role'
+            [self.human_attribute_name("role.#{value.first}")]
+          else
+            value
+          end
+        end
+
+        csv << row.flatten
+      end
+    end
+  end
+
   def self.options_for_sorted_by_role
     User.roles.map do |g|
       [User.human_attribute_name("role.#{g.first}"), g.last]
