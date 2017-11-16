@@ -1,0 +1,25 @@
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Projetos: <%= @project.title %></h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Projetos', projects_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      <%= @project.title %>
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', project: @project %>
+    </div>
+  </div>
+</section>

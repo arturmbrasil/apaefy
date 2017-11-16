@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :city, optional: true
   has_many :student_appointments, dependent: :destroy
+  has_many :projects, dependent: :destroy
+  
   delegate :state_id, to: :city, allow_nil: true
   delegate :state, to: :city, allow_nil: true
 

@@ -102,9 +102,16 @@ pt-BR:
       supply:
         fuel: Combustível
         fleet: Frota
-        liters: Litros 
+        liters: Litros
         value: Valor
         supply_date: Data do Abastecimento
+      project:
+        title: Título
+        description: Descrição
+        status: Status
+        goals: Metas
+        value: Valor
+        user_id: Funcionário
     models:
       user: Funcionário
       fleet: Frota
@@ -114,3 +121,4 @@ pt-BR:
       state: Estado
       partner: Parceiro
       supply: Abastecimento
+      project: Projeto

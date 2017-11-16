@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114175233) do
+ActiveRecord::Schema.define(version: 20171116043825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(version: 20171114175233) do
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_partners_on_city_id"
     t.index ["email"], name: "index_partners_on_email", unique: true
+  end
+
+  create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "description", default: "", null: false
+    t.string "status", default: "", null: false
+    t.string "goals", default: "", null: false
+    t.float "value", null: false
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -183,6 +195,7 @@ ActiveRecord::Schema.define(version: 20171114175233) do
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
+  add_foreign_key "projects", "users"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"
   add_foreign_key "student_schedulings", "students"
