@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @appointments = @user.student_appointments.includes(:student).order(:date, :time)
+    @projects = @user.projects.order(created_at: :desc)
   end
 
   def new
