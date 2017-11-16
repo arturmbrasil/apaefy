@@ -1,0 +1,25 @@
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Conta a pagar: <%= @account_pay.name %></h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Contas a pagar', account_pays_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      <%= @account_pay.name %>
+    </li>
+  </div>
+</ul>
+<section class="forms">
+  <div class="container-fluid">
+    <div class="bg-white has-shadow">
+      <%= render 'form', account_pay: @account_pay %>
+    </div>
+  </div>
+</section>

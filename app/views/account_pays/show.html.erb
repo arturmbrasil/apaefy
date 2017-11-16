@@ -1,0 +1,15 @@
+<section class="client">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-close">
+        <%= link_to 'Editar', edit_account_pay_path(@account_pay), class: 'btn btn-primary' %>
+      </div>
+      <div class="card-body text-center">
+        <div class="client-title">
+          <h1><%= @account_pay.name %></h1>
+          <p>Conta no valor de <td><%= number_to_currency(@account_pay.value, :separator => ",", :delimiter => ".", :unit => "R$") %>, com vencimento em <%= l @account_pay.date, format: "%d de %B de %Y" %></td></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

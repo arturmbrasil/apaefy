@@ -47,5 +47,17 @@
         Abastecimentos
       <% end %>
     </li>
+    <li>
+      <%= link_to account_receivables_path do %>
+          <%= icon('money') %>
+          Contas a Receber
+      <% end %>
+    </li>
+    <li>
+      <%= link_to account_pays_path do %>
+          <%= icon('suitcase') %>
+          Contas a Pagar
+      <% end %>
+    </li>
   </ul>
 </nav>
