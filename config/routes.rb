@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :supplies
   resources :student_appointments
+  resources :account_pays
+  resources :account_receivables
 
   namespace :api, constraints: { format: :json } do
     resources :states, only: [] do

@@ -16,6 +16,23 @@ ActiveRecord::Schema.define(version: 20171116050443) do
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
+  create_table "account_pays", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.integer "nr_nota"
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_receivables", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "date"
+    t.string "name"
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "state_id"
@@ -170,7 +187,7 @@ ActiveRecord::Schema.define(version: 20171116050443) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-16 17:44:54", null: false
+    t.datetime "admission_date", default: "2017-11-15 21:23:46", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
