@@ -118,7 +118,9 @@ pt-BR:
         status: Status
         goals: Metas
         value: Valor
+        user: Funcionário
         user_id: Funcionário
+        created_at: Criado em
       product:
         name: Nome
         description: Descrição

@@ -5,6 +5,11 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.includes(:user).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Project.to_csv }
+    end
   end
 
   # GET /projects/1

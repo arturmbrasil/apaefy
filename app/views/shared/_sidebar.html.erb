@@ -60,8 +60,8 @@
       <% end %>
     </li>
     <li>
-      <a href="#reports" aria-expanded="true" data-toggle="collapse" class=""> <%= icon('database') %> Relatórios </a>
-      <ul id="reports" class="list-unstyled collapse show" aria-expanded="true" style="">
+      <a href="#reports" aria-expanded="false" data-toggle="collapse" class=""> <%= icon('database') %> Relatórios </a>
+      <ul id="reports" class="list-unstyled collapse" aria-expanded="true" style="">
         <li>
           <%= link_to 'Alunos', students_path(format: :csv) %>
         </li>
@@ -76,6 +76,9 @@
         </li>
         <li>
           <%= link_to 'Doações', partner_donations_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Projetos', projects_path(format: :csv) %>
         </li>
       </ul>
     </li>
