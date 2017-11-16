@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: account_receivable, local: true) do |f| %>
+        <%= errors_for(account_receivable) %>
+
+        <div class="form-group">
+          <%= f.label :name, class: 'form-control-label' %>
+          <%= f.text_field :name, class: 'form-control', required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :date, class: 'form-control-label' %>
+          <%= f.date_field :date, class: 'form-control', required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :value, class: 'form-control-label' %>
+          <%= f.text_field :value, class: 'form-control', required: true %>
+        </div>
+
+        <!--<div class="form-group">-->
+          <!--<%= f.label :partner_donations_id, 'Doaçao', class: 'form-control-label' %>-->
+          <!--<%= f.collection_select(:partner_donations_id, PartnerDonation.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>-->
+        <!--</div>-->
+
+        <div class="form-group">
+          <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
