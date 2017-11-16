@@ -11,6 +11,7 @@ pt-BR:
         role: Função
         birthday: Data de nascimento
         phone_numbers: Telefone
+        state: Estado
         city: Cidade
         city_id: Cidade
         address_street: Logradouro
@@ -63,6 +64,7 @@ pt-BR:
         address_number: Número
         address_zip_code: CEP
         address_neighborhood: Bairro
+        created_at: Criado em
       student/gender:
         male: Masculino
         female: Feminino
@@ -73,9 +75,11 @@ pt-BR:
         document_renavam: Renavam
         chassis: Chassi
         driver: Motorista
+        route: Rota
         students: Alunos
         starting_address: Endereço da partida
         destination_address: Endereço do destino
+        created_at: Criado em
       medicine:
         name: Nome
         dosage: Dosagem
@@ -93,18 +97,37 @@ pt-BR:
         address_neighborhood: Bairro
       partner_donation:
         value: Valor
+        partner: Doador
         payment_type: Tipo de pagamento
+        created_at: Criado em
       student_appointment:
+        student: Aluno
         date: Data
         time: Horário
         obs: Observação
         user: Funcionário
+        created_at: Criado em
       supply:
         fuel: Combustível
         fleet: Frota
-        liters: Litros 
+        liters: Litros
         value: Valor
         supply_date: Data do Abastecimento
+        created_at: Criado em
+      project:
+        title: Título
+        description: Descrição
+        status: Status
+        goals: Metas
+        value: Valor
+        user: Funcionário
+        user_id: Funcionário
+        created_at: Criado em
+      product:
+        name: Nome
+        description: Descrição
+        stock: Estoque
+        value: Valor
     models:
       user: Funcionário
       fleet: Frota
@@ -114,3 +137,5 @@ pt-BR:
       state: Estado
       partner: Parceiro
       supply: Abastecimento
+      project: Projeto
+      product: Produto

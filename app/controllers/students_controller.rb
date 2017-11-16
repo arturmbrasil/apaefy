@@ -1,10 +1,23 @@
+# frozen_string_literal: true
+
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: %i[show edit update destroy]
 
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    (@filterrific = initialize_filterrific(
+      Student,
+      params[:filterrific],
+      select_options: { sorted_by: Student.options_for_sorted_by }
+    )) || return
+
+    @students = @filterrific.find.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Student.to_csv }
+    end
   end
 
   # GET /students/1
@@ -64,13 +77,14 @@ class StudentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @student = Student.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def student_params
-      params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_student
+    @student = Student.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def student_params
+    params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
 end

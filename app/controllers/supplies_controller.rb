@@ -4,8 +4,12 @@ class SuppliesController < ApplicationController
   # GET /supplies
   # GET /supplies.json
   def index
-    @supplies = Supply.includes(:fleet)
-    @supplies = Supply.all
+    @supplies = Supply.order(:created_at).includes(:fleet).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Supply.to_csv }
+    end
   end
 
   # GET /supplies/1
@@ -66,18 +70,17 @@ class SuppliesController < ApplicationController
   end
 
   private
-    def options_for_select
-      @supplies = Supply.includes(:fleet)
-      @fleet_options_for_select = Fleet.all
-    end
+  def options_for_select
+    @fleet_options_for_select = Fleet.all
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_supply
-      @supply = Supply.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_supply
+    @supply = Supply.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def supply_params
-      params.require(:supply).permit(:fuel, :fleet_id, :liters, :value, :supply_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def supply_params
+    params.require(:supply).permit(:fuel, :fleet_id, :liters, :value, :supply_date)
+  end
 end

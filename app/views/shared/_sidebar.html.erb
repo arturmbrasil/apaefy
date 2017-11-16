@@ -12,10 +12,10 @@
   <span class="heading">Main</span>
   <ul class="list-unstyled">
     <li>
-      <a href="./">
+      <%= link_to root_path do %>
         <%= icon('home') %>
         Home
-      </a>
+      <% end %>
     </li>
     <li>
       <%= link_to users_path do %>
@@ -24,9 +24,21 @@
       <% end %>
     </li>
     <li>
+      <%= link_to projects_path do %>
+        <%= icon('file') %>
+        Projetos
+      <% end %>
+    </li>
+    <li>
       <%= link_to students_path do %>
         <%= icon('graduation-cap ') %>
         Alunos
+      <% end %>
+    </li>
+    <li>
+      <%= link_to products_path do %>
+        <%= icon('shopping-basket') %>
+        Produtos
       <% end %>
     </li>
     <li>
@@ -41,7 +53,7 @@
         Parceiros
       <% end %>
     </li>
-        <li>
+    <li>
       <%= link_to supplies_path do %>
         <%= icon('thermometer-half') %>
         Abastecimentos
@@ -58,6 +70,35 @@
           <%= icon('suitcase') %>
           Contas a Pagar
       <% end %>
+    </li>
+    <li>
+      <a href="#reports" aria-expanded="false" data-toggle="collapse" class=""> <%= icon('database') %> Relatórios </a>
+      <ul id="reports" class="list-unstyled collapse" aria-expanded="true" style="">
+        <li>
+          <%= link_to 'Alunos', students_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Agendamentos', student_appointments_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Funcionários', users_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Frotas', fleets_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Abastecimentos', supplies_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Doações', partner_donations_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Projetos', projects_path(format: :csv) %>
+        </li>
+        <li>
+          <%= link_to 'Contas a pagar', account_pays_path(format: :csv) %>
+        </li>
+      </ul>
     </li>
   </ul>
 </nav>

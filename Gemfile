@@ -10,6 +10,10 @@ gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
 gem "rails-i18n", "~> 5.0.0"
 gem "cpf_cnpj"
+gem "kaminari"
+gem "filterrific"
+gem "chartkick"
+gem "groupdate"
 
 # Authentication
 gem "devise"

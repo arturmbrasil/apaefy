@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116015406) do
+ActiveRecord::Schema.define(version: 20171116050443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20171116015406) do
     t.date "date"
     t.string "name"
     t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", null: false
+    t.date "release_date", null: false
+    t.integer "quantity", null: false
+    t.string "isbn", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -92,6 +101,27 @@ ActiveRecord::Schema.define(version: 20171116015406) do
     t.index ["email"], name: "index_partners_on_email", unique: true
   end
 
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "description", default: "", null: false
+    t.float "value", null: false
+    t.string "stock", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "description", default: "", null: false
+    t.string "status", default: "", null: false
+    t.string "goals", default: "", null: false
+    t.float "value", null: false
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
   create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "acronym"
@@ -109,6 +139,15 @@ ActiveRecord::Schema.define(version: 20171116015406) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_appointments_on_student_id"
     t.index ["user_id"], name: "index_student_appointments_on_user_id"
+  end
+
+  create_table "student_schedulings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.date "date", default: "2017-11-13", null: false
+    t.time "schedule", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_schedulings_on_student_id"
   end
 
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -166,7 +205,7 @@ ActiveRecord::Schema.define(version: 20171116015406) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-15 21:23:46", null: false
+    t.datetime "admission_date", default: "2017-11-13 04:13:46", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -182,8 +221,10 @@ ActiveRecord::Schema.define(version: 20171116015406) do
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
+  add_foreign_key "projects", "users"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"
+  add_foreign_key "student_schedulings", "students"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
   add_foreign_key "supplies", "fleets"

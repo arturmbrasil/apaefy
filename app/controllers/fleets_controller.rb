@@ -4,7 +4,12 @@ class FleetsController < ApplicationController
   # GET /fleets
   # GET /fleets.json
   def index
-    @fleets = Fleet.includes(:driver).all
+    @fleets = Fleet.order(:name).includes(:driver).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Fleet.to_csv }
+    end
   end
 
   # GET /fleets/1
