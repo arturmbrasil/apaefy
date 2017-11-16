@@ -1,0 +1,52 @@
+<header class='page-header'>
+  <div class='container-fluid clearfix'>
+    <%= link_to 'Conta a Receber', new_account_receivable_path, class: 'btn btn-primary float-right' %>
+    <h2 class='no-margin-bottom'>Conta a receber</h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item active'>Conta a receber</li>
+  </div>
+</ul>
+<section class="tables">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-block">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @account_receivables.each do |account_receivable| %>
+              <tr>
+                <td><%= account_receivable.name %></td>
+                <td><%= account_receivable.date %></td>
+                <td><%= account_receivable.value %></td>
+                <td>
+                  <%= link_to account_receivable_path(account_receivable), class: 'btn btn-sm' do %>
+                      <%= icon('eye') %>
+                  <% end %>
+                  <%= link_to edit_account_receivable_path(account_receivable), class: 'btn btn-sm' do %>
+                      <%= icon('pencil-square-o') %>
+                  <% end %>
+                  <%= link_to account_receivable_path(account_receivable), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+                      <%= icon('trash') %>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
