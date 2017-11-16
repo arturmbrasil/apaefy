@@ -5,6 +5,11 @@ class SuppliesController < ApplicationController
   # GET /supplies.json
   def index
     @supplies = Supply.order(:created_at).includes(:fleet).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Supply.to_csv }
+    end
   end
 
   # GET /supplies/1

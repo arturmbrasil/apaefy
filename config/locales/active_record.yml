@@ -64,7 +64,7 @@ pt-BR:
         address_number: Número
         address_zip_code: CEP
         address_neighborhood: Bairro
-        created_at: Data de cadastro
+        created_at: Criado em
       student/gender:
         male: Masculino
         female: Feminino
@@ -107,6 +107,7 @@ pt-BR:
         liters: Litros
         value: Valor
         supply_date: Data do Abastecimento
+        created_at: Criado em
       project:
         title: Título
         description: Descrição
