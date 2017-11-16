@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115163414) do
+ActiveRecord::Schema.define(version: 20171116050443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,11 +208,7 @@ ActiveRecord::Schema.define(version: 20171115163414) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-<<<<<<< HEAD
     t.datetime "admission_date", default: "2017-11-14 20:52:21", null: false
-=======
-    t.datetime "admission_date", default: "2017-11-15 21:23:46", null: false
->>>>>>> 5259da2354fefa8df1a84f9f968e17519477c468
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false

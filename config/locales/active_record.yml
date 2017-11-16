@@ -147,6 +147,8 @@ pt-BR:
       student_responsible/gender:
         male: Masculino
         female: Feminino
+      dietary_restriction:
+        restriction: Restrição
     models:
       user: Funcionário
       fleet: Frota

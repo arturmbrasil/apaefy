@@ -69,15 +69,10 @@ class SuppliesController < ApplicationController
   end
 
   private
-<<<<<<< HEAD
     def options_for_select
       @fleet_options_for_select = Fleet.all
     end
-=======
-  def options_for_select
-    @fleet_options_for_select = Fleet.all
-  end
->>>>>>> 5259da2354fefa8df1a84f9f968e17519477c468
+
 
   # Use callbacks to share common setup or constraints between actions.
   def set_supply

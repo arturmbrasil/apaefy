@@ -29,7 +29,7 @@
           <% @account_receivables.each do |account_receivable| %>
               <tr>
                 <td><%= account_receivable.name %></td>
-                <td><%= account_receivable.date %></td>
+                <td><%= l account_receivable.date %></td>
                 <td><%= account_receivable.value %></td>
                 <td>
                   <%= link_to account_receivable_path(account_receivable), class: 'btn btn-sm' do %>
