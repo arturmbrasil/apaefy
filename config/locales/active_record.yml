@@ -101,10 +101,12 @@ pt-BR:
         payment_type: Tipo de pagamento
         created_at: Criado em
       student_appointment:
+        student: Aluno
         date: Data
         time: Horário
         obs: Observação
         user: Funcionário
+        created_at: Criado em
       supply:
         fuel: Combustível
         fleet: Frota

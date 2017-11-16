@@ -1,6 +1,12 @@
 class StudentAppointmentsController < ApplicationController
   before_action :set_student_appointment, only: [:destroy]
 
+  def index
+    respond_to do |format|
+      format.csv { send_data StudentAppointment.to_csv }
+    end
+  end
+
   def create
     @student_appointment = StudentAppointment.new(student_appointment_params)
 
