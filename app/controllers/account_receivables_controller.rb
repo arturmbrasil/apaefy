@@ -4,7 +4,12 @@ class AccountReceivablesController < ApplicationController
   # GET /account_receivables
   # GET /account_receivables.json
   def index
-    @account_receivables = AccountReceivable.all
+    @account_receivables = AccountReceivable.order(:created_at).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data AccountReceivable.to_csv}
+    end
   end
 
   # GET /account_receivables/1

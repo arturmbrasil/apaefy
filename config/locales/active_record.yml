@@ -128,6 +128,14 @@ pt-BR:
         description: Descrição
         stock: Estoque
         value: Valor
+      account_receivable:
+        name: Nome
+        date: Data
+        value: Valor
+      account_pay:
+        name: Nome
+        date: Data
+        value: Valor
     models:
       user: Funcionário
       fleet: Frota

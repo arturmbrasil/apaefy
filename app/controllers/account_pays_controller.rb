@@ -4,7 +4,12 @@ class AccountPaysController < ApplicationController
   # GET /account_pays
   # GET /account_pays.json
   def index
-    @account_pays = AccountPay.all
+    @account_pay = AccountPay.order(:created_at).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data AccountPay.to_csv}
+    end
   end
 
   # GET /account_pays/1
