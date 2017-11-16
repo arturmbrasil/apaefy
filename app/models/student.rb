@@ -2,6 +2,8 @@ class Student < ApplicationRecord
   enum gender: { male: 'M', female: 'F' }
 
   has_many :medicines, dependent: :destroy
+  has_many :dietary_restrictions, dependent: :destroy
+  has_many :student_responsibles, dependent: :destroy
   has_many :appointments, class_name: 'StudentAppointment', dependent: :destroy
   belongs_to :city, optional: true
   belongs_to :fleet, optional: true

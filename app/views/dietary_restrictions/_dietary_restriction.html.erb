@@ -1,0 +1,9 @@
+<tr>
+  <td><%= dietary_restriction.restriction %></td>
+  <td><%= l dietary_restriction.created_at, format: :long %></td>
+  <td>
+    <%= link_to dietary_restriction_path(dietary_restriction), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+      <%= icon('trash') %> Excluir
+    <% end %>
+  </td>
+</tr>

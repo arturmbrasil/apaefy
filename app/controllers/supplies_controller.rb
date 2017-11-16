@@ -4,8 +4,7 @@ class SuppliesController < ApplicationController
   # GET /supplies
   # GET /supplies.json
   def index
-    @supplies = Supply.includes(:fleet)
-    @supplies = Supply.all
+    @supplies = Supply.includes(:fleet).all
   end
 
   # GET /supplies/1
@@ -28,7 +27,6 @@ class SuppliesController < ApplicationController
   # POST /supplies.json
   def create
     @supply = Supply.new(supply_params)
-    options_for_select
 
     respond_to do |format|
       if @supply.save
@@ -67,7 +65,6 @@ class SuppliesController < ApplicationController
 
   private
     def options_for_select
-      @supplies = Supply.includes(:fleet)
       @fleet_options_for_select = Fleet.all
     end
 

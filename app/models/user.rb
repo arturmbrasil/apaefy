@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   enum gender: { male: 'M', female: 'F' }
-  enum role: { finance: 'FIN', director: 'DIR', teacher: 'TEA', technician: 'TEC', doctor: 'DOC', driver: 'DRI' }
+  enum role: { finance: 'FIN', director: 'DIR', teacher: 'TEA', technician: 'TEC', doctor: 'DOC', driver: 'DRI', voluteer: 'VOL', collaborator: 'COL' }
 
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 

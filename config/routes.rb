@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :student_responsibles
   resources :supplies
   resources :student_appointments
   root 'dashboard#index'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :medicines, only: [:create, :destroy]
+  resources :dietary_restrictions, only: [:create, :destroy]
   resources :fleets
   resources :students
   resources :partner_donations, only: [:create, :destroy]

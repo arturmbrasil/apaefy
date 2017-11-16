@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114175233) do
+ActiveRecord::Schema.define(version: 20171115163414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20171114175233) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "dietary_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "restriction", default: "", null: false
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_dietary_restrictions_on_student_id"
   end
 
   create_table "fleets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -94,6 +102,19 @@ ActiveRecord::Schema.define(version: 20171114175233) do
     t.index ["user_id"], name: "index_student_appointments_on_user_id"
   end
 
+  create_table "student_responsibles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.date "birth_date", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "responsible_rg", null: false
+    t.string "responsible_cpf", null: false
+    t.string "gender", null: false
+    t.uuid "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_responsibles_on_student_id"
+  end
+
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "active", default: true, null: false
     t.string "name", null: false
@@ -149,7 +170,7 @@ ActiveRecord::Schema.define(version: 20171114175233) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-14 17:19:57", null: false
+    t.datetime "admission_date", default: "2017-11-14 20:52:21", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -161,12 +182,14 @@ ActiveRecord::Schema.define(version: 20171114175233) do
   end
 
   add_foreign_key "cities", "states"
+  add_foreign_key "dietary_restrictions", "students"
   add_foreign_key "fleets", "users", column: "driver_id"
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"
+  add_foreign_key "student_responsibles", "students"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
   add_foreign_key "supplies", "fleets"
