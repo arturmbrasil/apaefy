@@ -2,7 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.order(:name).page params[:page]
+    (@filterrific = initialize_filterrific(
+      User,
+      params[:filterrific],
+      select_options: { sorted_by: User.options_for_sorted_by, sorted_by_role: User.options_for_sorted_by_role }
+    )) || return
+
+    @users = @filterrific.find.page params[:page]
   end
 
   def show
