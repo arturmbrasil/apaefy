@@ -11,6 +11,7 @@ gem "puma", "~> 3.7"
 gem "rails-i18n", "~> 5.0.0"
 gem "cpf_cnpj"
 gem "kaminari"
+gem "filterrific"
 
 # Authentication
 gem "devise"
