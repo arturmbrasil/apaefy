@@ -1,7 +1,7 @@
 <header class='page-header'>
   <div class='container-fluid clearfix'>
-    <%= link_to 'Cadastrar Projeto', new_project_path, class: 'btn btn-primary float-right' %>
-    <h2 class='no-margin-bottom'>Projetos</h2>
+    <%= link_to 'Cadastrar Produto', new_product_path, class: 'btn btn-primary float-right' %>
+    <h2 class='no-margin-bottom'>Produtos</h2>
   </div>
 </header>
 <ul class='breadcrumb'>
@@ -9,7 +9,7 @@
     <li class='breadcrumb-item'>
       <%= link_to 'Início', root_path %>
     </li>
-    <li class='breadcrumb-item active'>Projetos</li>
+    <li class='breadcrumb-item active'>Produtos</li>
   </div>
 </ul>
 <section class="tables">
@@ -19,25 +19,25 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>Título</th>
-              <th>Funcionário</th>
+              <th>Nome</th>
               <th>Valor</th>
+              <th>Estoque</th>
               <th>Data de cadastro</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <% @projects.each do |project| %>
+            <% @products.each do |product| %>
               <tr>
-                <td><%= project.title %></td>
-                <td><%= project.user.name %></td>
-                <td><%= number_to_currency project.value %></td>
-                <td><%= l project.created_at, format: '%d/%m/%Y' %></td>
+                <td><%= product.name %></td>
+                <td><%= number_to_currency product.value %></td>
+                <td><%= product.stock %></td>
+                <td><%= l product.created_at, format: '%d/%m/%Y' %></td>
                 <td>
-                  <%= link_to edit_project_path(project), class: 'btn btn-sm' do %>
+                  <%= link_to edit_product_path(product), class: 'btn btn-sm' do %>
                     <%= icon('pencil-square-o') %>
                   <% end %>
-                  <%= link_to project, method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+                  <%= link_to product, method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
                     <%= icon('trash') %>
                   <% end %>
                 </td>
@@ -47,6 +47,6 @@
         </table>
       </div>
     </div>
-    <%= paginate @projects %>
+    <%= paginate @products %>
   </div>
 </section>

@@ -1,6 +1,6 @@
 <header class="page-header">
   <div class="container-fluid">
-    <h2 class="no-margin-bottom">Projeto: <%= @project.title %></h2>
+    <h2 class="no-margin-bottom">Novo Produto</h2>
   </div>
 </header>
 <ul class='breadcrumb'>
@@ -9,17 +9,17 @@
       <%= link_to 'Início', root_path %>
     </li>
     <li class='breadcrumb-item'>
-      <%= link_to 'Projetos', projects_path %>
+      <%= link_to 'Produtos', products_path %>
     </li>
     <li class='breadcrumb-item active'>
-      <%= @project.title %>
+      Novo
     </li>
   </div>
 </ul>
 <section class="forms">
   <div class="container-fluid">
     <div class="bg-white has-shadow">
-      <%= render 'form', project: @project %>
+      <%= render 'form', product: @product %>
     </div>
   </div>
 </section>

@@ -112,6 +112,11 @@ pt-BR:
         goals: Metas
         value: Valor
         user_id: Funcionário
+      product:
+        name: Nome
+        description: Descrição
+        stock: Estoque
+        value: Valor
     models:
       user: Funcionário
       fleet: Frota
@@ -122,3 +127,4 @@ pt-BR:
       partner: Parceiro
       supply: Abastecimento
       project: Projeto
+      product: Produto
