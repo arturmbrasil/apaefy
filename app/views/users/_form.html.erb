@@ -2,6 +2,10 @@
   <div class="card-body">
     <%= form_with(model: user, local: true) do |f| %>
       <%= errors_for(user) %>
+
+      <div class="card-header d-flex align-items-center">
+        <h3 class="h4">Dados do Funcionário</h3>
+      </div><br>
       <div class="form-group">
         <%= f.label :name, class: 'form-control-label' %>
         <%= f.text_field :name, class: 'form-control', required: true %>
@@ -46,6 +50,11 @@
         <%= f.label :admission_date, class: 'form-control-label' %>
         <%= f.date_field :admission_date, class: 'form-control', required: true %>
       </div>
+
+      <div class="line"></div>
+      <div class="card-header d-flex align-items-center">
+        <h3 class="h4">Endereço</h3>
+      </div><br>
       <div class="form-group">
         <%= f.label :state_id, 'Estado', class: 'form-control-label' %>
         <%= f.collection_select(:state_id, State.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>
@@ -70,6 +79,11 @@
         <%= f.label :address_zip_code, class: 'form-control-label' %>
         <%= f.text_field :address_zip_code, class: 'form-control js-address-zip-code' %>
       </div>
+
+      <div class="line"></div>
+      <div class="card-header d-flex align-items-center">
+        <h3 class="h4">Login</h3>
+      </div><br>
       <div class="form-group">
         <%= f.label :email, class: 'form-control-label' %>
         <%= f.email_field :email, class: 'form-control', required: true %>
@@ -82,7 +96,7 @@
       <% end %>
 
       <div class="form-group">
-        <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+        <%= f.submit 'Salvar', class: 'btn btn-primary' %>
       </div>
     <% end %>
   </div>

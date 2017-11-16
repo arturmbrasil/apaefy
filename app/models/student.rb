@@ -6,6 +6,8 @@ class Student < ApplicationRecord
   enum gender: { male: 'M', female: 'F' }
 
   has_many :medicines, dependent: :destroy
+  has_many :dietary_restrictions, dependent: :destroy
+  has_many :student_responsibles, dependent: :destroy
   has_many :appointments, class_name: 'StudentAppointment', dependent: :destroy
   belongs_to :city, optional: true
   belongs_to :fleet, optional: true
@@ -46,7 +48,7 @@ class Student < ApplicationRecord
   }
 
   scope :sorted_by, lambda { |sort_option|
-    direction = sort_option.match?(/desc$/) ? 'desc' : 'asc'
+    direction = sort_option.match(/desc$/) ? 'desc' : 'asc'
     case sort_option.to_s
     when /^created_at_/
       order("students.created_at #{direction}")

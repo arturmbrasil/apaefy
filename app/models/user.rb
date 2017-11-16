@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   enum gender: { male: 'M', female: 'F' }
-  enum role: { finance: 'FIN', director: 'DIR', teacher: 'TEA', technician: 'TEC', doctor: 'DOC', driver: 'DRI' }
+  enum role: { finance: 'FIN', director: 'DIR', teacher: 'TEA', technician: 'TEC', doctor: 'DOC', driver: 'DRI', voluteer: 'VOL', collaborator: 'COL' }
 
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
@@ -51,7 +51,7 @@ class User < ApplicationRecord
   }
 
   scope :sorted_by, lambda { |sort_option|
-    direction = sort_option.match?(/desc$/) ? 'desc' : 'asc'
+    direction = sort_option.match(/desc$/) ? 'desc' : 'asc'
     case sort_option.to_s
     when /^created_at_/
       order("users.created_at #{direction}")

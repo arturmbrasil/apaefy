@@ -26,7 +26,7 @@ pt-BR:
         current_password: Senha atual
         current_sign_in_at: Atualmente logado em
         current_sign_in_ip: IP do acesso atual
-        email: Email
+        email: E-mail
         encrypted_password: Senha criptografada
         failed_attempts: Tentativas sem sucesso
         last_sign_in_at: "Último acesso em"
@@ -95,6 +95,7 @@ pt-BR:
         address_number: Número
         address_zip_code: CEP
         address_neighborhood: Bairro
+        email: E-mail
       partner_donation:
         value: Valor
         partner: Doador
@@ -136,6 +137,18 @@ pt-BR:
         name: Nome
         date: Data
         value: Valor
+      student_responsible:
+        name: Nome
+        birth_date: Data de nascimento
+        phone_number: Telefone
+        responsible_rg: RG
+        responsible_cpf: CPF
+        gender: Sexo
+      student_responsible/gender:
+        male: Masculino
+        female: Feminino
+      dietary_restriction:
+        restriction: Restrição
     models:
       user: Funcionário
       fleet: Frota
@@ -145,5 +158,7 @@ pt-BR:
       state: Estado
       partner: Parceiro
       supply: Abastecimento
+      student_responsible: Responsável
+      dietary_restriction: Restrição Alimentar
       project: Projeto
       product: Produto

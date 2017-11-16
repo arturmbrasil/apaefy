@@ -18,11 +18,6 @@
           <%= f.text_field :value, class: 'form-control', required: true %>
         </div>
 
-        <!--<div class="form-group">-->
-          <!--<%= f.label :partner_donations_id, 'Doaçao', class: 'form-control-label' %>-->
-          <!--<%= f.collection_select(:partner_donations_id, PartnerDonation.all, :id, :acronym, { prompt: true }, { class: 'form-control js-state-select' }) %>-->
-        <!--</div>-->
-
         <div class="form-group">
           <%= f.submit 'Enviar', class: 'btn btn-primary' %>
         </div>

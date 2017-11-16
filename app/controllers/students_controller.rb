@@ -43,7 +43,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to students_url, notice: 'Aluno cadastrado com sucesso.' }
+        format.html { redirect_to @student, notice: 'Aluno cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to students_url, notice: 'Aluno atualizado com sucesso.' }
+        format.html { redirect_to @student, notice: 'Aluno atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit }

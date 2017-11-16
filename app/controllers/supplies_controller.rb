@@ -32,7 +32,6 @@ class SuppliesController < ApplicationController
   # POST /supplies.json
   def create
     @supply = Supply.new(supply_params)
-    options_for_select
 
     respond_to do |format|
       if @supply.save
@@ -70,9 +69,10 @@ class SuppliesController < ApplicationController
   end
 
   private
-  def options_for_select
-    @fleet_options_for_select = Fleet.all
-  end
+    def options_for_select
+      @fleet_options_for_select = Fleet.all
+    end
+
 
   # Use callbacks to share common setup or constraints between actions.
   def set_supply
