@@ -16,6 +16,15 @@ ActiveRecord::Schema.define(version: 20171114175233) do
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
+  create_table "books", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", null: false
+    t.date "release_date", null: false
+    t.integer "quantity", null: false
+    t.string "isbn", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "state_id"
@@ -94,6 +103,15 @@ ActiveRecord::Schema.define(version: 20171114175233) do
     t.index ["user_id"], name: "index_student_appointments_on_user_id"
   end
 
+  create_table "student_schedulings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.date "date", default: "2017-11-13", null: false
+    t.time "schedule", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_schedulings_on_student_id"
+  end
+
   create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "active", default: true, null: false
     t.string "name", null: false
@@ -149,7 +167,7 @@ ActiveRecord::Schema.define(version: 20171114175233) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-14 17:19:57", null: false
+    t.datetime "admission_date", default: "2017-11-13 04:13:46", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -167,6 +185,7 @@ ActiveRecord::Schema.define(version: 20171114175233) do
   add_foreign_key "partners", "cities"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"
+  add_foreign_key "student_schedulings", "students"
   add_foreign_key "students", "cities"
   add_foreign_key "students", "fleets"
   add_foreign_key "supplies", "fleets"
