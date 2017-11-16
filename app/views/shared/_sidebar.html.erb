@@ -59,5 +59,16 @@
         Abastecimentos
       <% end %>
     </li>
+    <li>
+      <a href="#reports" aria-expanded="true" data-toggle="collapse" class=""> <%= icon('database') %> Relatórios </a>
+      <ul id="reports" class="list-unstyled collapse show" aria-expanded="true" style="">
+        <li>
+          <%= link_to 'Alunos', students_path(format: :csv) %>
+        </li>
+        <li><a href="#">Page</a></li>
+        <li><a href="#">Page</a></li>
+        <li><a href="#">Page</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>

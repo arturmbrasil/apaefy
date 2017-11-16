@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 class Student < ApplicationRecord
   enum gender: { male: 'M', female: 'F' }
 
@@ -61,6 +63,26 @@ class Student < ApplicationRecord
       ['Data de cadastro (novos)', 'created_at_desc'],
       ['Data de cadastro (antigos)', 'created_at_asc']
     ]
+  end
+
+  def self.to_csv(options = {})
+    @students = Student.all
+    desired_columns = ['id', 'name', 'gender', 'birthday', 'document_cpf', 'document_rg', 'phone_numbers', 'created_at']
+    CSV.generate(options) do |csv|
+      csv << desired_columns.map { |column| self.human_attribute_name column }
+      @students.find_each do |student|
+        row = desired_columns.map do |col|
+          value = student.attributes.values_at(col)
+          if col == 'gender'
+            [self.human_attribute_name("gender.#{value.first}")]
+          else
+            value
+          end
+        end
+
+        csv << row.flatten
+      end
+    end
   end
 
   def full_address

@@ -13,6 +13,11 @@ class StudentsController < ApplicationController
     )) || return
 
     @students = @filterrific.find.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Student.to_csv }
+    end
   end
 
   # GET /students/1

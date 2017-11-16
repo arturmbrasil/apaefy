@@ -63,6 +63,7 @@ pt-BR:
         address_number: Número
         address_zip_code: CEP
         address_neighborhood: Bairro
+        created_at: Data de cadastro
       student/gender:
         male: Masculino
         female: Feminino
