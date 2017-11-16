@@ -75,9 +75,11 @@ pt-BR:
         document_renavam: Renavam
         chassis: Chassi
         driver: Motorista
+        route: Rota
         students: Alunos
         starting_address: Endereço da partida
         destination_address: Endereço do destino
+        created_at: Criado em
       medicine:
         name: Nome
         dosage: Dosagem
