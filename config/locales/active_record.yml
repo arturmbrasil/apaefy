@@ -95,7 +95,9 @@ pt-BR:
         address_neighborhood: Bairro
       partner_donation:
         value: Valor
+        partner: Doador
         payment_type: Tipo de pagamento
+        created_at: Criado em
       student_appointment:
         date: Data
         time: Horário
