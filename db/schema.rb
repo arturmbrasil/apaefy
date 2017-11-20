@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171116050443) do
     t.date "date"
     t.string "name"
     t.decimal "value"
+    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +43,7 @@ ActiveRecord::Schema.define(version: 20171116050443) do
   end
 
   create_table "dietary_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "restriction", default: "", null: false
+    t.string "restriction", null: false
     t.uuid "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -208,7 +209,7 @@ ActiveRecord::Schema.define(version: 20171116050443) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-14 20:52:21", null: false
+    t.datetime "admission_date", default: "2017-11-19 22:35:01", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
