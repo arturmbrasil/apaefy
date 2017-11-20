@@ -29,7 +29,21 @@ class AccountPaysController < ApplicationController
   # POST /account_pays
   # POST /account_pays.json
   def create
-    @account_pay = AccountPay.new(account_pay_params)
+    numeroParcelas =  account_pay_params[:num_parcela]
+    valorParcela = account_pay_params[:value].to_s.to_f / numeroParcelas.to_s.to_i
+    dataDeVencimento = account_pay_params[:date];
+    if numeroParcelas.to_s.to_i > 1
+      (1..numeroParcelas.to_s.to_i).each {|i|
+        @account_pay = AccountPay.new(account_pay_params)
+        @account_pay.num_parcela = i.to_s + "/" + numeroParcelas
+        @account_pay.value = valorParcela.to_s.to_f.round(2)
+        @account_pay.date = dataDeVencimento.to_s.to_date + 30;
+        dataDeVencimento = @account_pay.date
+        @account_pay.save
+      }
+    else
+      @account_pay = AccountPay.new(account_pay_params)
+    end
 
     respond_to do |format|
       if @account_pay.save
@@ -74,6 +88,6 @@ class AccountPaysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_pay_params
-      params.require(:account_pay).permit(:name, :date, :nr_nota, :value)
+      params.require(:account_pay).permit(:name, :date, :nr_nota, :num_parcela, :value)
     end
 end

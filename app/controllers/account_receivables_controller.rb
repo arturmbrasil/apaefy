@@ -33,14 +33,14 @@ class AccountReceivablesController < ApplicationController
     valorParcela = account_receivable_params[:value].to_s.to_f / numeroParcelas.to_s.to_i
     dataDeVencimento = account_receivable_params[:date];
     if numeroParcelas.to_s.to_i > 1
-      for i in(1..numeroParcelas.to_s.to_i) do
+      (1..numeroParcelas.to_s.to_i).each {|i|
         @account_receivable = AccountReceivable.new(account_receivable_params)
         @account_receivable.num_parcela = i.to_s + "/" + numeroParcelas
         @account_receivable.value = valorParcela.to_s.to_f.round(2)
         @account_receivable.date = dataDeVencimento.to_s.to_date + 30;
         dataDeVencimento = @account_receivable.date
         @account_receivable.save
-      end
+      }
     else
       @account_receivable = AccountReceivable.new(account_receivable_params)
     end
