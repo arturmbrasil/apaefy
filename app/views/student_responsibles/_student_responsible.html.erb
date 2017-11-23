@@ -4,7 +4,7 @@
   <td><%= student_responsible.phone_number %></td>
   <td><%= student_responsible.responsible_rg %></td>
   <td><%= student_responsible.responsible_cpf %></td>
-  <td><%= student_responsible.gender %></td>
+  <td><%= StudentResponsible.human_attribute_name("gender.#{student_responsible.gender}") %></td>
   <td>
     <%= link_to student_responsible_path(student_responsible), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
       <%= icon('trash') %> Excluir

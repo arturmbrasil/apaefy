@@ -9,6 +9,7 @@ class Student < ApplicationRecord
   has_many :dietary_restrictions, dependent: :destroy
   has_many :student_responsibles, dependent: :destroy
   has_many :appointments, class_name: 'StudentAppointment', dependent: :destroy
+  has_many :student_evolutions, dependent: :destroy
   belongs_to :city, optional: true
   belongs_to :fleet, optional: true
 
@@ -68,11 +69,10 @@ class Student < ApplicationRecord
   end
 
   def self.to_csv(options = {})
-    @students = Student.all
     desired_columns = ['id', 'name', 'gender', 'birthday', 'document_cpf', 'document_rg', 'phone_numbers', 'created_at']
     CSV.generate(options) do |csv|
       csv << desired_columns.map { |column| self.human_attribute_name column }
-      @students.find_each do |student|
+      self.find_each do |student|
         row = desired_columns.map do |col|
           value = student.attributes.values_at(col)
           if col == 'gender'

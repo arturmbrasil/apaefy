@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data Student.to_csv }
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 

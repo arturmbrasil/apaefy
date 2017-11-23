@@ -52,6 +52,8 @@ pt-BR:
         technician: Técnico
         doctor: Médico
         driver: Motorista
+        volunteer: Voluntário
+        collaborator: Colaborador
       student:
         name: Nome
         document_cpf: CPF
