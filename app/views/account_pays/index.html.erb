@@ -23,6 +23,7 @@
             <th>Data</th>
             <th>Numero Nota</th>
             <th>Valor</th>
+            <th>Número da Parcela</th>
             <th></th>
           </tr>
           </thead>
@@ -33,6 +34,7 @@
                 <td><%= l account_pay.date %></td>
                 <td><%= account_pay.nr_nota %></td>
                 <td><%= account_pay.value %></td>
+                <td><%= account_pay.num_parcela %></td>
                 <td>
                   <%= link_to account_pay_path(account_pay), class: 'btn btn-sm' do %>
                       <%= icon('eye') %>

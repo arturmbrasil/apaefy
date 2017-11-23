@@ -29,7 +29,21 @@ class AccountReceivablesController < ApplicationController
   # POST /account_receivables
   # POST /account_receivables.json
   def create
-    @account_receivable = AccountReceivable.new(account_receivable_params)
+    numeroParcelas =  account_receivable_params[:num_parcela]
+    valorParcela = account_receivable_params[:value].to_s.to_f / numeroParcelas.to_s.to_i
+    dataDeVencimento = account_receivable_params[:date];
+    if numeroParcelas.to_s.to_i > 1
+      (1..numeroParcelas.to_s.to_i).each {|i|
+        @account_receivable = AccountReceivable.new(account_receivable_params)
+        @account_receivable.num_parcela = i.to_s + "/" + numeroParcelas
+        @account_receivable.value = valorParcela.to_s.to_f.round(2)
+        @account_receivable.date = dataDeVencimento.to_s.to_date + 30;
+        dataDeVencimento = @account_receivable.date
+        @account_receivable.save
+      }
+    else
+      @account_receivable = AccountReceivable.new(account_receivable_params)
+    end
 
     respond_to do |format|
       if @account_receivable.save
@@ -74,6 +88,6 @@ class AccountReceivablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_receivable_params
-      params.require(:account_receivable).permit(:date, :name, :value, :partner_donations_id)
+      params.require(:account_receivable).permit(:date, :name, :value, :num_parcela, :partner_donations_id)
     end
 end

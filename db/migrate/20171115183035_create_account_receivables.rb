@@ -4,6 +4,7 @@ class CreateAccountReceivables < ActiveRecord::Migration[5.1]
       t.date :date
       t.string :name
       t.decimal :value
+      t.string :num_parcela
       # t.references :partner_donations, foreign_key: true, index: true, type: :uuid
 
       t.timestamps

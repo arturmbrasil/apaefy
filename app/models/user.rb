@@ -69,13 +69,13 @@ class User < ApplicationRecord
   def self.options_for_sorted_by
     [
       ['Nome (a-z)', 'name_asc'],
-      ['Data de cadastro (novos)', 'created_at_desc'],
-      ['Data de cadastro (antigos)', 'created_at_asc']
+      ['Mais novos', 'created_at_desc'],
+      ['Mais antigos', 'created_at_asc']
     ]
   end
 
   def self.to_csv(options = {})
-    @users = User.includes(city: [:state])
+    @users = self.includes(city: [:state])
 
     desired_columns = [
       'id',

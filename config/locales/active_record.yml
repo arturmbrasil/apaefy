@@ -133,12 +133,14 @@ pt-BR:
         value: Valor
       account_receivable:
         name: Nome
-        date: Data
+        date: Data de Vencimento
         value: Valor
+        num_parcela: Número da Parcela
       account_pay:
         name: Nome
-        date: Data
+        date: Data de Vencimento
         value: Valor
+        num_parcela: Número da Parcela
       student_responsible:
         name: Nome
         birth_date: Data de nascimento

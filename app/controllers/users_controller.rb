@@ -5,14 +5,17 @@ class UsersController < ApplicationController
     (@filterrific = initialize_filterrific(
       User,
       params[:filterrific],
-      select_options: { sorted_by: User.options_for_sorted_by, sorted_by_role: User.options_for_sorted_by_role }
+      select_options: {
+        sorted_by: User.options_for_sorted_by,
+        sorted_by_role: User.options_for_sorted_by_role
+      }
     )) || return
 
     @users = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv { send_data User.to_csv }
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 

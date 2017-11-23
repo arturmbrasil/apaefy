@@ -5,6 +5,7 @@ class CreateAccountPays < ActiveRecord::Migration[5.1]
       t.date :date
       t.integer :nr_nota
       t.decimal :value
+      t.string :num_parcela
 
       t.timestamps
     end
