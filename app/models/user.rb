@@ -74,7 +74,7 @@ class User < ApplicationRecord
     ]
   end
 
-  def self.to_csv(options = {})
+  def self.to_csv(options = { col_sep: ';', encoding: 'ISO-8859-1' })
     @users = self.includes(city: [:state])
 
     desired_columns = [
