@@ -131,6 +131,7 @@ pt-BR:
         description: Descrição
         stock: Estoque
         value: Valor
+        created_at: Criado em
       account_receivable:
         name: Nome
         date: Data de Vencimento

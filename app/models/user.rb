@@ -37,12 +37,13 @@ class User < ApplicationRecord
     terms = terms.map do |e|
       (e.tr('*', '%') + '%').gsub(/%+/, '%')
     end
-    num_or_conditions = 2
+    num_or_conditions = 3
     where(
       terms.map do
         or_clauses = [
           'LOWER(users.name) LIKE ?',
-          'users.document_cpf LIKE ?'
+          'users.document_cpf LIKE ?',
+          'users.email LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
