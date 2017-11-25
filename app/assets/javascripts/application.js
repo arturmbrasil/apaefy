@@ -17,8 +17,14 @@
 //= require jquery-mask
 //= require Chart.bundle
 //= require chartkick
+//= require select2
+//= require select2_locale_pt-BR
 
 $(function () {
+
+  $( ".dropdown" ).select2({
+    language: "pt-BR"
+  });
 
   // ------------------------------------------------------- //
   // Card Close

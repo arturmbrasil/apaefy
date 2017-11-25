@@ -1,37 +1,13 @@
 class StudentEvolutionsController < ApplicationController
   before_action :set_student_evolution, only: [:show, :edit, :update, :destroy]
 
-  # GET /student_evolutions
-  # GET /student_evolutions.json
-  def index
-    @student_evolutions = StudentEvolution.all
-  end
-
-  # GET /student_evolutions/1
-  # GET /student_evolutions/1.json
-  def show
-  end
-
-  # GET /student_evolutions/new
-  def new
-    @student_evolution = StudentEvolution.new
-  end
-
-  # GET /student_evolutions/1/edit
-  def edit
-  end
-
-  # POST /student_evolutions
-  # POST /student_evolutions.json
   def create
     @student_evolution = StudentEvolution.new(student_evolution_params)
 
     respond_to do |format|
       if @student_evolution.save
-        format.html { redirect_to @student_evolution, notice: 'Student evolution was successfully created.' }
-        format.json { render :show, status: :created, location: @student_evolution }
+        format.json { render json: @student_evolution, status: :created, location: @student_evolution }
       else
-        format.html { render :new }
         format.json { render json: @student_evolution.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +18,8 @@ class StudentEvolutionsController < ApplicationController
   def update
     respond_to do |format|
       if @student_evolution.update(student_evolution_params)
-        format.html { redirect_to @student_evolution, notice: 'Student evolution was successfully updated.' }
         format.json { render :show, status: :ok, location: @student_evolution }
       else
-        format.html { render :edit }
         format.json { render json: @student_evolution.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +30,7 @@ class StudentEvolutionsController < ApplicationController
   def destroy
     @student_evolution.destroy
     respond_to do |format|
-      format.html { redirect_to student_evolutions_url, notice: 'Student evolution was successfully destroyed.' }
+      format.html { redirect_to student_path(@student_evolution.student_id), notice: 'Evolução excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

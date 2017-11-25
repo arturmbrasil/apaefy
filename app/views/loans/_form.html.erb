@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: loan, local: true) do |f| %>
+      <%= errors_for(loan) %>
+
+      <div class="form-group">
+        <%= f.label :student_id, class: 'form-control-label' %>
+        <%= f.collection_select :student_id, Student.all, :id, :name, { prompt: true }, { class: 'form-control', required: false } %>
+
+      </div>
+
+      <div class="form-group">
+        <%= f.label :user_id, class: 'form-control-label' %>
+        <%= f.collection_select :user_id, User.all, :id, :name, { prompt: true }, { class: 'form-control', required: false } %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :loan_date, class: 'form-control-label' %>
+        <%= f.date_field :loan_date, id: :loan_loan_date, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :return_date, class: 'form-control-label' %>
+        <%= f.date_field :return_date, id: :loan_return_date, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :product_ids, class: 'form-control-label' %>
+        <%= f.collection_select(:product_ids, Product.all, :id, :name, {}, {multiple: true, data: {placeholder: 'Selecione os livros'}, class: 'dropdown form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Salvar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

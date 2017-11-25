@@ -1,0 +1,9 @@
+<tr>
+  <td><%= l student_evolution.date, format: :long %></td>
+  <td><%= student_evolution.description %></td>
+  <td>
+    <%= link_to student_evolution_path(student_evolution), method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+      <%= icon('trash') %> Excluir
+    <% end %>
+  </td>
+</tr>

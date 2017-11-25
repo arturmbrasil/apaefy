@@ -151,9 +151,38 @@
         <% end %>
       </div>
     </div>
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-close">
+          <%= button_tag 'Adicionar quadro evolutivo', class: 'btn btn-sm btn-primary', data: { toggle: 'modal', target: '#evolution-modal' } %>
+        </div>
+        <div class="card-header d-flex align-items-center">
+          <h3>Quadros Evolutivos</h3>
+        </div>
+        <div class="card-body">
+          <% unless @student.student_evolutions.empty? %>
+            <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render @student.student_evolutions %>
+            </tbody>
+          </table>
+          <% else %>
+            <h4 class="text-center">Nenhum quadro evolutivo cadastrado.</h4>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </section>
 
 <%= render 'modal/medicine', medicine: @student.medicines.build %>
 <%= render 'modal/dietary_restriction', dietary_restriction: @student.dietary_restrictions.build %>
 <%= render 'modal/student_appointment', appointment: @student.appointments.build %>
 <%= render 'modal/student_responsible', student_responsible: @student.student_responsibles.build %>
+<%= render 'modal/student_evolution', student_evolution: @student.student_evolutions.build %>

@@ -1,0 +1,30 @@
+<div class="modal fade" id="evolution-modal" tabindex="-1" role="dialog" aria-labelledby="evolução" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <%= form_with(model: student_evolution, remote: true, html: {'data-type': 'json', 'data-model': student_evolution.class.name.downcase}) do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Novo quadro evolutivo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= f.hidden_field :student_id %>
+          <div class="form-group">
+            <%= f.label :date, class: 'form-control-label' %>
+            <%= f.date_field :date, class: 'form-control', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :description, class: 'form-control-label' %>
+            <%= f.text_area :description, class: 'form-control', required: true %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <%= f.submit 'Salvar', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

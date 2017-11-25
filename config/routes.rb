@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :loans
   resources :student_evolutions
   resources :student_responsibles
   resources :supplies

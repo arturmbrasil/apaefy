@@ -157,6 +157,14 @@ pt-BR:
         female: Feminino
       dietary_restriction:
         restriction: Restrição
+      student_evolution:
+        date: Data
+        description: Descrição
+      loan:
+        student: Aluno
+        user: Funcionário
+        loan_date: Data do Empréstimo
+        return_date: Data de Devolução
     models:
       user: Funcionário
       fleet: Frota
@@ -170,3 +178,5 @@ pt-BR:
       dietary_restriction: Restrição Alimentar
       project: Projeto
       product: Produto
+      student_evolution: Quadro Evolutivo
+      loan: Empréstimo

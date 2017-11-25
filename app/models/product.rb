@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
+
+  has_many :loan_products, dependent: :destroy
+  has_many :loans, through: :loan_products
+
   validates :name, presence: true
   validates :description, presence: true
   validates :value, presence: true

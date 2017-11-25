@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @loan.student.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @loan.user %>
+</p>
+
+<p>
+  <strong>Loan date:</strong>
+  <%= @loan.loan_date %>
+</p>
+
+<p>
+  <strong>Return date:</strong>
+  <%= @loan.return_date %>
+</p>
+
+<%= @loan.products.each do |lp| %>
+  <%= lp.name %>
+<% end %>
+
+<%= link_to 'Edit', edit_loan_path(@loan) %> |
+<%= link_to 'Back', loans_path %>

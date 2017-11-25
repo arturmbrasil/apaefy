@@ -112,7 +112,11 @@ class User < ApplicationRecord
           when 'role'
             [self.human_attribute_name("role.#{value.first}")]
           else
-            value
+            if value.first.respond_to? :strftime
+              [value.first.strftime('%d/%m/%Y')]
+            else
+              value
+            end
           end
         end
 

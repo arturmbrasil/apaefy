@@ -14,6 +14,7 @@ gem "kaminari"
 gem "filterrific"
 gem "chartkick"
 gem "groupdate"
+gem "select2-rails"
 
 # Authentication
 gem "devise"

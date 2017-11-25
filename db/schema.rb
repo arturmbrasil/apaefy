@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123190650) do
+ActiveRecord::Schema.define(version: 20171124230251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20171123190650) do
   end
 
   create_table "dietary_restrictions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "restriction", null: false
+    t.string "restriction", default: "", null: false
     t.uuid "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,6 +63,26 @@ ActiveRecord::Schema.define(version: 20171123190650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_fleets_on_driver_id"
+  end
+
+  create_table "loan_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id"
+    t.uuid "loan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_loan_products_on_loan_id"
+    t.index ["product_id"], name: "index_loan_products_on_product_id"
+  end
+
+  create_table "loans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.uuid "user_id"
+    t.date "loan_date", null: false
+    t.date "return_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_loans_on_student_id"
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "medicines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -144,8 +164,8 @@ ActiveRecord::Schema.define(version: 20171123190650) do
 
   create_table "student_evolutions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
-    t.date "date"
-    t.text "description"
+    t.date "date", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_evolutions_on_student_id"
@@ -219,7 +239,7 @@ ActiveRecord::Schema.define(version: 20171123190650) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-14 17:19:57", null: false
+    t.datetime "admission_date", default: "2017-11-14 20:52:21", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -233,6 +253,10 @@ ActiveRecord::Schema.define(version: 20171123190650) do
   add_foreign_key "cities", "states"
   add_foreign_key "dietary_restrictions", "students"
   add_foreign_key "fleets", "users", column: "driver_id"
+  add_foreign_key "loan_products", "loans"
+  add_foreign_key "loan_products", "products"
+  add_foreign_key "loans", "students"
+  add_foreign_key "loans", "users"
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
