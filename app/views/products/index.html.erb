@@ -10,7 +10,7 @@
       <%= link_to 'Início', root_path %>
     </li>
     <li class='breadcrumb-item active'>Produtos</li>
-     <div class="pull-right">
+    <div class="pull-right">
       <%= link_to products_path(format: :csv, params: request.query_parameters), class: 'btn btn-sm btn-primary' do %>
         <%= icon('download') %>
         Baixar relatório

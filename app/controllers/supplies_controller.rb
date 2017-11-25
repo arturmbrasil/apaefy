@@ -1,14 +1,20 @@
 class SuppliesController < ApplicationController
   before_action :set_supply, only: [:show, :edit, :update, :destroy]
 
-  # GET /supplies
-  # GET /supplies.json
   def index
-    @supplies = Supply.order(:created_at).includes(:fleet).page params[:page]
+    (@filterrific = initialize_filterrific(
+      Supply,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Supply.options_for_sorted_by,
+      }
+    )) || return
+
+    @supplies = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv { send_data Supply.to_csv }
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 
