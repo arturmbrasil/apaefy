@@ -4,11 +4,19 @@ class AccountReceivablesController < ApplicationController
   # GET /account_receivables
   # GET /account_receivables.json
   def index
-    @account_receivables = AccountReceivable.order(:created_at).page params[:page]
+    (@filterrific = initialize_filterrific(
+      AccountReceivable,
+      params[:filterrific],
+      select_options: {
+        sorted_by: AccountReceivable.options_for_sorted_by,
+      }
+    )) || return
+
+    @account_receivables = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv {send_data AccountReceivable.to_csv}
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 

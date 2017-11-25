@@ -137,11 +137,13 @@ pt-BR:
         date: Data de Vencimento
         value: Valor
         num_parcela: Número da Parcela
+        created_at: Criado em
       account_pay:
         name: Nome
         date: Data de Vencimento
         value: Valor
         num_parcela: Número da Parcela
+        created_at: Criado em
       student_responsible:
         name: Nome
         birth_date: Data de nascimento
