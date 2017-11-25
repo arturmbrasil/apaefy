@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.text :description, null: false, default: ''
       t.float :value, null: false, default: ''
       t.string :stock, null: false, default: ''
+      t.integer :code
 
       t.timestamps
     end

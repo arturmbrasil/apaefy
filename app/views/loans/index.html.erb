@@ -41,6 +41,9 @@
                 <td><%= l loan.loan_date %></td>
                 <td><%= l loan.return_date %></td>
                 <td>
+                  <%= link_to loan_path(loan), class: 'btn btn-sm' do %>
+                    <%= icon('eye') %>
+                  <% end %>
                   <%= link_to edit_loan_path(loan), class: 'btn btn-sm' do %>
                     <%= icon('pencil-square-o') %>
                   <% end %>

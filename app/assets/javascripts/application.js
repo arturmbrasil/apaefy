@@ -22,10 +22,6 @@
 
 $(function () {
 
-  $( ".dropdown" ).select2({
-    language: "pt-BR"
-  });
-
   // ------------------------------------------------------- //
   // Card Close
   // ------------------------------------------------------ //
@@ -177,5 +173,10 @@ $(function () {
 
   $('form[data-remote=true]').on('ajax:success', function(event) {
     location.reload();
+  });
+
+  $( "#select2" ).select2({
+    language: "pt-BR",
+    theme: "bootstrap"
   });
 });

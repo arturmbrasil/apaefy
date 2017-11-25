@@ -5,7 +5,7 @@ class FleetsController < ApplicationController
   # GET /fleets.json
   def index
     (@filterrific = initialize_filterrific(
-      Fleet,
+      Fleet.includes(:driver),
       params[:filterrific],
       select_options: {
         sorted_by: Fleet.options_for_sorted_by,

@@ -3,7 +3,7 @@ class SuppliesController < ApplicationController
 
   def index
     (@filterrific = initialize_filterrific(
-      Supply,
+      Supply.includes(:fleet),
       params[:filterrific],
       select_options: {
         sorted_by: Supply.options_for_sorted_by,

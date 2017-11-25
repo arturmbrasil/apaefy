@@ -5,13 +5,12 @@
 
       <div class="form-group">
         <%= f.label :student_id, class: 'form-control-label' %>
-        <%= f.collection_select :student_id, Student.all, :id, :name, { prompt: true }, { class: 'form-control', required: false } %>
-
+        <%= f.collection_select :student_id, Student.order(:name).all, :id, :name, { prompt: true }, { class: 'form-control', required: false } %>
       </div>
 
       <div class="form-group">
         <%= f.label :user_id, class: 'form-control-label' %>
-        <%= f.collection_select :user_id, User.all, :id, :name, { prompt: true }, { class: 'form-control', required: false } %>
+        <%= f.collection_select :user_id, User.order(:name).all, :id, :name, { prompt: true }, { class: 'form-control', required: false } %>
       </div>
 
       <div class="form-group">
@@ -26,7 +25,7 @@
 
       <div class="form-group">
         <%= f.label :product_ids, class: 'form-control-label' %>
-        <%= f.collection_select(:product_ids, Product.all, :id, :name, {}, {multiple: true, data: {placeholder: 'Selecione os livros'}, class: 'dropdown form-control'}) %>
+        <%= f.collection_select :product_ids, Product.order(:name).all, :id, :name, {prompt: true}, { id: 'select2', class: 'form-control', multiple: true, data: { placeholder: 'Selecione os produtos' } } %>
       </div>
 
       <div class="form-group">

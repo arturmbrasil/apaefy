@@ -161,10 +161,11 @@ pt-BR:
         date: Data
         description: Descrição
       loan:
-        student: Aluno
-        user: Funcionário
+        student_id: Aluno
+        user_id: Funcionário
         loan_date: Data do Empréstimo
         return_date: Data de Devolução
+        product_ids: Produtos
     models:
       user: Funcionário
       fleet: Frota
