@@ -4,11 +4,19 @@ class AccountPaysController < ApplicationController
   # GET /account_pays
   # GET /account_pays.json
   def index
-    @account_pay = AccountPay.order(:created_at).page params[:page]
+     (@filterrific = initialize_filterrific(
+      AccountPay,
+      params[:filterrific],
+      select_options: {
+        sorted_by: AccountPay.options_for_sorted_by,
+      }
+    )) || return
+
+    @account_pays = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv {send_data AccountPay.to_csv}
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 

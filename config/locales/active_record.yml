@@ -143,6 +143,7 @@ pt-BR:
         date: Data de Vencimento
         value: Valor
         num_parcela: Número da Parcela
+        nr_nota: Número da Nota
         created_at: Criado em
       student_responsible:
         name: Nome

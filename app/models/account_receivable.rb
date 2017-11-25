@@ -50,7 +50,8 @@ class AccountReceivable < ApplicationRecord
       ['Nome (a-z)', 'name_asc'],
       ['Valor (Crescente)', 'value_asc'],
       ['Valor (Decrescente)', 'value_desc'],
-      ['Data de vencimento', 'created_at_asc'],
+      ['Vencimento mais próximo', 'created_at_asc'],
+      ['Vencimento mais longe', 'created_at_desc']
     ]
   end
 
@@ -60,6 +61,7 @@ class AccountReceivable < ApplicationRecord
       'name',
       'date',
       'value',
+      'num_parcela',
       'created_at'
     ]
 
