@@ -175,8 +175,9 @@ $(function () {
     location.reload();
   });
 
-  $( "#select2" ).select2({
-    language: "pt-BR",
-    theme: "bootstrap"
+  $('.select2').select2({
+    language: 'pt-BR',
+    theme: 'bootstrap',
+    width: '100%'
   });
 });

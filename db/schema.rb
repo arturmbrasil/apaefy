@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.integer "nr_nota"
     t.decimal "value"
-    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.string "name"
     t.decimal "value"
-    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -127,7 +125,6 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.text "description", default: "", null: false
     t.float "value", null: false
     t.string "stock", default: "", null: false
-    t.integer "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -240,7 +237,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-25 19:42:18", null: false
+    t.datetime "admission_date", default: "2017-11-16 17:44:54", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
