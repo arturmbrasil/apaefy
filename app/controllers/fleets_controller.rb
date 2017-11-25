@@ -4,11 +4,19 @@ class FleetsController < ApplicationController
   # GET /fleets
   # GET /fleets.json
   def index
-    @fleets = Fleet.order(:name).includes(:driver).page params[:page]
+    (@filterrific = initialize_filterrific(
+      Fleet,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Fleet.options_for_sorted_by,
+      }
+    )) || return
+
+    @fleets = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv { send_data Fleet.to_csv }
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 
