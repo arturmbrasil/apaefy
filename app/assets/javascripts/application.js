@@ -180,4 +180,19 @@ $(function () {
     theme: 'bootstrap',
     width: '100%'
   });
+
+  $('#select2User').on('select2:select', function(event){
+    if ( $('#select2User')[0].selectedIndex <= 0 ){
+      $('#select2Student').prop('disabled', false)
+    } else {
+      $('#select2Student').prop('disabled', true)
+    }
+  });
+  $('#select2Student').on('select2:select', function(event){
+    if ( $('#select2Student')[0].selectedIndex <= 0 ){
+      $('#select2User').prop('disabled', false)
+    } else {
+      $('#select2User').prop('disabled', true)
+    }
+  });
 });
