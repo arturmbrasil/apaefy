@@ -22,7 +22,20 @@ class PartnersController < ApplicationController
   # GET /partners/1
   # GET /partners/1.json
   def show
-    @donations = @partner.donations
+    (@filterrific = initialize_filterrific(
+      PartnerDonation,
+      params[:filterrific],
+      select_options: {
+        sorted_by: PartnerDonation.options_for_sorted_by
+      }
+    )) || return
+
+    @donations = @filterrific.find.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.donation_to_csv }
+    end
   end
 
   # GET /partners/new

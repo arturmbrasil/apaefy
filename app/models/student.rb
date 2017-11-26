@@ -27,6 +27,8 @@ class Student < ApplicationRecord
     available_filters: %i[
       sorted_by
       search_query
+      sorted_by_restriction
+      sorted_by_use_meds
     ]
   )
 
@@ -36,7 +38,7 @@ class Student < ApplicationRecord
     terms = terms.map do |e|
       (e.tr('*', '%') + '%').gsub(/%+/, '%')
     end
-    num_or_conditions = 2
+    num_or_conditions = 1
     where(
       terms.map do
         or_clauses = [
@@ -62,6 +64,18 @@ class Student < ApplicationRecord
     end
   }
 
+   scope :sorted_by_restriction, lambda { |sort_option|
+    if sort_option.eql? 'Y'
+        where('EXISTS (SELECT 1 FROM dietary_restrictions WHERE student_id = students.id)')
+    end
+   }
+
+   scope :sorted_by_use_meds, lambda { |sort_option| 
+    if sort_option.eql? 'Y'
+      where('EXISTS (SELECT 1 FROM medicines WHERE student_id = students.id)')
+    end
+  }
+
   def self.options_for_sorted_by
     [
       ['Nome (a-z)', 'name_asc'],
@@ -70,7 +84,7 @@ class Student < ApplicationRecord
     ]
   end
 
-  def self.to_csv(options = {})
+  def self.to_csv(options = { col_sep: ';', encoding: 'ISO-8859-1'})
     desired_columns = ['id', 'name', 'gender', 'birthday', 'document_cpf', 'document_rg', 'phone_numbers', 'created_at']
     CSV.generate(options) do |csv|
       csv << desired_columns.map { |column| self.human_attribute_name column }
@@ -87,6 +101,13 @@ class Student < ApplicationRecord
         csv << row.flatten
       end
     end
+  end
+
+  def self.options_for_yes_no
+    [
+      ['Sim', 'Y'],
+      ['Não', 'N']
+    ]
   end
 
   def full_address

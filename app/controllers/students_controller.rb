@@ -9,7 +9,11 @@ class StudentsController < ApplicationController
     (@filterrific = initialize_filterrific(
       Student,
       params[:filterrific],
-      select_options: { sorted_by: Student.options_for_sorted_by }
+      select_options: { 
+        sorted_by: Student.options_for_sorted_by,
+        sorted_by_restriction: Student.options_for_yes_no,
+        sorted_by_use_meds: Student.options_for_yes_no
+    }
     )) || return
 
     @students = @filterrific.find.page params[:page]
