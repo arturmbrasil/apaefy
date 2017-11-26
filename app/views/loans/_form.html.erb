@@ -5,12 +5,12 @@
 
       <div class="form-group">
         <%= f.label :student_id, class: 'form-control-label' %>
-        <%= f.collection_select :student_id, Student.order(:name).all, :id, :name, { prompt: true }, { class: 'form-control select2', required: false } %>
+        <%= f.collection_select :student_id, Student.order(:name).all, :id, :name, { prompt: true }, { class: 'form-control select2', required: false, id: 'select2Student' } %>
       </div>
 
       <div class="form-group">
         <%= f.label :user_id, class: 'form-control-label' %>
-        <%= f.collection_select :user_id, User.order(:name).all, :id, :name, { prompt: true }, { class: 'form-control select2', required: false } %>
+        <%= f.collection_select :user_id, User.order(:name).all, :id, :name, { prompt: true }, { class: 'form-control select2', required: false, id: 'select2User' } %>
       </div>
 
       <div class="form-group">
