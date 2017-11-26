@@ -4,7 +4,19 @@ class PartnersController < ApplicationController
   # GET /partners
   # GET /partners.json
   def index
-    @partners = Partner.order(:name).page params[:page]
+    (@filterrific = initialize_filterrific(
+      Partner,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Partner.options_for_sorted_by
+      }
+    )) || return
+
+    @partners = @filterrific.find.page params[:page]
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.to_csv }
+    end
   end
 
   # GET /partners/1
