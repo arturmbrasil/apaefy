@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124230251) do
+ActiveRecord::Schema.define(version: 20171123190650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.integer "nr_nota"
     t.decimal "value"
+    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.string "name"
     t.decimal "value"
+    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -162,8 +164,8 @@ ActiveRecord::Schema.define(version: 20171124230251) do
 
   create_table "student_evolutions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
-    t.date "date", null: false
-    t.text "description", null: false
+    t.date "date"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_evolutions_on_student_id"
@@ -237,7 +239,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-16 17:44:54", null: false
+    t.datetime "admission_date", default: "2017-11-23 22:06:41", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false

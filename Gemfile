@@ -31,6 +31,7 @@ gem "font-awesome-sass", "~> 4.7.0"
 gem 'rails-assets-jquery-mask', source: 'https://rails-assets.org'
 
 gem 'faker'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

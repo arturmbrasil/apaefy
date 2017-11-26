@@ -36,7 +36,7 @@ class Student < ApplicationRecord
     terms = terms.map do |e|
       (e.tr('*', '%') + '%').gsub(/%+/, '%')
     end
-    num_or_conditions = 1
+    num_or_conditions = 2
     where(
       terms.map do
         or_clauses = [
@@ -55,6 +55,8 @@ class Student < ApplicationRecord
       order("students.created_at #{direction}")
     when /^name_/
       order("LOWER(students.name) #{direction}")
+    when /^birthday_/
+      order("students.birthday #{direction}")
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end

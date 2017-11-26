@@ -4,11 +4,20 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.includes(:user).page params[:page]
+
+    (@filterrific = initialize_filterrific(
+      Project,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Project.options_for_sorted_by
+      }
+    )) || return
+
+    @projects = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv { send_data Project.to_csv }
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 
