@@ -74,7 +74,9 @@ class LoansController < ApplicationController
   end
 
   def permit_user
-    if current_user.role != 'warehouse' && current_user.role != 'director'
+    permited_roles = ['director', 'warehouse', 'therapist']
+
+    unless permited_roles.include? current_user.role
       redirect_to root_path
     end
   end
