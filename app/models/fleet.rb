@@ -27,11 +27,12 @@ class Fleet < ApplicationRecord
     terms = terms.map do |e|
       (e.tr('*', '%') + '%').gsub(/%+/, '%')
     end
-    num_or_conditions = 1
+    num_or_conditions = 2
     where(
       terms.map do
         or_clauses = [
-          'LOWER(fleets.name) LIKE ?'
+          'LOWER(fleets.name) LIKE ?',
+          'LOWER(users.name) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -47,7 +48,7 @@ class Fleet < ApplicationRecord
     when /^name_/
       order("LOWER(fleets.name) #{direction}")
     when /^driver_/
-      order("fleets.driver.name #{direction}")
+      order("users.name #{direction}")
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end

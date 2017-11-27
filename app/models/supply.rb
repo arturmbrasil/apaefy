@@ -14,7 +14,6 @@ class Supply < ApplicationRecord
     ]
   )
 
-
   scope :search_query, lambda { |query|
     return nil if query.blank?
     terms = query.to_s.downcase.split(/\s+/)
@@ -26,7 +25,7 @@ class Supply < ApplicationRecord
       terms.map do
         or_clauses = [
           'LOWER(supplies.fuel) LIKE ?',
-          'LOWER(supplies.fleet.name) LIKE ?',
+          'LOWER(fleets.name) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -40,11 +39,11 @@ class Supply < ApplicationRecord
     when /^created_at_/
       order("supplies.supply_date #{direction}")
     when /^name_/
-      order("LOWER(supplies.name) #{direction}")
+      order("LOWER(supplies.fuel) #{direction}")
     when /^value_/
       order("supplies.value #{direction}")
     when /^fleet_/
-      order("LOWER(supplies.fleet.name) #{direction}")
+      order("LOWER(fleets.name) #{direction}")
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end

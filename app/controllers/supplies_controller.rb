@@ -4,14 +4,18 @@ class SuppliesController < ApplicationController
 
   def index
     (@filterrific = initialize_filterrific(
-      Supply.includes(:fleet),
+      Supply,
       params[:filterrific],
       select_options: {
         sorted_by: Supply.options_for_sorted_by,
       }
     )) || return
 
-    @supplies = @filterrific.find.page params[:page]
+    @supplies = @filterrific
+      .find
+      .joins(:fleet)
+      .includes(:fleet)
+      .page params[:page]
 
     respond_to do |format|
       format.html

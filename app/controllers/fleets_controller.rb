@@ -6,14 +6,18 @@ class FleetsController < ApplicationController
   # GET /fleets.json
   def index
     (@filterrific = initialize_filterrific(
-      Fleet.includes(:driver),
+      Fleet,
       params[:filterrific],
       select_options: {
         sorted_by: Fleet.options_for_sorted_by,
       }
     )) || return
 
-    @fleets = @filterrific.find.page params[:page]
+    @fleets = @filterrific
+      .find
+      .includes(:driver)
+      .joins(:driver)
+      .page params[:page]
 
     respond_to do |format|
       format.html
