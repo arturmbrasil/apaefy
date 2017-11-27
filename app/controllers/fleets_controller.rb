@@ -92,7 +92,7 @@ class FleetsController < ApplicationController
   end
 
   def permit_user
-    if current_user.role != 'finance' && current_user.role != 'director'
+    if current_user.role != 'finance' && current_user.role != 'driver' && current_user.role != 'director'
       redirect_to root_path
     end
   end
