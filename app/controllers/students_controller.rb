@@ -94,7 +94,9 @@ class StudentsController < ApplicationController
   end
 
   def permit_user
-    if current_user.role != 'human_resources' && current_user.role != 'director'
+    permited_roles = ['human_resources', 'director', 'pedagogical_coordinator']
+
+    unless permited_roles.include? current_user.role
       redirect_to root_path
     end
   end
