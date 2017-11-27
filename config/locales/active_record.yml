@@ -54,6 +54,18 @@ pt-BR:
         driver: Motorista
         volunteer: Voluntário
         collaborator: Colaborador
+        marketing: Marketing,
+        telemarketing: Telemarketing,
+        human_resources: Recursos Humanos,
+        warehouse: Almoxarifado,
+        psychologist: Psicóloga,
+        physiotherapist: Fisioterapeuta,
+        pedagogical_coordinator: Coordenador Pedagógico,
+        cr_coordinator: Coordenador do CR,
+        therapist: Terapeuta,
+        social_worker: Assistente social,
+        secretary: Secretaria,
+        speech_therapist: Fonoaudióloga
       student:
         name: Nome
         document_cpf: CPF
