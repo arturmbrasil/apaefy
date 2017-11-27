@@ -1,5 +1,6 @@
 class SuppliesController < ApplicationController
   before_action :set_supply, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   def index
     (@filterrific = initialize_filterrific(
@@ -75,10 +76,10 @@ class SuppliesController < ApplicationController
   end
 
   private
-    def options_for_select
-      @fleet_options_for_select = Fleet.all
-    end
 
+  def options_for_select
+    @fleet_options_for_select = Fleet.all
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_supply
@@ -88,5 +89,11 @@ class SuppliesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def supply_params
     params.require(:supply).permit(:fuel, :fleet_id, :liters, :value, :supply_date)
+  end
+
+  def permit_user
+    if current_user.role != 'finance' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

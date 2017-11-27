@@ -1,5 +1,6 @@
 class FleetsController < ApplicationController
   before_action :set_fleet, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /fleets
   # GET /fleets.json
@@ -88,5 +89,11 @@ class FleetsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def fleet_params
     params.require(:fleet).permit(:name, :vehicle, :license_plate, :document_renavam, :chassis, :driver_id, :starting_address, :destination_address, student_ids: [])
+  end
+
+  def permit_user
+    if current_user.role != 'finance' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end
