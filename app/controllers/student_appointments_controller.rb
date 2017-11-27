@@ -1,10 +1,34 @@
 class StudentAppointmentsController < ApplicationController
-  before_action :set_student_appointment, only: [:destroy]
+  before_action :set_student_appointment, only: [:show, :edit, :update, :destroy]
 
   def index
-    respond_to do |format|
-      format.csv { send_data StudentAppointment.to_csv }
-    end
+
+    # (@filterrific = initialize_filterrific(
+    #   StudentAppointment,
+    #   params[:filterrific],
+    #   select_options: {
+    #     sorted_by: StudentAppointment.options_for_sorted_by,
+    #   }
+    # )) || return
+
+    @student_appointments = StudentAppointment.includes(:student).includes(:user).all
+
+    # respond_to do |format|
+    #   format.csv { send_data StudentAppointment.to_csv }
+    # end
+  end
+
+  def show
+  end
+
+  # GET /student_appointment/new
+  def new
+    @student_appointment = StudentAppointment.new
+  end
+
+  # GET /student_appointment/1/edit
+  def edit
+    #byebug
   end
 
   def create
@@ -21,10 +45,22 @@ class StudentAppointmentsController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @student_appointment.update(student_appointment_params)
+        format.html { redirect_to student_appointments_url, notice: 'Agendamento atualizado com sucesso.' }
+        format.json { render :show, status: :ok, location: @student_appointment }
+      else
+        format.html { render :edit }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @student_appointment.destroy
     respond_to do |format|
-      format.html { redirect_to student_path(@student_appointment.student_id), notice: 'Agendamento excluído com sucesso.' }
+      format.html { redirect_to student_appointments_url, notice: 'Agendamento excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

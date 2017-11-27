@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: student_appointment, local: true) do |f| %>
+      <%= errors_for(student_appointment) %>
+
+      <div class="form-group">
+        <%= f.label :student, class: 'form-control-label' %>
+        <%= f.collection_select :student_id, Student.all, :id, :name, { prompt: true }, { class: 'form-control', required: true }  %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :user, class: 'form-control-label' %>
+        <%= f.collection_select :user_id, User.all, :id, :name, { prompt: true }, { class: 'form-control', required: true }  %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date, class: 'form-control-label' %>
+        <%= f.date_field :date, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :time, class: 'form-control-label' %>
+        <%= f.time_field :time, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :obs, class: 'form-control-label' %>
+        <%= f.text_area :obs, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Salvar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

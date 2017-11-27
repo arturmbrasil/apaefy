@@ -1,0 +1,34 @@
+<section class="client">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-close">
+        <%= link_to 'Editar', edit_student_appointment_path(@student_appointment), class: 'btn btn-primary' %>
+      </div>
+      <div class="client-info">
+        <div class="row">
+          <div class="col-6">
+            <strong><%= @student_appointment.student.name %></strong><br>
+            <small>Aluno</small>
+          </div>
+          <div class="col-6">
+            <strong><%= @student_appointment.user.name %></strong><br>
+            <small>Funcionário</small>
+          </div>
+        </div>
+      </div>
+        <div class="client-info">
+          <div class="row">
+            <div class="col-6">
+              <strong><%= l @student_appointment.date %></strong><br>
+              <small>Data do agendamento</small>
+            </div>
+            <div class="col-6">
+              <strong><%= l @student_appointment.time, format: '%H:%M' %></strong><br>
+              <small>Horário do agendamento</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
