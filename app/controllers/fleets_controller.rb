@@ -1,18 +1,23 @@
 class FleetsController < ApplicationController
   before_action :set_fleet, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /fleets
   # GET /fleets.json
   def index
     (@filterrific = initialize_filterrific(
-      Fleet.includes(:driver),
+      Fleet,
       params[:filterrific],
       select_options: {
         sorted_by: Fleet.options_for_sorted_by,
       }
     )) || return
 
-    @fleets = @filterrific.find.page params[:page]
+    @fleets = @filterrific
+      .find
+      .includes(:driver)
+      .joins(:driver)
+      .page params[:page]
 
     respond_to do |format|
       format.html
@@ -88,5 +93,11 @@ class FleetsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def fleet_params
     params.require(:fleet).permit(:name, :vehicle, :license_plate, :document_renavam, :chassis, :driver_id, :starting_address, :destination_address, student_ids: [])
+  end
+
+  def permit_user
+    if current_user.role != 'finance' && current_user.role != 'driver' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

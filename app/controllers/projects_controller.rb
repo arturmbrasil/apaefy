@@ -1,14 +1,24 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.includes(:user).page params[:page]
+
+    (@filterrific = initialize_filterrific(
+      Project,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Project.options_for_sorted_by
+      }
+    )) || return
+
+    @projects = @filterrific.find.page params[:page]
 
     respond_to do |format|
       format.html
-      format.csv { send_data Project.to_csv }
+      format.csv { send_data @filterrific.find.to_csv }
     end
   end
 
@@ -75,5 +85,11 @@ class ProjectsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:title, :description, :status, :goals, :value, :user_id)
+  end
+
+  def permit_user
+    if current_user.role != 'marketing' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

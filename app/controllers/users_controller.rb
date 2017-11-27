@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   def index
     (@filterrific = initialize_filterrific(
@@ -77,5 +78,11 @@ class UsersController < ApplicationController
     params
       .require(:user)
       .permit(:name, :role, :document_cnh, :document_cns, :email, :password, :gender, :birthday, :document_rg, :document_cpf, :admission_date, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
+
+  def permit_user
+    if current_user.role != 'finance' && current_user.role != 'human_resources' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

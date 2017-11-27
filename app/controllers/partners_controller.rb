@@ -1,16 +1,42 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /partners
   # GET /partners.json
   def index
-    @partners = Partner.order(:name).page params[:page]
+    (@filterrific = initialize_filterrific(
+      Partner,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Partner.options_for_sorted_by
+      }
+    )) || return
+
+    @partners = @filterrific.find.page params[:page]
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.to_csv }
+    end
   end
 
   # GET /partners/1
   # GET /partners/1.json
   def show
-    @donations = @partner.donations
+    (@filterrific = initialize_filterrific(
+      PartnerDonation,
+      params[:filterrific],
+      select_options: {
+        sorted_by: PartnerDonation.options_for_sorted_by
+      }
+    )) || return
+
+    @donations = @filterrific.find.page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.donation_to_csv }
+    end
   end
 
   # GET /partners/new
@@ -73,5 +99,11 @@ class PartnersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def partner_params
     params.require(:partner).permit(:name, :document_cnpj, :document_state_registration, :email, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
+
+  def permit_user
+    if current_user.role != 'marketing' && current_user.role != 'telemarketing' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

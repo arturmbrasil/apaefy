@@ -1,5 +1,6 @@
 class AccountReceivablesController < ApplicationController
   before_action :set_account_receivable, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /account_receivables
   # GET /account_receivables.json
@@ -89,13 +90,17 @@ class AccountReceivablesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_account_receivable
-      @account_receivable = AccountReceivable.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_account_receivable
+    @account_receivable = AccountReceivable.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def account_receivable_params
-      params.require(:account_receivable).permit(:date, :name, :value, :num_parcela, :partner_donations_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def account_receivable_params
+    params.require(:account_receivable).permit(:date, :name, :value, :num_parcela, :partner_donations_id)
+  end
+
+  def permit_user
+    redirect_to root_path if current_user.role != 'finance' && current_user.role != 'telemarketing' && current_user.role != 'director'
+  end
 end

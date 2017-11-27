@@ -1,5 +1,6 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /loans
   # GET /loans.json
@@ -62,13 +63,21 @@ class LoansController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_loan
-      @loan = Loan.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def loan_params
-      params.require(:loan).permit(:student_id, :user_id, :loan_date, :return_date, product_ids: [])
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def loan_params
+    params.require(:loan).permit(:student_id, :user_id, :loan_date, :return_date, product_ids: [])
+  end
+
+  def permit_user
+    permited_roles = ['director', 'warehouse', 'therapist', 'secretary']
+
+    unless permited_roles.include? current_user.role
+      redirect_to root_path
     end
+  end
 end

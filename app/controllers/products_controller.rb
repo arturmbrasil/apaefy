@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /products
   # GET /products.json
@@ -83,5 +84,11 @@ class ProductsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
     params.require(:product).permit(:name, :description, :value, :stock)
+  end
+
+  def permit_user
+    if current_user.role != 'warehouse' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

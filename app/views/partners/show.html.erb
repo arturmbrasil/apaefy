@@ -16,6 +16,12 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-close">
+      <div class="pull-right">
+      <%# <%= link_to partner_path(@partner), format: :csv, params: request.query_parameters, class: 'btn btn-sm btn-primary' do %>
+        <%#= icon('download') %>
+        <%# Baixar relatório %>
+      <%# end %>
+    </div>
         <%= button_tag 'Adicionar doação', class: 'btn btn-sm btn-primary', data: { toggle: 'modal', target: '#donation-modal' } %>
       </div>
       <div class="card-header d-flex align-items-center">
@@ -23,6 +29,11 @@
       </div>
       <div class="card-body">
         <% unless @donations.empty? %>
+        <div class="row">
+        <div class="col-lg-4">
+        <%= render 'partners/donations_filter_form', filterrific: @filterrific %>
+      </div>
+      <div class="col-lg-8">
           <table class="table table-hover">
           <thead>
             <tr>
@@ -45,6 +56,8 @@
             <% end %>
           </tbody>
         </table>
+        </div>
+        </div>
         <% else %>
           <h4 class="text-center">Nenhuma doação foi realizada.</h4>
         <% end %>

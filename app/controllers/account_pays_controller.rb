@@ -1,5 +1,6 @@
 class AccountPaysController < ApplicationController
   before_action :set_account_pay, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /account_pays
   # GET /account_pays.json
@@ -89,13 +90,17 @@ class AccountPaysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_account_pay
-      @account_pay = AccountPay.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_account_pay
+    @account_pay = AccountPay.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def account_pay_params
-      params.require(:account_pay).permit(:name, :date, :nr_nota, :num_parcela, :value)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def account_pay_params
+    params.require(:account_pay).permit(:name, :date, :nr_nota, :num_parcela, :value)
+  end
+
+  def permit_user
+    redirect_to root_path if current_user.role != 'finance' && current_user.role != 'director'
+  end
 end

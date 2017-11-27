@@ -2,6 +2,7 @@
 
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy]
+  before_action :permit_user
 
   # GET /students
   # GET /students.json
@@ -9,7 +10,11 @@ class StudentsController < ApplicationController
     (@filterrific = initialize_filterrific(
       Student,
       params[:filterrific],
-      select_options: { sorted_by: Student.options_for_sorted_by }
+      select_options: {
+        sorted_by: Student.options_for_sorted_by,
+        sorted_by_restriction: Student.options_for_yes_no,
+        sorted_by_use_meds: Student.options_for_yes_no
+    }
     )) || return
 
     @students = @filterrific.find.page params[:page]
@@ -86,5 +91,13 @@ class StudentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
     params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
+
+  def permit_user
+    permited_roles = ['human_resources', 'director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist', 'physiotherapist', 'social_worker', 'secretary', 'speech_therapist', 'teacher']
+
+    unless permited_roles.include? current_user.role
+      redirect_to root_path
+    end
   end
 end

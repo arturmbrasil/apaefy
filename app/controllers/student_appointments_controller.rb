@@ -1,5 +1,6 @@
 class StudentAppointmentsController < ApplicationController
   before_action :set_student_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   def index
 
@@ -74,5 +75,13 @@ class StudentAppointmentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_appointment_params
     params.require(:student_appointment).permit(:student_id, :user_id, :date, :time, :obs)
+  end
+
+  def permit_user
+    permited_roles = ['director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist', 'physiotherapist', 'social_worker', 'secretary', 'speech_therapist', 'teacher']
+
+    unless permited_roles.include? current_user.role
+      redirect_to root_path
+    end
   end
 end
