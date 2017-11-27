@@ -1,5 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /partners
   # GET /partners.json
@@ -98,5 +99,11 @@ class PartnersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def partner_params
     params.require(:partner).permit(:name, :document_cnpj, :document_state_registration, :email, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+  end
+
+  def permit_user
+    if current_user.role != 'marketing' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :permit_user
 
   # GET /projects
   # GET /projects.json
@@ -84,5 +85,11 @@ class ProjectsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:title, :description, :status, :goals, :value, :user_id)
+  end
+
+  def permit_user
+    if current_user.role != 'marketing' && current_user.role != 'director'
+      redirect_to root_path
+    end
   end
 end
