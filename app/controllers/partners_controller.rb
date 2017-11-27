@@ -102,7 +102,7 @@ class PartnersController < ApplicationController
   end
 
   def permit_user
-    if current_user.role != 'marketing' && current_user.role != 'director'
+    if current_user.role != 'marketing' && current_user.role != 'telemarketing' && current_user.role != 'director'
       redirect_to root_path
     end
   end

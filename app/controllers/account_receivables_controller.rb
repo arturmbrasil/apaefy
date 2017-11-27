@@ -101,6 +101,6 @@ class AccountReceivablesController < ApplicationController
   end
 
   def permit_user
-    redirect_to root_path if current_user.role != 'finance' && current_user.role != 'director'
+    redirect_to root_path if current_user.role != 'finance' && current_user.role != 'telemarketing' && current_user.role != 'director'
   end
 end
