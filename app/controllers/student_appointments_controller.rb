@@ -42,7 +42,7 @@ class StudentAppointmentsController < ApplicationController
   end
 
   def permit_user
-    permited_roles = ['director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist']
+    permited_roles = ['director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist', 'physiotherapist']
 
     unless permited_roles.include? current_user.role
       redirect_to root_path
