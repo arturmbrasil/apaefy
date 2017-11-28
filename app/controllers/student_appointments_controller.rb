@@ -4,19 +4,20 @@ class StudentAppointmentsController < ApplicationController
 
   def index
 
-    # (@filterrific = initialize_filterrific(
-    #   StudentAppointment,
-    #   params[:filterrific],
-    #   select_options: {
-    #     sorted_by: StudentAppointment.options_for_sorted_by,
-    #   }
-    # )) || return
+    (@filterrific = initialize_filterrific(
+      StudentAppointment,
+      params[:filterrific],
+      select_options: {
+        sorted_by: StudentAppointment.options_for_sorted_by,
+      }
+    )) || return
 
-    @student_appointments = StudentAppointment.includes(:student).includes(:user).all
+    @student_appointments = @filterrific.find.includes(:student, :user).page params[:page]
 
-    # respond_to do |format|
-    #   format.csv { send_data StudentAppointment.to_csv }
-    # end
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.to_csv }
+    end
   end
 
   def show
@@ -29,7 +30,6 @@ class StudentAppointmentsController < ApplicationController
 
   # GET /student_appointment/1/edit
   def edit
-    #byebug
   end
 
   def create
