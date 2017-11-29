@@ -10,6 +10,12 @@ class PartnerDonationsController < ApplicationController
   def create
     @partner_donation = PartnerDonation.new(partner_donation_params)
 
+    account_receivable = AccountReceivable.new
+    account_receivable.name = @partner_donation.payment_type
+    account_receivable.value = @partner_donation.value
+    account_receivable.date = Date.today
+    account_receivable.save
+
     respond_to do |format|
       if @partner_donation.save
         format.html { redirect_to @partner_donation, notice: 'Doação cadastrada com sucesso.' }

@@ -97,7 +97,7 @@ class AccountPaysController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def account_pay_params
-    params.require(:account_pay).permit(:name, :date, :nr_nota, :num_parcela, :value)
+    params.require(:account_pay).permit(:name, :date, :nr_nota, :num_parcela, :value, :pago)
   end
 
   def permit_user

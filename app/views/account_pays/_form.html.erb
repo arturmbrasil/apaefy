@@ -29,6 +29,11 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :pago, class: 'form-control-label' %>
+          <%= f.select :pago, options_for_select([["SIM", "SIM"], ["NÃO", "NÃO"]]), class: 'form-control'  %>
+        </div>
+
+        <div class="form-group">
           <%= f.submit 'Salvar', class: 'btn btn-primary' %>
         </div>
     <% end %>
