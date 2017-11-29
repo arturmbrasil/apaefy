@@ -27,7 +27,8 @@ class User < ApplicationRecord
 
   belongs_to :city, optional: true
   has_many :student_appointments, dependent: :destroy
-  has_many :projects, dependent: :destroy
+  has_many :project_users, dependent: :destroy
+  has_many :projects, through: :project_users
   has_many :fleets, foreign_key: 'driver_id', dependent: :nullify
 
   delegate :state_id, to: :city, allow_nil: true

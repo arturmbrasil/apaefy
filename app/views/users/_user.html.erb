@@ -1,0 +1,6 @@
+<tr>
+  <td><%= user.name %></td>
+  <td><%= User.human_attribute_name("role.#{user.role}") %></td>
+  <td><%= user.document_cpf %></td>
+  <td><%= l user.admission_date, format: '%d/%m/%Y' %></td>
+</tr>

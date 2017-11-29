@@ -1,11 +1,13 @@
 class Project < ApplicationRecord
-  belongs_to :user
 
   validates :title, presence: true
   validates :description, presence: true
   validates :status, presence: true
   validates :goals, presence: true
   validates :value, presence: true
+
+  has_many :project_user, dependent: :destroy
+  has_many :users, through: :project_user
 
   filterrific(
     default_filter_params: { sorted_by: 'created_at_desc' },

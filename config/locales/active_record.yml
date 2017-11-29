@@ -170,14 +170,17 @@ pt-BR:
       dietary_restriction:
         restriction: Restrição
       student_evolution:
+        student: Aluno
         date: Data
         description: Descrição
+        created_at: Criado em
       loan:
         student_id: Aluno
         user_id: Funcionário
         loan_date: Data do Empréstimo
         return_date: Data de Devolução
         product_ids: Produtos
+        created_at: Criado em
     models:
       user: Funcionário
       fleet: Frota

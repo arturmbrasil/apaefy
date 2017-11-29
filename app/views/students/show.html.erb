@@ -20,13 +20,36 @@
         <hr>
         <div class="client-info">
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
+              <strong><%= l @student.birthday %></strong><br>
+              <small>Data de nascimento</small>
+            </div>
+            <div class="col-4">
               <strong><%= @student.medicines.count %></strong><br>
               <small>Medicamentos</small>
             </div>
-            <div class="col-6">
-              <strong><%= @student.appointments.count %></strong><br>
-              <small>Agendamentos</small>
+            <div class="col-4">
+              <strong><%= @student.cns %></strong><br>
+              <small>CNS</small>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-4">
+              <strong><%= Student.human_attribute_name("gender.#{@student.gender}") %></strong><br>
+              <small>Sexo</small>
+            </div>
+            <div class="col-4">
+              <strong><%= @student.document_rg %></strong><br>
+              <small>RG</small>
+            </div>
+            <div class="col-4">
+              <% if @student.document_cpf != '' %>
+                <strong><%= @student.document_cpf %></strong><br>
+              <% else %>
+                <strong>CPF não informado</strong><br>
+              <% end %>
+              <small>CPF</small>
             </div>
           </div>
         </div>

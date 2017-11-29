@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
     }
     )) || return
 
-    @students = @filterrific.find.page params[:page]
+    @students = @filterrific.find.includes(:fleet).page params[:page]
 
     respond_to do |format|
       format.html
@@ -90,7 +90,7 @@ class StudentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
-    params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
+    params.require(:student).permit(:name, :birthday, :document_rg, :document_cpf, :gender, :cns, :fleet_id, :city_id, :address_street, :address_number, :address_neighborhood, :address_zip_code, phone_numbers: [])
   end
 
   def permit_user
