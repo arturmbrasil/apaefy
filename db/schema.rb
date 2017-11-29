@@ -174,8 +174,8 @@ ActiveRecord::Schema.define(version: 20171129191029) do
 
   create_table "student_evolutions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
-    t.date "date", null: false
-    t.text "description", null: false
+    t.date "date"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_evolutions_on_student_id"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.string "document_cpf", default: "", null: false
     t.string "phone_numbers", default: [], array: true
     t.string "gender", limit: 1, null: false
+    t.integer "cns"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "city_id"
@@ -210,7 +211,6 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.string "address_neighborhood", default: "", null: false
     t.string "address_zip_code", default: "", null: false
     t.uuid "fleet_id"
-    t.integer "cns"
     t.index ["city_id"], name: "index_students_on_city_id"
     t.index ["fleet_id"], name: "index_students_on_fleet_id"
   end
@@ -250,7 +250,7 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-25 19:42:18", null: false
+    t.datetime "admission_date", default: "2017-11-29 22:05:39", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false

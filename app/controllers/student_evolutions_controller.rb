@@ -1,6 +1,23 @@
 class StudentEvolutionsController < ApplicationController
   before_action :set_student_evolution, only: [:show, :edit, :update, :destroy]
 
+  def index
+    (@filterrific = initialize_filterrific(
+      StudentEvolution,
+      params[:filterrific],
+      select_options: {
+        sorted_by: StudentEvolution.options_for_sorted_by,
+    }
+    )) || return
+
+    @student_evolutions = @filterrific.find.includes(:student).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.to_csv }
+    end
+  end
+
   def create
     @student_evolution = StudentEvolution.new(student_evolution_params)
 

@@ -44,7 +44,11 @@
               <small>RG</small>
             </div>
             <div class="col-4">
-              <strong><%= @student.document_cpf %></strong><br>
+              <% if @student.document_cpf != '' %>
+                <strong><%= @student.document_cpf %></strong><br>
+              <% else %>
+                <strong>CPF não informado</strong><br>
+              <% end %>
               <small>CPF</small>
             </div>
           </div>
