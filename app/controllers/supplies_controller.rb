@@ -44,6 +44,12 @@ class SuppliesController < ApplicationController
   def create
     @supply = Supply.new(supply_params)
 
+    account_pay = AccountPay.new
+    account_pay.name = @supply.fuel
+    account_pay.value = @supply.value
+    account_pay.date = Date.today.to_s.to_date + 30
+    account_pay.save
+
     respond_to do |format|
       if @supply.save
         format.html { redirect_to supplies_url, notice: 'Abastecimento cadastrado com sucesso.' }

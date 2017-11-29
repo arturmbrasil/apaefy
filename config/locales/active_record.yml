@@ -148,7 +148,7 @@ pt-BR:
         name: Nome
         date: Data de Vencimento
         value: Valor
-        num_parcela: Número da Parcela
+        num_parcela: Número de Parcela
         created_at: Criado em
       account_pay:
         name: Nome

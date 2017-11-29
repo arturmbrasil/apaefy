@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.integer "nr_nota"
     t.decimal "value"
+    t.string "num_parcela"
+    t.string "pago"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.string "name"
     t.decimal "value"
+    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
