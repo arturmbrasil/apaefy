@@ -26,7 +26,7 @@ class StudentAppointment < ApplicationRecord
         "(#{or_clauses})"
       end.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
-    )
+    ).joins(:student)
   }
 
   scope :sorted_by, lambda { |sort_option|

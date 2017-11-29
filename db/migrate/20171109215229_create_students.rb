@@ -8,6 +8,7 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.string :document_cpf, null: false, default: ''
       t.string :phone_numbers, array: true, default: []
       t.string :gender, limit: 1, null: false
+      t.integer :cns
 
       t.timestamps
     end

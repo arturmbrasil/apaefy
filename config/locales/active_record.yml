@@ -178,6 +178,7 @@ pt-BR:
         loan_date: Data do Empréstimo
         return_date: Data de Devolução
         product_ids: Produtos
+        created_at: Criado em
     models:
       user: Funcionário
       fleet: Frota

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124230251) do
+ActiveRecord::Schema.define(version: 20171129191029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.integer "nr_nota"
     t.decimal "value"
+    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.date "date"
     t.string "name"
     t.decimal "value"
+    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -125,8 +127,18 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.text "description", default: "", null: false
     t.float "value", null: false
     t.string "stock", default: "", null: false
+    t.integer "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "project_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "project_id"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
   end
 
   create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -198,6 +210,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.string "address_neighborhood", default: "", null: false
     t.string "address_zip_code", default: "", null: false
     t.uuid "fleet_id"
+    t.integer "cns"
     t.index ["city_id"], name: "index_students_on_city_id"
     t.index ["fleet_id"], name: "index_students_on_fleet_id"
   end
@@ -237,7 +250,7 @@ ActiveRecord::Schema.define(version: 20171124230251) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-16 17:44:54", null: false
+    t.datetime "admission_date", default: "2017-11-25 19:42:18", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
@@ -258,6 +271,8 @@ ActiveRecord::Schema.define(version: 20171124230251) do
   add_foreign_key "medicines", "students"
   add_foreign_key "partner_donations", "partners"
   add_foreign_key "partners", "cities"
+  add_foreign_key "project_users", "projects"
+  add_foreign_key "project_users", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "student_appointments", "students"
   add_foreign_key "student_appointments", "users"

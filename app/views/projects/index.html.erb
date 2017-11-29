@@ -13,8 +13,8 @@
     <div class="pull-right">
       <%= link_to projects_path(format: :csv, params: request.query_parameters), class: 'btn btn-sm btn-primary' do %>
         <%= icon('download') %>
-          Baixar relatório
-          <% end %>
+        Baixar relatório
+      <% end %>
     </div>
   </div>
 </ul>
@@ -31,7 +31,7 @@
               <thead>
                 <tr>
                   <th>Título</th>
-                  <th>Funcionário</th>
+                  <th>Funcionários</th>
                   <th>Valor</th>
                   <th>Data de cadastro</th>
                   <th></th>
@@ -40,25 +40,20 @@
               <tbody>
                 <% @projects.each do |project| %>
                   <tr>
+                    <td><%= project.title %></td>
+                    <td><%= project.users.count %></td>
+                    <td><%= number_to_currency project.value %></td>
+                    <td><%= l project.created_at, format: '%d/%m/%Y' %></td>
                     <td>
-                      <%= project.title %>
-                    </td>
-                    <td>
-                      <%= project.user.name %>
-                    </td>
-                    <td>
-                      <%= number_to_currency project.value %>
-                    </td>
-                    <td>
-                      <%= l project.created_at, format: '%d/%m/%Y' %>
-                    </td>
-                    <td>
+                      <%= link_to project_path(project), class: 'btn btn-sm' do %>
+                        <%= icon('eye') %>
+                      <% end %>
                       <%= link_to edit_project_path(project), class: 'btn btn-sm' do %>
                         <%= icon('pencil-square-o') %>
-                          <% end %>
-                            <%= link_to project, method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
-                              <%= icon('trash') %>
-                                <% end %>
+                      <% end %>
+                      <%= link_to project, method: 'delete', class: 'btn btn-sm', data: { confirm: 'Tem certeza que deseja excluir?' } do %>
+                        <%= icon('trash') %>
+                      <% end %>
                     </td>
                   </tr>
                   <% end %>

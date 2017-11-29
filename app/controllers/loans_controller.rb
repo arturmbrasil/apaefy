@@ -5,7 +5,20 @@ class LoansController < ApplicationController
   # GET /loans
   # GET /loans.json
   def index
-    @loans = Loan.all.includes(:student).includes(:user)
+    (@filterrific = initialize_filterrific(
+      Loan,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Loan.options_for_sorted_by,
+    }
+    )) || return
+
+    @loans = @filterrific.find.includes(:student, :user).page params[:page]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @filterrific.find.to_csv }
+    end
   end
 
   # GET /loans/1

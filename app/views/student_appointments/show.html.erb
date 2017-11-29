@@ -1,21 +1,40 @@
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Agendamento: <%= @student_appointment.student.name %></h2>
+  </div>
+</header>
+<ul class='breadcrumb'>
+  <div class='container-fluid'>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Início', root_path %>
+    </li>
+    <li class='breadcrumb-item'>
+      <%= link_to 'Agendamentos', student_appointments_path %>
+    </li>
+    <li class='breadcrumb-item active'>
+      <%= @student_appointment.student.name %>
+    </li>
+  </div>
+</ul>
 <section class="client">
   <div class="container-fluid">
     <div class="card">
       <div class="card-close">
         <%= link_to 'Editar', edit_student_appointment_path(@student_appointment), class: 'btn btn-primary' %>
       </div>
-      <div class="client-info">
-        <div class="row">
-          <div class="col-6">
-            <strong><%= @student_appointment.student.name %></strong><br>
-            <small>Aluno</small>
-          </div>
-          <div class="col-6">
-            <strong><%= @student_appointment.user.name %></strong><br>
-            <small>Funcionário</small>
+      <div class="card-body text-center">
+        <div class="client-info">
+          <div class="row">
+            <div class="col-6">
+              <strong><%= @student_appointment.student.name %></strong><br>
+              <small>Aluno</small>
+            </div>
+            <div class="col-6">
+              <strong><%= @student_appointment.user.name %></strong><br>
+              <small>Funcionário</small>
+            </div>
           </div>
         </div>
-      </div>
         <div class="client-info">
           <div class="row">
             <div class="col-6">
@@ -25,6 +44,23 @@
             <div class="col-6">
               <strong><%= l @student_appointment.time, format: '%H:%M' %></strong><br>
               <small>Horário do agendamento</small>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="client-title">
+          <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-1">
+              <h1>Observação</h1>
+            </div>
+            <div class="col-10">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <%= @student_appointment.obs %>
             </div>
           </div>
         </div>

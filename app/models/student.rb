@@ -21,6 +21,14 @@ class Student < ApplicationRecord
   validates :birthday, presence: true
   validates :document_cpf, cpf: true, allow_blank: true
 
+  def get_fleet_name
+    if self.fleet
+      self.fleet.name
+    else
+      'Sem Frota'
+    end
+  end
+
   # Filtros
   filterrific(
     default_filter_params: { sorted_by: 'created_at_desc' },
@@ -38,16 +46,17 @@ class Student < ApplicationRecord
     terms = terms.map do |e|
       (e.tr('*', '%') + '%').gsub(/%+/, '%')
     end
-    num_or_conditions = 1
+    num_or_conditions = 2
     where(
       terms.map do
         or_clauses = [
-          'LOWER(students.name) LIKE ?'
+          'LOWER(students.name) LIKE ?',
+          'LOWER(fleets.name) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
-    )
+    ).joins(:fleet)
   }
 
   scope :sorted_by, lambda { |sort_option|
@@ -59,6 +68,8 @@ class Student < ApplicationRecord
       order("LOWER(students.name) #{direction}")
     when /^birthday_/
       order("students.birthday #{direction}")
+    when /^fleet_/
+      order("fleets.name #{direction}").joins(:fleet)
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end
@@ -70,7 +81,7 @@ class Student < ApplicationRecord
     end
    }
 
-   scope :sorted_by_use_meds, lambda { |sort_option| 
+   scope :sorted_by_use_meds, lambda { |sort_option|
     if sort_option.eql? 'Y'
       where('EXISTS (SELECT 1 FROM medicines WHERE student_id = students.id)')
     end
@@ -80,7 +91,9 @@ class Student < ApplicationRecord
     [
       ['Nome (a-z)', 'name_asc'],
       ['Data de cadastro (novos)', 'created_at_desc'],
-      ['Data de cadastro (antigos)', 'created_at_asc']
+      ['Data de cadastro (antigos)', 'created_at_asc'],
+      ['Data de nascimento', 'birthday_asc'],
+      ['Frota', 'fleet_asc']
     ]
   end
 
