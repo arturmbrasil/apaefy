@@ -5,9 +5,6 @@
         <%= link_to 'Editar', edit_user_path(@user), class: 'btn btn-primary' %>
       </div>
       <div class="card-body text-center">
-        <div class="client-avatar">
-          <%= image_tag 'avatar', class: 'img-fluid rounded-circle' %>
-        </div>
         <div class="client-title">
           <h1><%= @user.name %></h1>
           <h2><%= User.human_attribute_name("role.#{@user.role}") %></h2>
