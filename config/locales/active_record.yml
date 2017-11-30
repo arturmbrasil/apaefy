@@ -136,7 +136,7 @@ pt-BR:
         goals: Metas
         value: Valor
         user: Funcionário
-        user_id: Funcionário
+        user_ids: Funcionários
         created_at: Criado em
       product:
         name: Nome
