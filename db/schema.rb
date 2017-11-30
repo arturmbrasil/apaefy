@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.date "date"
     t.integer "nr_nota"
     t.decimal "value"
-    t.string "num_parcela"
-    t.string "pago"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,7 +29,6 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.date "date"
     t.string "name"
     t.decimal "value"
-    t.string "num_parcela"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -128,7 +125,6 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.text "description", default: "", null: false
     t.float "value", null: false
     t.string "stock", default: "", null: false
-    t.integer "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -175,8 +171,8 @@ ActiveRecord::Schema.define(version: 20171129191029) do
 
   create_table "student_evolutions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
-    t.date "date"
-    t.text "description"
+    t.date "date", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_evolutions_on_student_id"
@@ -203,7 +199,6 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.string "document_cpf", default: "", null: false
     t.string "phone_numbers", default: [], array: true
     t.string "gender", limit: 1, null: false
-    t.integer "cns"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "city_id"
@@ -251,7 +246,7 @@ ActiveRecord::Schema.define(version: 20171129191029) do
     t.string "document_cpf", null: false
     t.string "document_cnh", null: false
     t.string "document_cns", null: false
-    t.datetime "admission_date", default: "2017-11-29 22:05:39", null: false
+    t.datetime "admission_date", default: "2017-11-16 17:44:54", null: false
     t.uuid "city_id"
     t.string "address_street", default: "", null: false
     t.string "address_number", default: "", null: false
