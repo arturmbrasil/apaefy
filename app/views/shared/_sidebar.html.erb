@@ -90,12 +90,10 @@
       <% end %>
     </li>
     <li>
-      <a href="#reports" aria-expanded="false" data-toggle="collapse" class=""> <%= icon('database') %> Relatórios </a>
-      <ul id="reports" class="list-unstyled collapse" aria-expanded="true" style="">
-        <li>
-          <%= link_to 'Doações', partner_donations_path(format: :csv) %>
-        </li>
-      </ul>
+      <%= link_to partner_donations_path do %>
+      <%= icon('usd') %>
+      Relatório de Doações
+      <% end %>
     </li>
   </ul>
 </nav>

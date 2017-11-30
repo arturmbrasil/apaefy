@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  belongs_to :user
 
   validates :title, presence: true
   validates :description, presence: true
@@ -44,6 +45,12 @@ class Project < ApplicationRecord
       order("projects.created_at #{direction}")
     when /^name_/
       order("LOWER(projects.name) #{direction}")
+	when /^status_/
+	  order("LOWER(projects.status) #{direction}")
+	when /^value_/
+	  order("projects.value #{direction}")
+	when /^title_/
+	  order("LOWER(projects.title) #{direction}")
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end

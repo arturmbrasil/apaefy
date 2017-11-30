@@ -2,7 +2,17 @@ class PartnerDonationsController < ApplicationController
   before_action :set_partner_donation, only: [:destroy]
 
   def index
+    (@filterrific = initialize_filterrific(
+      PartnerDonation,
+      params[:filterrific],
+      select_options: {
+        sorted_by: PartnerDonation.options_for_sorted_by
+      }
+    )) || return
+
+    @partner_donations = @filterrific.find.page params[:page]
     respond_to do |format|
+	  format.html
       format.csv { send_data PartnerDonation.to_csv }
     end
   end
