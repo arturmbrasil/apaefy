@@ -133,8 +133,6 @@ $(function () {
   $('.js-phone-number').mask(phoneMaskBehavior, phoneMaskOptions);
   $('.js-address-zip-code').mask('00000-000');
   $('.js-license-plate').mask('AAA-0000');
-  $('.js-currency').mask('000.000.000.000.000,00', { reverse: true });
-
 
   // Remote forms helpers
   $.fn.renderFormErrors = function(errors) {
