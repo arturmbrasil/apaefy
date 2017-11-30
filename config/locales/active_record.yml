@@ -42,6 +42,7 @@ pt-BR:
         unconfirmed_email: E-mail não confirmado
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
+        project_ids: Projetos
       user/gender:
         male: Masculino
         female: Feminino
@@ -79,6 +80,7 @@ pt-BR:
         address_zip_code: CEP
         address_neighborhood: Bairro
         created_at: Criado em
+        fleet_id: Frota
       student/gender:
         male: Masculino
         female: Feminino
