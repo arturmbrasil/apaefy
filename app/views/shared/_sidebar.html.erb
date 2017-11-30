@@ -18,81 +18,107 @@
       <% end %>
     </li>
     <li>
-      <%= link_to supplies_path do %>
-      <%= icon('thermometer-half') %>
-      Abastecimentos
+      <% unless current_user.role != 'finance' && current_user.role != 'driver' && current_user.role != 'director' %>
+        <%= link_to supplies_path do %>
+          <%= icon('thermometer-half') %>
+          Abastecimentos
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to student_appointments_path do %>
-        <%= icon('calendar ') %>
-        Agendamentos
+      <% if ['director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist', 'physiotherapist', 'social_worker', 'secretary', 'speech_therapist', 'teacher'].include? current_user.role %>
+        <%= link_to student_appointments_path do %>
+          <%= icon('calendar ') %>
+          Agendamentos
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to students_path do %>
-        <%= icon('graduation-cap ') %>
-        Alunos
+      <% if ['human_resources', 'director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist', 'physiotherapist', 'social_worker', 'secretary', 'speech_therapist', 'teacher'].include? current_user.role %>
+        <%= link_to students_path do %>
+          <%= icon('graduation-cap ') %>
+          Alunos
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to account_pays_path do %>
-      <%= icon('suitcase') %>
-      Contas a Pagar
+      <% unless current_user.role != 'finance' && current_user.role != 'director' %>
+        <%= link_to account_pays_path do %>
+          <%= icon('suitcase') %>
+          Contas a Pagar
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to account_receivables_path do %>
-      <%= icon('money') %>
-      Contas a Receber
+      <% unless current_user.role != 'finance' && current_user.role != 'telemarketing' && current_user.role != 'director' %>
+        <%= link_to account_receivables_path do %>
+          <%= icon('money') %>
+          Contas a Receber
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to loans_path do %>
-        <%= icon('book') %>
-        Empréstimos
+      <% if ['director', 'warehouse', 'therapist', 'secretary'].include? current_user.role %>
+        <%= link_to loans_path do %>
+          <%= icon('book') %>
+          Empréstimos
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to fleets_path do %>
-        <%= icon('bus') %>
-        Frotas
+      <% unless current_user.role != 'finance' && current_user.role != 'driver' && current_user.role != 'director' %>
+        <%= link_to fleets_path do %>
+          <%= icon('bus') %>
+          Frotas
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to users_path do %>
-        <%= icon('users') %>
-        Funcionários
+      <% unless current_user.role != 'finance' && current_user.role != 'human_resources' && current_user.role != 'director' %>
+        <%= link_to users_path do %>
+          <%= icon('users') %>
+          Funcionários
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to partners_path do %>
-      <%= icon('handshake-o ') %>
-      Parceiros
+      <% unless current_user.role != 'marketing' && current_user.role != 'telemarketing' && current_user.role != 'director' %>
+        <%= link_to partners_path do %>
+          <%= icon('handshake-o ') %>
+          Parceiros
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to products_path do %>
-        <%= icon('shopping-basket') %>
-        Produtos
+      <% unless current_user.role != 'warehouse' && current_user.role != 'director' %>
+        <%= link_to products_path do %>
+          <%= icon('shopping-basket') %>
+          Produtos
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to projects_path do %>
-        <%= icon('file') %>
-        Projetos
+      <% unless current_user.role != 'marketing' && current_user.role != 'director' %>
+        <%= link_to projects_path do %>
+          <%= icon('file') %>
+          Projetos
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to student_evolutions_path do %>
-      <%= icon('paste') %>
-      Relatório de quadro evolutivo
+      <% if ['human_resources', 'director', 'pedagogical_coordinator', 'cr_coordinator', 'psychologist', 'therapist', 'physiotherapist', 'social_worker', 'secretary', 'speech_therapist', 'teacher'].include? current_user.role %>
+        <%= link_to student_evolutions_path do %>
+          <%= icon('paste') %>
+          Relatório de quadro evolutivo
+        <% end %>
       <% end %>
     </li>
     <li>
-      <%= link_to partner_donations_path do %>
-      <%= icon('usd') %>
-      Relatório de Doações
+      <% unless current_user.role != 'marketing' && current_user.role != 'telemarketing' && current_user.role != 'director' %>
+        <%= link_to partner_donations_path do %>
+          <%= icon('usd') %>
+          Relatório de Doações
+        <% end %>
       <% end %>
     </li>
   </ul>
